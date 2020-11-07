@@ -31,10 +31,6 @@ public class PlayerMovement : MonoBehaviour
     {
         bool isPlayerGrounded = isGrounded();
         
-        if (isPlayerGrounded)
-        {
-            Debug.Log("isPlayerGrounded" + isPlayerGrounded);
-        }
         if (isPlayerGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             playerRigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -43,20 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded()
     {
-        //Debug.Log("isGrounded distToGround" + distToGround);
-        //Gizmos.color = Color.red;
-        //Vector3 direction = -Vector3.up;
-        //Gizmos.DrawRay(transform.position, direction);
-
-        //Debug.Log("playersFeetCollider.transform.position" + playersFeetCollider.transform.position);
-        Debug.DrawRay(gameObject.transform.position, Vector3.down * distToGround, Color.red);
         return Physics2D.Raycast(gameObject.transform.position, Vector3.down, distToGround, LayerMask.GetMask("Ground"));
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Vector3 direction = -Vector3.up * 5;
-    //    Gizmos.DrawRay(transform.position, direction);
-    //}
 }
