@@ -2,22 +2,21 @@
 
 namespace Assets.Scripts
 {
-    public class Health : MonoBehaviour
+    public class PlayerHealth : MonoBehaviour
     {
-        public int curHealth = 0;
-        public int maxHealth = 100;
+        private int curHealth;
+        private int maxHealth = 100;
 
-        // Start is called before the first frame update
         void Start()
         {
             curHealth = maxHealth;
         }
 
-        public void DamagePlayer(int damage)
+        public void TakeDamage(int damage)
         {
             curHealth -= damage;
 
-            if(curHealth < 0)
+            if(curHealth <= 0)
             {
                 Die();
             }
