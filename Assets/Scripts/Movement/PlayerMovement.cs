@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         bool isPlayerGrounded = isGrounded();
         
-        if (isPlayerGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)))
+        if (isPlayerGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             playerRigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
