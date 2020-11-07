@@ -38,6 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Health.cs" />
+    <Compile Include="Assets\Scripts\Publisher.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

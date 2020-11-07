@@ -27,7 +27,7 @@ namespace Assets.Scripts
         private void Die()
         {
             curHealth = 0;
-            //TODO: publish event
+            Publisher.publish.CallPlayerDeath();
         }
     }
 }
