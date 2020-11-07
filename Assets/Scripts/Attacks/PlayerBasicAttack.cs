@@ -11,6 +11,7 @@ namespace Assets.Scripts.Attacks
     {
         private GameObject arrowPrefab;
         private GameObject arrowSpawningPosition;
+        private bool isShootingRight = true;
 
         private void Awake()
         {
@@ -22,7 +23,15 @@ namespace Assets.Scripts.Attacks
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                isShootingRight = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().isFacingRight;
                 GameObject arrow = Instantiate(arrowPrefab, arrowSpawningPosition.transform.position, Quaternion.identity);
+
+                if (!isShootingRight)
+                {
+                    Vector3 vector = arrow.transform.localScale;
+                    vector.x = -1;
+                    arrow.transform.localScale = vector;
+                }                
             }
         }
     }
