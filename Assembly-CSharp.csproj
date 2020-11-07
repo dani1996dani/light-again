@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\Movement\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Publisher.cs" />
     <Compile Include="Assets\Scripts\Attacks\PlayerBasicAttack.cs" />
+    <Compile Include="Assets\Scripts\Movement\ArrowMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
