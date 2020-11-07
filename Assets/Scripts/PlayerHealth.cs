@@ -6,6 +6,7 @@ namespace Assets.Scripts
     {
         private int curHealth;
         private int maxHealth = 100;
+        private bool isAlive = true;
 
         void Start()
         {
@@ -14,9 +15,11 @@ namespace Assets.Scripts
 
         public void TakeDamage(int damage)
         {
-            curHealth -= damage;
-
-            if(curHealth <= 0)
+            if (curHealth > 0)
+            {
+                curHealth -= damage;
+            }
+            if (curHealth <= 0 && isAlive)
             {
                 Die();
             }
@@ -26,6 +29,7 @@ namespace Assets.Scripts
         private void Die()
         {
             curHealth = 0;
+            isAlive = false;
             Publisher.publish.CallPlayerDeath();
         }
     }
