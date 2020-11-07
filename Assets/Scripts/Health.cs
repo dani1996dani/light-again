@@ -2,10 +2,11 @@
 
 namespace Assets.Scripts
 {
-    public class PlayerHealth : MonoBehaviour
+    public class Health : MonoBehaviour
     {
+        public int maxHealth = 100;
+
         private int curHealth;
-        private int maxHealth = 100;
         private bool isAlive = true;
 
         void Start()
