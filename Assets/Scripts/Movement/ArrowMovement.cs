@@ -9,7 +9,7 @@ namespace Assets.Scripts.Movement
 {
     public class ArrowMovement : MonoBehaviour
     {
-        public int speed = 20;
+        private int speed = 20;
 
         private void Update()
         {

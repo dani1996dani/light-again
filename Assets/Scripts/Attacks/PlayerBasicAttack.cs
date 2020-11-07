@@ -12,6 +12,7 @@ namespace Assets.Scripts.Attacks
         private GameObject arrowPrefab;
         private GameObject arrowSpawningPosition;
         private bool isShootingRight = true;
+        private float cooldown = 0.0f;
 
         private void Awake()
         {
@@ -21,7 +22,8 @@ namespace Assets.Scripts.Attacks
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            cooldown -= Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space) && cooldown < 0)
             {
                 isShootingRight = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().isFacingRight;
                 GameObject arrow = Instantiate(arrowPrefab, arrowSpawningPosition.transform.position, Quaternion.identity);
@@ -31,7 +33,8 @@ namespace Assets.Scripts.Attacks
                     Vector3 vector = arrow.transform.localScale;
                     vector.x = -1;
                     arrow.transform.localScale = vector;
-                }                
+                }
+                cooldown = 0.5f;
             }
         }
     }
