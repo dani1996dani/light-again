@@ -3,8 +3,13 @@
 namespace Assets.Scripts.Movement
 {
     public class ArrowMovement : MonoBehaviour
-    {
-        private int speed = 20;
+    {      
+        private int speed;
+
+        public ArrowMovement()
+        {
+            speed = Settings.ArrowSpeed;
+        }
 
         private void Update()
         {
