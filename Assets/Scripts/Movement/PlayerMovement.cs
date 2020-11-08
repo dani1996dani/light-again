@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private void MirrorPlayer()
     {
         float horizontalMovementValue = Input.GetAxis("Horizontal");
+        bool didPreviouslyFacedRight = isFacingRight;
 
         if (horizontalMovementValue < 0)
         {
@@ -58,8 +59,11 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = true;
         }
 
-        Vector3 vector = gameObject.transform.localScale;
-        vector.x = isFacingRight ? 1 : -1;
-        gameObject.transform.localScale = vector;
+        if (didPreviouslyFacedRight != isFacingRight)
+        {
+            Vector3 vector = gameObject.transform.localScale;
+            vector.x = isFacingRight ? 1 : -1;
+            gameObject.transform.localScale = vector;
+        }
     }
 }

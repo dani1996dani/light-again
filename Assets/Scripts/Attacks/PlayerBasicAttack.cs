@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Attacks
 {
@@ -11,6 +6,7 @@ namespace Assets.Scripts.Attacks
     {
         private GameObject arrowPrefab;
         private GameObject arrowSpawningPosition;
+        private PlayerMovement playerMovement;
         private bool isShootingRight = true;
         private float cooldown = 0.0f;
 
@@ -18,14 +14,15 @@ namespace Assets.Scripts.Attacks
         {
             arrowPrefab = (GameObject)Resources.Load("Prefabs/Arrow", typeof(GameObject));
             arrowSpawningPosition = GameObject.FindGameObjectWithTag("ArrowSpawningPosition");
+            playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         }
 
         private void Update()
         {
             cooldown -= Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space) && cooldown < 0)
+            if (Input.GetKeyDown(KeyCode.Space) && cooldown <= 0)
             {
-                isShootingRight = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().isFacingRight;
+                isShootingRight = playerMovement.isFacingRight;
                 GameObject arrow = Instantiate(arrowPrefab, arrowSpawningPosition.transform.position, Quaternion.identity);
 
                 if (!isShootingRight)
