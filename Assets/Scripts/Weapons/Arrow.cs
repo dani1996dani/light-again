@@ -9,8 +9,13 @@ namespace Assets.Scripts.Weapons
         private int damage = 10;
         private List<int> hitableLayers;
 
-        private void Awake(){
-            hitableLayers = new List<int> { LayerMask.GetMask("Ground"), LayerMask.GetMask("Enemies") };
+        private void Awake()
+        {
+            hitableLayers = new List<int>
+            {
+                LayerHelper.LayermaskToLayer(LayerMask.GetMask("Ground")),
+                LayerHelper.LayermaskToLayer(LayerMask.GetMask("Enemies"))
+            };
         }
 
         private void Update()
@@ -26,12 +31,12 @@ namespace Assets.Scripts.Weapons
         {
             if (hitableLayers.Contains(col.gameObject.layer))
             {
-                if (col.gameObject.layer == LayerMask.GetMask("Enemies"))
+                if (col.gameObject.layer == LayerHelper.LayermaskToLayer(LayerMask.GetMask("Enemies")))
                 {
                     col.gameObject.GetComponent<Health>().TakeDamage(damage);
                 }
 
-                Destroy(gameObject);                
+                Destroy(gameObject);
             }
         }
     }
