@@ -7,7 +7,11 @@ namespace Assets.Scripts.Weapons
     {
         private float timeToLive = 1.0f;
         private int damage = 10;
-        private List<int> hitableLayers = new List<int> { LayerMask.GetMask("Ground"), LayerMask.GetMask("Enemies") };
+        private List<int> hitableLayers;
+
+        private void Awake(){
+            hitableLayers = new List<int> { LayerMask.GetMask("Ground"), LayerMask.GetMask("Enemies") };
+        }
 
         private void Update()
         {
@@ -18,7 +22,7 @@ namespace Assets.Scripts.Weapons
             }
         }
 
-        private void OnTriggerEnter2D(Collider col)
+        private void OnTriggerEnter2D(Collider2D col)
         {
             if (hitableLayers.Contains(col.gameObject.layer))
             {
