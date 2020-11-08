@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private float jumpForce = 40.0f;
     float distToGround;
 
+    public bool isFacingRight = true;
+
     private void Awake()
     {
         playerRigidBody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
@@ -16,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        MirrorPlayer();
         MoveHorizontally();
         Jump();
     }
@@ -30,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         bool isPlayerGrounded = isGrounded();
-        
-        if (isPlayerGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)))
+
+        if (isPlayerGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             playerRigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -40,5 +43,27 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded()
     {
         return Physics2D.Raycast(gameObject.transform.position, Vector3.down, distToGround, LayerMask.GetMask("Ground"));
+    }
+
+    private void MirrorPlayer()
+    {
+        float horizontalMovementValue = Input.GetAxis("Horizontal");
+        bool didPreviouslyFaceRight = isFacingRight;
+
+        if (horizontalMovementValue < 0)
+        {
+            isFacingRight = false;
+        }
+        else if (horizontalMovementValue > 0)
+        {
+            isFacingRight = true;
+        }
+
+        if (didPreviouslyFaceRight != isFacingRight)
+        {
+            Vector3 vector = gameObject.transform.localScale;
+            vector.x = isFacingRight ? 1 : -1;
+            gameObject.transform.localScale = vector;
+        }
     }
 }
