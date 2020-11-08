@@ -7,7 +7,7 @@ namespace Assets.Scripts.Weapons
     {
         private float timeToLive = 1.0f;
         private int damage = 10;
-        private List<int> hitableLayers = new List<int> { 8, 10 }; //ground, enemy
+        private List<int> hitableLayers = new List<int> { LayerMask.GetMask("Ground"), LayerMask.GetMask("Enemies") };
 
         private void Update()
         {
@@ -18,16 +18,16 @@ namespace Assets.Scripts.Weapons
             }
         }
 
-        private void OnTriggerEnter(Collider col)
+        private void OnTriggerEnter2D(Collider col)
         {
             if (hitableLayers.Contains(col.gameObject.layer))
             {
-                Destroy(gameObject);
-
-                if (col.gameObject.layer == 10) //enemy
+                if (col.gameObject.layer == LayerMask.GetMask("Enemies"))
                 {
                     col.gameObject.GetComponent<Health>().TakeDamage(damage);
                 }
+
+                Destroy(gameObject);                
             }
         }
     }
