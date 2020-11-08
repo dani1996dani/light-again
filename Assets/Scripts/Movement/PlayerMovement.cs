@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private void MirrorPlayer()
     {
         float horizontalMovementValue = Input.GetAxis("Horizontal");
-        bool didPreviouslyFacedRight = isFacingRight;
+        bool didPreviouslyFaceRight = isFacingRight;
 
         if (horizontalMovementValue < 0)
         {
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = true;
         }
 
-        if (didPreviouslyFacedRight != isFacingRight)
+        if (didPreviouslyFaceRight != isFacingRight)
         {
             Vector3 vector = gameObject.transform.localScale;
             vector.x = isFacingRight ? 1 : -1;
