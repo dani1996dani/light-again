@@ -1,19 +1,23 @@
+using Assets.Scripts;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
 
-    private float playerMovementSpeed = 15.0f;
+    private float playerMovementSpeed;
     private Rigidbody2D playerRigidBody;
-    private float jumpForce = 40.0f;
-    float distToGround;
+    private float jumpForce;
+    private float distToGround;
 
     public bool isFacingRight = true;
 
     private void Awake()
     {
+        playerMovementSpeed = Settings.PlayerMovementSpeed;
+        jumpForce = Settings.JumpForce;
+        distToGround = Settings.DistToGround;
+
         playerRigidBody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
-        distToGround = 2.1f;
     }
 
     private void Update()
