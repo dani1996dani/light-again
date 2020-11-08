@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using Assets.Scripts.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class OwlmanPatrolMovement : MonoBehaviour
     Vector3 patrolDirection = Vector3.right;
     private void Awake()
     {
-        allChildren = GetAllChildren();
+        allChildren = gameObject.GetAllChildren();
         leftEdgeDetectionObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanLeftEdgeDetection);
         rightEdgeDetectionObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanRightEdgeDetection);
     }
@@ -28,17 +29,6 @@ public class OwlmanPatrolMovement : MonoBehaviour
         }
 
         transform.position += patrolDirection * Settings.OwlmanSpeed * Time.deltaTime;
-    }
-
-    private List<GameObject> GetAllChildren()
-    {
-        List<GameObject> childrenList = new List<GameObject>();
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            GameObject currChild = transform.GetChild(i).gameObject;
-            childrenList.Add(currChild);
-        }
-        return childrenList;
     }
 
     private bool isAtLeftEdge()
