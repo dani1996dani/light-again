@@ -56,9 +56,10 @@
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\Movement\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\Publisher.cs" />
-    <Compile Include="Assets\Scripts\Attacks\PlayerBasicAttack.cs" />
     <Compile Include="Assets\Scripts\Movement\ArrowMovement.cs" />
+    <Compile Include="Assets\Scripts\Attacks\PlayerBasicAttack.cs" />
+    <Compile Include="Assets\Scripts\Publisher.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Arrow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
