@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - ArrowSpawningPosition
+  - OwlmanLeftEdgeDetection
+  - OwlmanRightEdgeDetection
   layers:
   - Default
   - TransparentFX
