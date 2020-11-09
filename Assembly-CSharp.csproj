@@ -63,7 +63,7 @@
     <Compile Include="Assets\Scripts\Attacks\PlayerBasicAttack.cs" />
     <Compile Include="Assets\Scripts\Movement\OwlmanPatrolMovement.cs" />
     <Compile Include="Assets\Scripts\Publisher.cs" />
-    <Compile Include="Assets\Scripts\LayerHelper.cs" />
+    <Compile Include="Assets\Scripts\Helpers\LayerHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
