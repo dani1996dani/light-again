@@ -11,29 +11,29 @@ public class OwlmanChaseMovement : MonoBehaviour {
     List<GameObject> allChildren;
 
     private void Awake() {
-        Debug.Log("heh");
         allChildren = gameObject.GetAllChildren();
         rightHandGameObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanRightHand);
         leftHandGameObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanLeftHand);
     }
 
-    private void Start() {
-        // OwlmanStartChasingVisionRange
-        
+    public bool ShouldChase()
+    {
+        return isPlayerVisibleOnLeftSide() || isPlayerVisibleOnRightSide();
     }
 
-    private void Update() {
-        if(isPlayerVisibleOnLeftSide()){
-            Debug.Log("Player on the Left!1");
-            Chase(Vector3.left);
+    public void Chase()
+    {
+        if (isPlayerVisibleOnLeftSide())
+        {
+            ChaseInDirection(Vector3.left);
         }
-        if(isPlayerVisibleOnRightSide()){
-            Debug.Log("Player on the right!1");
-            Chase(Vector3.right);
+        if (isPlayerVisibleOnRightSide())
+        {
+            ChaseInDirection(Vector3.right);
         }
     }
 
-    public void Chase(Vector3 direction)
+    public void ChaseInDirection(Vector3 direction)
     {
         gameObject.transform.position += direction * Time.deltaTime * Settings.OwlmanChaseSpeed;
     }
