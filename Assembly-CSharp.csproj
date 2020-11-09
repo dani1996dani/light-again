@@ -47,7 +47,6 @@
      <Compile Include="Assets\Scripts\Publisher.cs" />
      <Compile Include="Assets\Scripts\Helpers\GameObjectExtension.cs" />
      <Compile Include="Assets\Scripts\LayerHelper.cs" />
-     <Compile Include="Assets\Scripts\Movement\OwlmanChaseMovement.cs" />
     <Reference Include="UnityEngine">
         <HintPath>E:/Tools/Unity/Unity IDE/2020.1.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
