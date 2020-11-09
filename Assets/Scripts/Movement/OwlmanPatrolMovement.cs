@@ -15,6 +15,7 @@ public class OwlmanPatrolMovement : MonoBehaviour
     Vector3 patrolDirection = Vector3.right;
     System.Random random = new System.Random();
     private bool isPatrolIdle = false;
+
     private void Awake()
     {
         allChildren = gameObject.GetAllChildren();
@@ -26,7 +27,7 @@ public class OwlmanPatrolMovement : MonoBehaviour
 
     private void Start()
     {
-QueueUpToggleIsPatrolIdle();
+        QueueUpToggleIsPatrolIdle();
     }
 
     private void Update()
@@ -40,8 +41,8 @@ QueueUpToggleIsPatrolIdle();
     private void QueueUpToggleIsPatrolIdle()
     {
         int minRange = 2;
-        int maxRange = 5;
-        float randomFloat = (float)(random.NextDouble() * maxRange + minRange);
+        int maxRange = 7;
+        float randomFloat = (float)(random.NextDouble() * (maxRange - minRange) + minRange);
         IEnumerator ToggleIsPatrolIdleCoroutine = ToggleIsPatrolIdle(randomFloat);
         StartCoroutine(ToggleIsPatrolIdleCoroutine);
     }
