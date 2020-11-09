@@ -7,6 +7,8 @@ TagManager:
   - ArrowSpawningPosition
   - OwlmanLeftEdgeDetection
   - OwlmanRightEdgeDetection
+  - OwlmanLeftHand
+  - OwlmanRightHand
   layers:
   - Default
   - TransparentFX
