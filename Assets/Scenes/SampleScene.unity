@@ -123,36 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &224327630
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 224327631}
-  m_Layer: 10
-  m_Name: OwlmanLeftEdgeDetection
-  m_TagString: OwlmanLeftEdgeDetection
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &224327631
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224327630}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: -2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1486892244}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653260035
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,36 +243,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &726276858
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 726276859}
-  m_Layer: 10
-  m_Name: OwlmanRightEdgeDetection
-  m_TagString: OwlmanRightEdgeDetection
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &726276859
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726276858}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1486892244}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1120757119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -357,14 +297,6 @@ PrefabInstance:
     - target: {fileID: 3606812426607017576, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5359504289782132912, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
-      propertyPath: m_TagString
-      value: OwlmanRightHand
-      objectReference: {fileID: 0}
-    - target: {fileID: 6806160832763501753, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
-      propertyPath: m_TagString
-      value: OwlmanLeftHand
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
@@ -690,28 +622,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 024fbf42f906e004383d0a49f6922d9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1486892239 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3606812426607017558, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
-  m_PrefabInstance: {fileID: 1120757119}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1486892244 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3606812426607017576, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
-  m_PrefabInstance: {fileID: 1120757119}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1486892245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486892239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 557c439de57fc0f41b9c8e31e7a92e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1687258581
