@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.20749143, g: 0.21147497, b: 0.14576834, a: 1}
+  m_IndirectSpecularColor: {r: 0.20749128, g: 0.21147479, b: 0.14576818, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -336,6 +336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Owlman (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3606812426607017559, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3606812426607017576, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.95
@@ -378,6 +382,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3606812426607017576, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606812426607017577, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078579975390764083, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -467,6 +479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1365127026}
   - component: {fileID: 1365127025}
+  - component: {fileID: 1365127027}
   m_Layer: 0
   m_Name: GameSettings
   m_TagString: Untagged
@@ -500,6 +513,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1365127027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365127024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 315a44173a4e8764e841103d7ab84129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1383093249
 GameObject:
   m_ObjectHideFlags: 0
@@ -5526,3 +5551,20 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &2070374064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3606812426607017558, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
+  m_PrefabInstance: {fileID: 1120757119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2070374071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070374064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ab03452b6661e4c8113af851b96494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
