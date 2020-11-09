@@ -1,11 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Helpers;
+using System.Linq;
+using Assets.Scripts;
 
 public class OwlmanChaseMovement : MonoBehaviour {
 
     GameObject rightHandGameObject;
     GameObject leftHandGameObject;
+    List<GameObject> allChildren;
 
     private void Awake() {
+        Debug.Log("heh");
         allChildren = gameObject.GetAllChildren();
         rightHandGameObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanRightHand);
         leftHandGameObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanLeftHand);
@@ -24,12 +30,14 @@ public class OwlmanChaseMovement : MonoBehaviour {
         }
         
     }
-
-    private void isPlayerVisibleOnRightSide(){
-        return Physics2D.Raycast(leftHandGameObject.transform.position, Vector2.left, Settings.OwlmanStartChasingVisionRange, LayerMask.GetMask("Ground"));
+    
+    private bool isPlayerVisibleOnLeftSide(){
+        Debug.DrawRay(leftHandGameObject.transform.position, Vector3.left * 10, Color.green);
+        return Physics2D.Raycast(leftHandGameObject.transform.position, Vector2.left, Settings.OwlmanStartChasingVisionRange, LayerMask.GetMask("Player"));
     }
 
-    private void isPlayerVisibleOnLeftSide(){
-        return Physics2D.Raycast(rightHandGameObject.transform.position, Vector2.right, Settings.OwlmanStartChasingVisionRange, LayerMask.GetMask("Ground"));
+    private bool isPlayerVisibleOnRightSide(){
+        Debug.DrawRay(leftHandGameObject.transform.position, Vector3.right * 10, Color.blue);
+        return Physics2D.Raycast(rightHandGameObject.transform.position, Vector2.right, Settings.OwlmanStartChasingVisionRange, LayerMask.GetMask("Player"));
     }
 }
