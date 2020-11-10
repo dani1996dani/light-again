@@ -25,12 +25,7 @@ public class OwlmanPatrolMovement : MonoBehaviour
         leftHandGameObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanLeftHand);
     }
 
-    private void Start()
-    {
-        QueueUpToggleIsPatrolIdle();
-    }
-
-    private void Update()
+    public void Patrol()
     {
         if (!isPatrolIdle)
         {
@@ -38,7 +33,7 @@ public class OwlmanPatrolMovement : MonoBehaviour
         }
     }
 
-    private void QueueUpToggleIsPatrolIdle()
+    public void QueueUpToggleIsPatrolIdle()
     {
         int minRange = 2;
         int maxRange = 7;
