@@ -26,7 +26,12 @@ public class OwlmanActionManager : MonoBehaviour
     {
 
 
-        //attackController.isPlayerInAttackRange();
+        if (attackController.isPlayerInAttackRange(directionController.GetDirection()))
+        {
+            attackController.AttackPlayer();
+            return;
+        }
+
         if (chaseController.ShouldChase())
         {
             Vector3 chaseDirection = directionController.UpdateDirectionBasedOnChase(chaseController);

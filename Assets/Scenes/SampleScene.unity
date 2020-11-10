@@ -445,13 +445,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1847132140, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
+      propertyPath: m_TagString
+      value: OwlmanAttackHitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847132140, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3606812426607017558, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
       propertyPath: m_Name
       value: Owlman (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3606812426607017559, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
-      propertyPath: m_BodyType
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3606812426607017576, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -496,14 +500,6 @@ PrefabInstance:
     - target: {fileID: 3606812426607017576, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3606812426607017577, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8078579975390764083, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
@@ -779,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397240275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.84, y: -5.5, z: 0}
+  m_LocalPosition: {x: 20.18, y: -5.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1383093250}
@@ -875,6 +871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024fbf42f906e004383d0a49f6922d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
+  curHealth: 0
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0
@@ -5664,44 +5662,20 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!1 &2070374064 stripped
+--- !u!1 &1847132140 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3606812426607017558, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1847132140, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
   m_PrefabInstance: {fileID: 1120757119}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2070374065
+--- !u!114 &1847132143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070374064}
+  m_GameObject: {fileID: 1847132140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b549e333c6838cf478ab993126bf92b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2070374066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070374064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813cfa09475113d4eb3d6065402528a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2070374071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070374064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252fc797f6e8a7c40b3aef50c0ee63de, type: 3}
+  m_Script: {fileID: 11500000, guid: c904cc3880ed7b04c8b5d650d22d14e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -13,13 +13,17 @@
         public static readonly float OwlmanChaseSpeed = 10.0f;
         public static readonly float OwlmanStartChasingVisionRange = 10.0f;
         public static readonly float OwlmanAttackRange = 1.0f;
+        public static readonly float OwlmanAttackCooldownSeconds = 1.0f;
+        public static readonly int OwlmanAttackDamage = 10;
         #endregion
 
         #region Tags
+        public static readonly string TagPlayer = "Player";
         public static readonly string TagOwlmanRightEdgeDetection = "OwlmanRightEdgeDetection";
         public static readonly string TagOwlmanLeftEdgeDetection = "OwlmanLeftEdgeDetection";
         public static readonly string TagOwlmanLeftHand = "OwlmanLeftHand";
         public static readonly string TagOwlmanRightHand = "OwlmanRightHand";
+        public static readonly string TagOwlmanAttackHitbox = "OwlmanAttackHitbox";
         #endregion
     }
 }
