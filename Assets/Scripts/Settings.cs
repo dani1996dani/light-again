@@ -7,9 +7,13 @@
         public static readonly float PlayerMovementSpeed = 15.0f;
         public static readonly float JumpForce = 40.0f;
         public static readonly float DistToGround = 2.1f;
+
+        #region Owlman
         public static readonly float OwlmanSpeed = 5.0f;
         public static readonly float OwlmanChaseSpeed = 10.0f;
         public static readonly float OwlmanStartChasingVisionRange = 10.0f;
+        public static readonly float OwlmanAttackRange = 1.0f;
+        #endregion
 
         #region Tags
         public static readonly string TagOwlmanRightEdgeDetection = "OwlmanRightEdgeDetection";
