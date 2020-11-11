@@ -11,6 +11,7 @@ public class OwlmanActionManager : MonoBehaviour
     private OwlmanPatrolMovement patrolController;
     private OwlmanAttack attackController;
     private OwlmanMovingDirection directionController;
+    private readonly MirrorCharacter mirrorController = new MirrorCharacter();
 
     private void Start()
     {
@@ -25,6 +26,8 @@ public class OwlmanActionManager : MonoBehaviour
     private void Update()
     {
         Vector3 lastStoredDirection = directionController.GetDirection();
+        mirrorController.MirrorGameObjectBasedOnDirection(gameObject, lastStoredDirection);
+
         if (attackController.isPlayerInAttackRange(lastStoredDirection))
         {
             attackController.AttackPlayer(lastStoredDirection);
