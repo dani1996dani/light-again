@@ -15,6 +15,7 @@
         public static readonly float OwlmanAttackRange = 1.0f;
         public static readonly float OwlmanAttackCooldownSeconds = 1.0f;
         public static readonly int OwlmanAttackDamage = 10;
+        public static readonly float PatrolEdgeOffset = 1.5f;
         #endregion
 
         #region Tags

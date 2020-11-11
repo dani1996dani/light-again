@@ -14,6 +14,7 @@ public class OwlmanPatrolMovement : MonoBehaviour
     GameObject leftHandGameObject;
     System.Random random = new System.Random();
     private bool isPatrolIdle = false;
+    Vector3 edgeOffset = new Vector3(Settings.PatrolEdgeOffset, 0, 0);
 
     private void Awake()
     {
@@ -55,14 +56,16 @@ public class OwlmanPatrolMovement : MonoBehaviour
 
     public bool isAtLeftEdge()
     {
-        bool isAtBottomLeftEdge = !Physics2D.Raycast(leftEdgeDetectionObject.transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
+        Vector3 originPoint = leftEdgeDetectionObject.transform.position - edgeOffset;
+        bool isAtBottomLeftEdge = !Physics2D.Raycast(originPoint, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
         bool isAtFaceHegihtLeftEdge = Physics2D.Raycast(leftHandGameObject.transform.position, Vector2.left, 0.1f, LayerMask.GetMask("Ground"));
         return isAtBottomLeftEdge || isAtFaceHegihtLeftEdge;
     }
 
     public bool isAtRightEdge()
     {
-        bool isAtBottomRightEdge = !Physics2D.Raycast(rightEdgeDetectionObject.transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
+        Vector3 originPoint = leftEdgeDetectionObject.transform.position + edgeOffset;
+        bool isAtBottomRightEdge = !Physics2D.Raycast(originPoint, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
         bool isAtFaceHegihtRightEdge = Physics2D.Raycast(rightHandGameObject.transform.position, Vector2.right, 0.1f, LayerMask.GetMask("Ground"));
         return isAtBottomRightEdge || isAtFaceHegihtRightEdge;
     }
