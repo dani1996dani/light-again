@@ -75,6 +75,9 @@ GameObject:
   - component: {fileID: 8278283796298102484}
   - component: {fileID: 8078579975390764083}
   - component: {fileID: 8752153388282269917}
+  - component: {fileID: 2070374065}
+  - component: {fileID: 2070374066}
+  - component: {fileID: 2070374071}
   m_Layer: 10
   m_Name: Owlman
   m_TagString: Untagged
@@ -158,7 +161,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -1.69}
@@ -198,6 +201,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4ab03452b6661e4c8113af851b96494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2070374065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606812426607017558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b549e333c6838cf478ab993126bf92b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2070374066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606812426607017558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a73dd532a49cf439be7cff54e5ef07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2070374071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606812426607017558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252fc797f6e8a7c40b3aef50c0ee63de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3606812426809806849

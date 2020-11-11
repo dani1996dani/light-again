@@ -12,7 +12,6 @@ public class OwlmanPatrolMovement : MonoBehaviour
     GameObject rightEdgeDetectionObject;
     GameObject rightHandGameObject;
     GameObject leftHandGameObject;
-    Vector3 patrolDirection = Vector3.right;
     System.Random random = new System.Random();
     private bool isPatrolIdle = false;
 
@@ -25,11 +24,11 @@ public class OwlmanPatrolMovement : MonoBehaviour
         leftHandGameObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanLeftHand);
     }
 
-    public void Patrol()
+    public void Patrol(Vector3 direction)
     {
         if (!isPatrolIdle)
         {
-            Move();
+            Move(direction);
         }
     }
 
@@ -49,28 +48,19 @@ public class OwlmanPatrolMovement : MonoBehaviour
         QueueUpToggleIsPatrolIdle();
     }
 
-    private void Move()
+    private void Move(Vector3 direction)
     {
-        if (isAtLeftEdge())
-        {
-            patrolDirection = Vector3.right;
-        }
-        if (isAtRightEdge())
-        {
-            patrolDirection = Vector3.left;
-        }
-
-        transform.position += patrolDirection * Settings.OwlmanSpeed * Time.deltaTime;
+        transform.position += direction * Settings.OwlmanSpeed * Time.deltaTime;
     }
 
-    private bool isAtLeftEdge()
+    public bool isAtLeftEdge()
     {
         bool isAtBottomLeftEdge = !Physics2D.Raycast(leftEdgeDetectionObject.transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
         bool isAtFaceHegihtLeftEdge = Physics2D.Raycast(leftHandGameObject.transform.position, Vector2.left, 0.1f, LayerMask.GetMask("Ground"));
         return isAtBottomLeftEdge || isAtFaceHegihtLeftEdge;
     }
 
-    private bool isAtRightEdge()
+    public bool isAtRightEdge()
     {
         bool isAtBottomRightEdge = !Physics2D.Raycast(rightEdgeDetectionObject.transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
         bool isAtFaceHegihtRightEdge = Physics2D.Raycast(rightHandGameObject.transform.position, Vector2.right, 0.1f, LayerMask.GetMask("Ground"));
