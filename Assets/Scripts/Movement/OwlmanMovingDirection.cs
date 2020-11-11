@@ -4,7 +4,7 @@ using Assets.Scripts.Helpers;
 using System.Linq;
 using Assets.Scripts;
 
-public class MovingDirection : MonoBehaviour
+public class OwlmanMovingDirection : MonoBehaviour
 {
     Vector3 direction = Vector3.right;
 

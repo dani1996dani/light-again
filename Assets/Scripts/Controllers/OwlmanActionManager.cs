@@ -10,25 +10,24 @@ public class OwlmanActionManager : MonoBehaviour
     private OwlmanChaseMovement chaseController;
     private OwlmanPatrolMovement patrolController;
     private OwlmanAttack attackController;
-    private MovingDirection directionController;
+    private OwlmanMovingDirection directionController;
 
     private void Start()
     {
         chaseController = gameObject.GetComponent<OwlmanChaseMovement>();
         patrolController = gameObject.GetComponent<OwlmanPatrolMovement>();
         attackController = gameObject.GetComponent<OwlmanAttack>();
-        directionController = gameObject.GetComponent<MovingDirection>();
+        directionController = gameObject.GetComponent<OwlmanMovingDirection>();
 
         patrolController.QueueUpToggleIsPatrolIdle();
     }
 
     private void Update()
     {
-
-
-        if (attackController.isPlayerInAttackRange(directionController.GetDirection()))
+        Vector3 lastStoredDirection = directionController.GetDirection();
+        if (attackController.isPlayerInAttackRange(lastStoredDirection))
         {
-            attackController.AttackPlayer(directionController.GetDirection());
+            attackController.AttackPlayer(lastStoredDirection);
             return;
         }
 

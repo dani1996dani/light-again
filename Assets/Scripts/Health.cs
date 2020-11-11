@@ -4,8 +4,8 @@ namespace Assets.Scripts
 {
     public class Health : MonoBehaviour
     {
-        public int maxHealth;
-        public int curHealth;
+        private int maxHealth;
+        private int curHealth;
         private bool isAlive = true;
         private bool isPlayer = false;
 

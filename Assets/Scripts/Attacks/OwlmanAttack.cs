@@ -36,7 +36,6 @@ namespace Assets.Scripts.Attacks
 
         IEnumerator SetAttackCooldown()
         {
-            Debug.Log("SetAttackCooldown was called");
             canAttack = false;
             yield return new WaitForSeconds(Settings.OwlmanAttackCooldownSeconds);
             canAttack = true;
