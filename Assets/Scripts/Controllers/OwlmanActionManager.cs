@@ -28,7 +28,7 @@ public class OwlmanActionManager : MonoBehaviour
 
         if (attackController.isPlayerInAttackRange(directionController.GetDirection()))
         {
-            attackController.AttackPlayer();
+            attackController.AttackPlayer(directionController.GetDirection());
             return;
         }
 

@@ -23,7 +23,6 @@
         public static readonly string TagOwlmanLeftEdgeDetection = "OwlmanLeftEdgeDetection";
         public static readonly string TagOwlmanLeftHand = "OwlmanLeftHand";
         public static readonly string TagOwlmanRightHand = "OwlmanRightHand";
-        public static readonly string TagOwlmanAttackHitbox = "OwlmanAttackHitbox";
         #endregion
     }
 }

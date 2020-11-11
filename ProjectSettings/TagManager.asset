@@ -9,7 +9,6 @@ TagManager:
   - OwlmanRightEdgeDetection
   - OwlmanLeftHand
   - OwlmanRightHand
-  - OwlmanAttackHitbox
   layers:
   - Default
   - TransparentFX

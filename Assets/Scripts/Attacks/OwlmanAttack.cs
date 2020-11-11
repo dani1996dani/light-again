@@ -1,36 +1,35 @@
-﻿using UnityEngine;
-using Assets.Scripts.Helpers;
-using System.Linq;
-using System.Collections.Generic;
+﻿using Assets.Scripts.Helpers;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Attacks
 {
     public class OwlmanAttack : MonoBehaviour
     {
-        GameObject attackHitbox;
-        BoxCollider2D attackHitboxCollider;
         List<GameObject> allChildren;
         bool canAttack = true;
+        Health playerHealth;
+
 
         private void Awake()
         {
             allChildren = gameObject.GetAllChildren();
-            attackHitbox = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanAttackHitbox);
-            attackHitboxCollider = attackHitbox.GetComponent<BoxCollider2D>();
-            attackHitboxCollider.enabled = false;
+
+            playerHealth = GameObject.FindGameObjectWithTag(Settings.TagPlayer).GetComponent<Health>();
         }
 
-        public bool isPlayerInAttackRange(Vector3 lookingAtDirection)
+        public bool isPlayerInAttackRange(Vector3 attackDirection)
         {
-            return Physics2D.Raycast(transform.position, lookingAtDirection, Settings.OwlmanAttackRange, LayerMask.GetMask("Player"));
+            return Physics2D.Raycast(transform.position, attackDirection, Settings.OwlmanAttackRange, LayerMask.GetMask("Player"));
         }
 
-        public void AttackPlayer()
+        public void AttackPlayer(Vector3 attackDirection)
         {
             if (canAttack)
             {
-                StartCoroutine("FlashAttackHitbox");
+                IEnumerator dealDamage = DealDamage(attackDirection);
+                StartCoroutine(dealDamage);
                 StartCoroutine("SetAttackCooldown");
             }
         }
@@ -43,12 +42,14 @@ namespace Assets.Scripts.Attacks
             canAttack = true;
         }
 
-        IEnumerator FlashAttackHitbox()
+        IEnumerator DealDamage(Vector3 attackDirection)
         {
-            Debug.Log("FlashAttackHitbox was called");
-            attackHitboxCollider.enabled = true;
-            yield return new WaitForEndOfFrame();
-            //attackHitboxCollider.enabled = false;
+            yield return new WaitForSeconds(0.5f);
+            bool isPlayerStillInAttackRange = isPlayerInAttackRange(attackDirection);
+            if (isPlayerStillInAttackRange)
+            {
+                playerHealth.TakeDamage(Settings.OwlmanAttackDamage);
+            }
         }
     }
 }
