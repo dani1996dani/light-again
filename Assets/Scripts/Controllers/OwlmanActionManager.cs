@@ -23,7 +23,7 @@ public class OwlmanActionManager : MonoBehaviour
         patrolController.QueueUpToggleIsPatrolIdle();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 lastStoredDirection = directionController.GetDirection();
         mirrorController.MirrorGameObjectBasedOnDirection(gameObject, lastStoredDirection);
