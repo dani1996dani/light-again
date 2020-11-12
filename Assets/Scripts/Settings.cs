@@ -2,7 +2,7 @@
 {
     public class Settings
     {
-        public static readonly int PlayerMaxHealth = 200;
+        public static readonly int PlayerMaxHealth = 20;
         public static readonly int ArrowSpeed = 10;
         public static readonly float PlayerMovementSpeed = 15.0f;
         public static readonly float JumpForce = 40.0f;
@@ -30,5 +30,7 @@
         #region Layers
         public static readonly string LayerMoonDust = "Moon Dust";
         #endregion
+
+        public static bool isGamePaused = false;
     }
 }
