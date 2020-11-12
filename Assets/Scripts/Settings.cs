@@ -24,6 +24,11 @@
         public static readonly string TagOwlmanLeftEdgeDetection = "OwlmanLeftEdgeDetection";
         public static readonly string TagOwlmanLeftHand = "OwlmanLeftHand";
         public static readonly string TagOwlmanRightHand = "OwlmanRightHand";
+        public static readonly string TagMoonDust = "MoonDust";
+        #endregion
+
+        #region Layers
+        public static readonly string LayerMoonDust = "Moon Dust";
         #endregion
     }
 }
