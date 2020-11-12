@@ -10,13 +10,15 @@ namespace Assets.Scripts
     {
 
         //Delegate definition
-        public delegate void EventHandler();
+        public delegate void DeathEventHandler();
+        public delegate void DamageEventHandler(int damage);
 
         //Event Definition
-        public event EventHandler PlayerDeath;
-
+        public event DeathEventHandler PlayerDeath;
+        public event DamageEventHandler PlayerHit;
 
         public void CallPlayerDeath() => PlayerDeath?.Invoke();
+        public void CallPlayerHit(int damage) => PlayerHit?.Invoke(damage);
 
         //Singleton
         private static Publisher instance;

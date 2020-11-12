@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Helpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +10,11 @@ namespace Assets.Scripts.Attacks
     {
         List<GameObject> allChildren;
         bool canAttack = true;
-        Health playerHealth;
 
 
         private void Awake()
         {
             allChildren = gameObject.GetAllChildren();
-
-            playerHealth = GameObject.FindGameObjectWithTag(Settings.TagPlayer).GetComponent<Health>();
         }
 
         public bool isPlayerInAttackRange(Vector3 attackDirection)
@@ -47,7 +45,7 @@ namespace Assets.Scripts.Attacks
             bool isPlayerStillInAttackRange = isPlayerInAttackRange(attackDirection);
             if (isPlayerStillInAttackRange)
             {
-                playerHealth.TakeDamage(Settings.OwlmanAttackDamage);
+                Publisher.publish.CallPlayerHit(Settings.OwlmanAttackDamage);
             }
         }
     }
