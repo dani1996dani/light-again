@@ -23,8 +23,12 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         MirrorPlayer();
-        MoveHorizontally();
         Jump();
+    }
+
+    private void FixedUpdate()
+    {
+        MoveHorizontally();
     }
 
     private void MoveHorizontally()
