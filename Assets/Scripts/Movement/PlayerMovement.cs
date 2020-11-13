@@ -22,13 +22,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        MirrorPlayer();
-        Jump();
+        if (!Settings.isGamePaused)
+        {
+            MirrorPlayer();
+            Jump();
+        }
     }
 
     private void FixedUpdate()
     {
+        if (!Settings.isGamePaused)
+        {
         MoveHorizontally();
+        }
     }
 
     private void MoveHorizontally()
