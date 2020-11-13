@@ -7,5 +7,6 @@ public class LayerIgnoreCollision : MonoBehaviour
     {
         Physics2D.IgnoreLayerCollision(LayerHelper.LayermaskToLayer(LayerMask.GetMask("Player")), LayerHelper.LayermaskToLayer(LayerMask.GetMask("Enemies")), true);
         Physics2D.IgnoreLayerCollision(LayerHelper.LayermaskToLayer(LayerMask.GetMask(Settings.LayerMoonDust)), LayerHelper.LayermaskToLayer(LayerMask.GetMask("Enemies")), true);
+        //Physics2D.IgnoreLayerCollision(LayerHelper.LayermaskToLayer(LayerMask.GetMask(Settings.LayerMoonDust)), LayerHelper.LayermaskToLayer(LayerMask.GetMask("Player")), true);
     }
 }
