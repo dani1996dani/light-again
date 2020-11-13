@@ -10,6 +10,7 @@ TagManager:
   - OwlmanLeftHand
   - OwlmanRightHand
   - MoonDust
+  - Owlman
   layers:
   - Default
   - TransparentFX

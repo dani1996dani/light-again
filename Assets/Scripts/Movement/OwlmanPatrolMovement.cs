@@ -56,17 +56,19 @@ public class OwlmanPatrolMovement : MonoBehaviour
 
     public bool isAtLeftEdge()
     {
-        Vector3 originPoint = leftEdgeDetectionObject.transform.position - edgeOffset;
-        bool isAtBottomLeftEdge = !Physics2D.Raycast(originPoint, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
-        bool isAtFaceHegihtLeftEdge = Physics2D.Raycast(leftHandGameObject.transform.position, Vector2.left, 0.1f, LayerMask.GetMask("Ground"));
+        Vector3 bottomOriginPoint = leftEdgeDetectionObject.transform.position - edgeOffset;
+        Vector3 faceHeightOriginPoint = leftHandGameObject.transform.position - edgeOffset;
+        bool isAtBottomLeftEdge = !Physics2D.Raycast(bottomOriginPoint, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
+        bool isAtFaceHegihtLeftEdge = Physics2D.Raycast(faceHeightOriginPoint, Vector2.left, 0.5f, LayerMask.GetMask("Ground"));
         return isAtBottomLeftEdge || isAtFaceHegihtLeftEdge;
     }
 
     public bool isAtRightEdge()
     {
-        Vector3 originPoint = leftEdgeDetectionObject.transform.position + edgeOffset;
-        bool isAtBottomRightEdge = !Physics2D.Raycast(originPoint, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
-        bool isAtFaceHegihtRightEdge = Physics2D.Raycast(rightHandGameObject.transform.position, Vector2.right, 0.1f, LayerMask.GetMask("Ground"));
+        Vector3 bottomOriginPoint = leftEdgeDetectionObject.transform.position + edgeOffset;
+        Vector3 faceHeightOriginPoint = rightHandGameObject.transform.position + edgeOffset;
+        bool isAtBottomRightEdge = !Physics2D.Raycast(bottomOriginPoint, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
+        bool isAtFaceHegihtRightEdge = Physics2D.Raycast(faceHeightOriginPoint, Vector2.right, 0.5f, LayerMask.GetMask("Ground"));
         return isAtBottomRightEdge || isAtFaceHegihtRightEdge;
     }
 }
