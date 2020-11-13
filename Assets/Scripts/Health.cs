@@ -47,6 +47,7 @@ namespace Assets.Scripts
             if (!isPlayer)
             {
                 Publisher.publish.CallEnemyDeath(gameObject);
+                Destroy(gameObject);
             }
         }
     }

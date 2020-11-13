@@ -21,7 +21,7 @@ namespace Assets.Scripts
         #endregion
 
         #region
-        public static readonly float TimeTillMoonDustColliderIsActive = 0.3f;
+        public static readonly float TimeTillMoonDustCollectionTriggerIsActive = 0.3f;
         #endregion
 
         #region Tags
