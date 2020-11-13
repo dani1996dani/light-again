@@ -6,7 +6,7 @@ namespace Assets.Scripts.Fade
     class FadeInOnStart : MonoBehaviour
     {
         SpriteRenderer spriteRenderer;
-        float smoothTime = Settings.TimeTillMoonDustCollectionTriggerIsActive;
+        float smoothTime = Settings.FadeInTime;
         float velocity = 0.0f;
         float alpha;
         float alphaTarget = 1;
@@ -21,7 +21,6 @@ namespace Assets.Scripts.Fade
         private void Update()
         {
             alpha = Mathf.SmoothDamp(alpha, alphaTarget, ref velocity, smoothTime);
-            Debug.Log("alpha " + alpha);
             SetAlpha(alpha);
             if(alphaTarget - acceptableOffest <= alpha)
             {

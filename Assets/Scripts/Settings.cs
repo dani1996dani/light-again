@@ -24,6 +24,10 @@ namespace Assets.Scripts
         public static readonly float TimeTillMoonDustCollectionTriggerIsActive = 0.3f;
         #endregion
 
+        #region Fade
+        public static readonly float FadeInTime = 0.3f;
+        #endregion
+
         #region Tags
         public static readonly string TagPlayer = "Player";
         public static readonly string TagOwlman = "Owlman";
