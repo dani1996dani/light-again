@@ -4,8 +4,8 @@ namespace Assets.Scripts
 {
     public class Health : MonoBehaviour
     {
-        private int maxHealth;
-        private int curHealth;
+        public int maxHealth;
+        public int curHealth;
         private bool isAlive = true;
         private bool isPlayer = false;
 
@@ -15,6 +15,10 @@ namespace Assets.Scripts
             {
                 maxHealth = Settings.PlayerMaxHealth;
                 isPlayer = true;
+            }
+            if (gameObject.tag == Settings.TagOwlman)
+            {
+                maxHealth = Settings.OwlmanMaxHealth;
             }
             curHealth = maxHealth;
         }
@@ -39,6 +43,11 @@ namespace Assets.Scripts
             if (isPlayer)
             {
                 Publisher.publish.CallPlayerDeath();
+            }
+            if (!isPlayer)
+            {
+                Publisher.publish.CallEnemyDeath(gameObject);
+                Destroy(gameObject);
             }
         }
     }
