@@ -20,7 +20,7 @@ namespace Assets.Scripts.Attacks
         private void Update()
         {
             cooldown -= Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space) && cooldown <= 0)
+            if (!Settings.isGamePaused && Input.GetKeyDown(KeyCode.Space) && cooldown <= 0)
             {
                 isShootingRight = playerMovement.isFacingRight;
                 GameObject arrow = Instantiate(arrowPrefab, arrowSpawningPosition.transform.position, Quaternion.identity);

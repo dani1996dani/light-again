@@ -3,7 +3,7 @@ namespace Assets.Scripts
 {
     public class Settings
     {
-        public static readonly int PlayerMaxHealth = 200;
+        public static readonly int PlayerMaxHealth = 20;
         public static readonly int ArrowSpeed = 10;
         public static readonly float PlayerMovementSpeed = 15.0f;
         public static readonly float JumpForce = 40.0f;
@@ -48,5 +48,7 @@ namespace Assets.Scripts
         public static readonly float CameraVerticalUpMaxOffsetPercents = 0.45f;
         public static readonly float CameraTimeToAdjust = 0.2f;
         #endregion
+
+        public static bool isGamePaused = false;
     }
 }
