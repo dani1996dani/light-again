@@ -42,6 +42,13 @@ namespace Assets.Scripts
         public static readonly string LayerMoonDust = "Moon Dust";
         #endregion
 
+        #region Camera
+        public static readonly float CameraHorizontalMaxOffsetPercents = 0.4f;
+        public static readonly float CameraVerticalDownMaxOffsetPercents = 0.33f;
+        public static readonly float CameraVerticalUpMaxOffsetPercents = 0.45f;
+        public static readonly float CameraTimeToAdjust = 0.2f;
+        #endregion
+
         public static bool isGamePaused = false;
     }
 }
