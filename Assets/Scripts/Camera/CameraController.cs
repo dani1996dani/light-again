@@ -22,6 +22,8 @@ class CameraController : MonoBehaviour
     float horizontalDampVelocity = 0f;
     float verticalDampVelocity = 0f;
 
+    float neglegableDampOffset = 0.01f;
+
     private void Awake()
     {
         cameraComponent = gameObject.GetComponent<Camera>();
@@ -106,10 +108,10 @@ class CameraController : MonoBehaviour
         float newXPos = Mathf.SmoothDamp(transform.position.x, targetPosition.x, ref horizontalDampVelocity, Settings.CameraTimeToAdjust);
         transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
 
-        // this if ensures that if a newer horizontalAdjust coroutine was called, do nothing. (otherwise the coroutines cause jittering, cuz they fight over the camera position).
+        // this ensures that if a newer HorizontalAdjust coroutine was called, do nothing. (otherwise the coroutines cause jittering, cuz they fight over the camera position).
         if (horizontalAdjustmentIdReference == horizontalAdjustmentId)
         {
-            if (Mathf.Abs(transform.position.x - targetPosition.x) < 0.01f)
+            if (Mathf.Abs(transform.position.x - targetPosition.x) < neglegableDampOffset)
             {
                 transform.position = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
             }
@@ -127,10 +129,10 @@ class CameraController : MonoBehaviour
         float newYPos = Mathf.SmoothDamp(transform.position.y, targetPosition.y, ref verticalDampVelocity, Settings.CameraTimeToAdjust);
         transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
 
-        // this if ensures that if a newer horizontalAdjust coroutine was called, do nothing. (otherwise the coroutines cause jittering, cuz they fight over the camera position).
+        // this ensures that if a newer VerticalAdjust coroutine was called, do nothing. (otherwise the coroutines cause jittering, cuz they fight over the camera position).
         if (verticalAdjustmentIdReference == verticalAdjustmentId)
         {
-            if (Mathf.Abs(transform.position.y - targetPosition.y) < 0.01f)
+            if (Mathf.Abs(transform.position.y - targetPosition.y) < neglegableDampOffset)
             {
                 transform.position = new Vector3(transform.position.x, targetPosition.y, transform.position.z);
             }
