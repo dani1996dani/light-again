@@ -1,83 +1,152 @@
 ﻿using UnityEngine;
 using Assets.Scripts;
+using System.Collections;
 
-//namespace Assets.Scripts.Camera
-//{
 class CameraController : MonoBehaviour
 {
     GameObject player;
     Camera cameraComponent;
+
     float leftBorder;
     float lowerBorder;
     float rightBorder;
     float upperBorder;
+
     float screenWidth;
     float screenHeight;
     float depth;
+
+    int horizontalAdjustmentId = 0;
+    int verticalAdjustmentId = 0;
+
+    float horizontalDampVelocity = 0f;
+    float verticalDampVelocity = 0f;
 
     private void Awake()
     {
         cameraComponent = gameObject.GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
+
         depth = player.transform.position.z - gameObject.transform.position.z;
-        GetBorders();
+
+        SetBorders();
         screenWidth = rightBorder - leftBorder;
         screenHeight = upperBorder - lowerBorder;
-        Debug.Log("screenWidth " + screenWidth);
-        Debug.Log("screenHeight " + screenHeight);
     }
 
     private void FixedUpdate()
     {
         Vector3 playerPosition = player.transform.position;
         Vector3 cameraPosition = transform.position;
+
+        CheckHorizontal(playerPosition, cameraPosition);
+        CheckVertical(playerPosition, cameraPosition);
+    }
+
+    private void CheckHorizontal(Vector3 playerPosition, Vector3 cameraPosition)
+    {
         float horizontalOffset = playerPosition.x - cameraPosition.x;
-        float maxAllowedHorizontalOffset = screenWidth * (Settings.CameraHorizontalMaxOffsetPercents / 2) / 100;
+        float maxAllowedHorizontalOffset = screenWidth * Settings.CameraHorizontalMaxOffsetPercents;
+
         if (horizontalOffset > maxAllowedHorizontalOffset)
         {
-            HorizontalAdjust(Vector3.right);
+            horizontalAdjustmentId++;
+            IEnumerator coroutine = HorizontalAdjust(GetTargetPosition(Vector3.right), horizontalAdjustmentId);
+            StartCoroutine(coroutine);
         }
         if (horizontalOffset < -1 * maxAllowedHorizontalOffset)
         {
-            HorizontalAdjust(Vector3.left);
+            horizontalAdjustmentId++;
+            IEnumerator coroutine = HorizontalAdjust(GetTargetPosition(Vector3.left), horizontalAdjustmentId);
+            StartCoroutine(coroutine);
         }
+    }
 
+    private void CheckVertical(Vector3 playerPosition, Vector3 cameraPosition)
+    {
         float verticalOffset = playerPosition.y - cameraPosition.y;
-        float maxAllowedVerticalOffset = screenHeight * 0.33f;
-        Debug.Log("verticalOffset " + verticalOffset);
-        Debug.Log("maxAllowedVerticalOffset " + maxAllowedVerticalOffset);
-        if (verticalOffset > maxAllowedVerticalOffset)
+        float maxAllowedVerticalOffsetUp = screenHeight * Settings.CameraVerticalUpMaxOffsetPercents;
+
+        if (verticalOffset > maxAllowedVerticalOffsetUp)
         {
-            VerticalAdjust(Vector3.up);
-        }
-        if (verticalOffset < -1 * maxAllowedVerticalOffset)
-        {
-            VerticalAdjust(Vector3.down);
+            verticalAdjustmentId++;
+            IEnumerator coroutine = VerticalAdjust(GetTargetPosition(Vector3.up), verticalAdjustmentId);
+            StartCoroutine(coroutine);
         }
 
-
+        float maxAllowedVerticalOffsetDown = screenHeight * Settings.CameraVerticalDownMaxOffsetPercents;
+        if (verticalOffset < -1 * maxAllowedVerticalOffsetDown)
+        {
+            verticalAdjustmentId++;
+            IEnumerator coroutine = VerticalAdjust(GetTargetPosition(Vector3.down), verticalAdjustmentId);
+            StartCoroutine(coroutine);
+        }
     }
 
-    private void HorizontalAdjust(Vector3 adjustDirection)
+    private Vector3 GetTargetPosition(Vector3 direction)
     {
-        transform.position += adjustDirection * Settings.CameraHorizontalMaxOffsetPercents / 2;
+        if (direction.x == 1)
+        {
+            return transform.position + Vector3.right * screenWidth * Settings.CameraHorizontalMaxOffsetPercents * 2;
+        }
+        if (direction.x == -1)
+        {
+            return transform.position + Vector3.left * screenWidth * Settings.CameraHorizontalMaxOffsetPercents * 2;
+        }
+        if (direction.y == 1)
+        {
+            return transform.position + Vector3.up * screenHeight * Settings.CameraVerticalUpMaxOffsetPercents;
+        }
+        return transform.position + Vector3.down * screenHeight * Settings.CameraVerticalDownMaxOffsetPercents;
     }
 
-    private void VerticalAdjust(Vector3 adjustDirection)
+    IEnumerator HorizontalAdjust(Vector3 targetPosition, int horizontalAdjustmentIdReference)
     {
-        transform.position += adjustDirection * screenHeight * 0.33f;
+        yield return new WaitForEndOfFrame();
+        float newXPos = Mathf.SmoothDamp(transform.position.x, targetPosition.x, ref horizontalDampVelocity, Settings.CameraTimeToAdjust);
+        transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
+
+        // this if ensures that if a newer horizontalAdjust coroutine was called, do nothing. (otherwise the coroutines cause jittering, cuz they fight over the camera position).
+        if (horizontalAdjustmentIdReference == horizontalAdjustmentId)
+        {
+            if (Mathf.Abs(transform.position.x - targetPosition.x) < 0.01f)
+            {
+                transform.position = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
+            }
+            else
+            {
+                IEnumerator coroutine = HorizontalAdjust(targetPosition, horizontalAdjustmentIdReference);
+                StartCoroutine(coroutine);
+            }
+        }
     }
 
-    private void GetBorders()
+    IEnumerator VerticalAdjust(Vector3 targetPosition, int verticalAdjustmentIdReference)
+    {
+        yield return new WaitForEndOfFrame();
+        float newYPos = Mathf.SmoothDamp(transform.position.y, targetPosition.y, ref verticalDampVelocity, Settings.CameraTimeToAdjust);
+        transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
+
+        // this if ensures that if a newer horizontalAdjust coroutine was called, do nothing. (otherwise the coroutines cause jittering, cuz they fight over the camera position).
+        if (verticalAdjustmentIdReference == verticalAdjustmentId)
+        {
+            if (Mathf.Abs(transform.position.y - targetPosition.y) < 0.01f)
+            {
+                transform.position = new Vector3(transform.position.x, targetPosition.y, transform.position.z);
+            }
+            else
+            {
+                IEnumerator coroutine = VerticalAdjust(targetPosition, verticalAdjustmentIdReference);
+                StartCoroutine(coroutine);
+            }
+        }
+    }
+
+    private void SetBorders()
     {
         leftBorder = cameraComponent.ScreenToWorldPoint(new Vector3(0, 0, depth)).x;
         lowerBorder = cameraComponent.ScreenToWorldPoint(new Vector3(0, 0, depth)).y;
         rightBorder = cameraComponent.ScreenToWorldPoint(new Vector3(Screen.width, 0, depth)).x;
         upperBorder = cameraComponent.ScreenToWorldPoint(new Vector3(0, Screen.height, depth)).y;
-        Debug.Log("leftBorder " + leftBorder);
-        Debug.Log("lowerBorder " + lowerBorder);
-        Debug.Log("rightBorder " + rightBorder);
-        Debug.Log("upperBorder " + upperBorder);
     }
 }
-//}
