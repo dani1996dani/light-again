@@ -5,9 +5,10 @@ namespace Assets.Scripts
     {
         public static readonly int PlayerMaxHealth = 20;
         public static readonly int ArrowSpeed = 10;
-        public static readonly float PlayerMovementSpeed = 15.0f;
+        public static readonly float PlayerMovementSpeed = 10.0f;
         public static readonly float JumpForce = 40.0f;
         public static readonly float DistToGround = 2.1f;
+        public static readonly string PlayerHorizontalSpeed = "PlayerHorizontalSpeed";
 
         #region Owlman
         public static readonly int OwlmanMaxHealth = 20;

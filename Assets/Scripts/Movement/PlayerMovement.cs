@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerRigidBody;
     private float jumpForce;
     private float distToGround;
+    private Animator playerAnimator;
 
     public bool isFacingRight = true;
 
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
         distToGround = Settings.DistToGround;
 
         playerRigidBody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        playerAnimator = GameObject.FindGameObjectWithTag(Settings.TagPlayer).GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -33,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!Settings.isGamePaused)
         {
-        MoveHorizontally();
+            MoveHorizontally();
         }
     }
 
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         float horizontalMovementValue = Input.GetAxis("Horizontal");
         Vector3 movementDirection = Vector3.right * horizontalMovementValue;
         gameObject.transform.position += movementDirection * playerMovementSpeed * Time.deltaTime;
+        playerAnimator.SetFloat(Settings.PlayerHorizontalSpeed, Mathf.Abs(horizontalMovementValue));
     }
 
     private void Jump()
