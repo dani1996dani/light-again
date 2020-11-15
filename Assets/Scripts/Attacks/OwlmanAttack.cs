@@ -26,6 +26,7 @@ namespace Assets.Scripts.Attacks
         {
             if (canAttack)
             {
+                Debug.Log("Tring to attack");
                 IEnumerator dealDamage = DealDamage(attackDirection);
                 StartCoroutine(dealDamage);
                 StartCoroutine("SetAttackCooldown");
@@ -45,6 +46,7 @@ namespace Assets.Scripts.Attacks
             bool isPlayerStillInAttackRange = isPlayerInAttackRange(attackDirection);
             if (isPlayerStillInAttackRange)
             {
+                Debug.Log("Dealing Damage");
                 Publisher.publish.CallPlayerHit(Settings.OwlmanAttackDamage);
             }
         }

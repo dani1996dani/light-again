@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 1365127025}
   - component: {fileID: 1365127027}
   - component: {fileID: 1365127028}
+  - component: {fileID: 1365127029}
   m_Layer: 0
   m_Name: GameSettings
   m_TagString: Untagged
@@ -661,11 +662,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365127024}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 100eff99fa0a3c24690b843ce2db0ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
 --- !u!4 &1365127026
 Transform:
   m_ObjectHideFlags: 0
@@ -704,6 +706,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5acd8e309f48a84198053ea4e42c0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1365127029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365127024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3824be14c99a6049bb262863ac5b8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1383093249
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,6 +729,7 @@ GameObject:
   - component: {fileID: 1383093250}
   - component: {fileID: 1383093251}
   - component: {fileID: 1383093252}
+  - component: {fileID: 1383093253}
   m_Layer: 9
   m_Name: Player Sprite
   m_TagString: Untagged
@@ -806,6 +821,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1383093253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383093249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100eff99fa0a3c24690b843ce2db0ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttacking: 0
 --- !u!1 &1396507920
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +926,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.18}
+  m_Size: {x: 1, y: 2.74}
   m_EdgeRadius: 0
 --- !u!50 &1397240278
 Rigidbody2D:
@@ -1025,7 +1053,7 @@ Camera:
   m_GameObject: {fileID: 1687258581}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2

@@ -1,14 +1,21 @@
 ﻿using Assets.Scripts;
 using UnityEngine;
+using System.Collections;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class PlayerDamageSubsriber : MonoBehaviour
 {
     private Health playerHealth;
+    private Animator playerAnimator;
+    private AnimationClip deathAnimationClip;
 
     void Awake()
     {
-        playerHealth = GameObject.FindGameObjectWithTag(Settings.TagPlayer).GetComponent<Health>();
+        GameObject playerGameObject = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
+        playerHealth = playerGameObject.GetComponent<Health>();
+        playerAnimator = playerGameObject.GetComponentInChildren<Animator>();
+        deathAnimationClip = playerAnimator.runtimeAnimatorController.animationClips.FirstOrDefault((x) => x.name == "Death");
     }
 
     private void OnEnable()
@@ -19,13 +26,21 @@ public class PlayerDamageSubsriber : MonoBehaviour
 
     private void OnPlayerHit(int damage)
     {
+        Debug.Log("Player got hit damage " + damage);
         playerHealth.TakeDamage(damage);
     }
 
     private void OnPlayerDeath()
     {
-        Time.timeScale = 0;
         Settings.isGamePaused = true;
+        StartCoroutine("StartPlayerDeath");
+    }
+
+    private IEnumerator StartPlayerDeath()
+    {
+        playerAnimator.SetBool("isDead", true);
+        yield return new WaitForSeconds(deathAnimationClip.length);
+        Time.timeScale = 0;
     }
 
     private void OnDisable()

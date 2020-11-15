@@ -13,23 +13,29 @@ namespace Assets.Scripts.Attacks
         private float cooldown = 0.0f;
         private Animator playerAnimator;
         AnimationClip attackAnimationClip;
+        PlayerMovement playerMovementController;
+        public bool isAttacking = false;
 
         private void Awake()
         {
             arrowPrefab = (GameObject)Resources.Load("Prefabs/Arrow", typeof(GameObject));
             arrowSpawningPosition = GameObject.FindGameObjectWithTag("ArrowSpawningPosition");
-            playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-            playerAnimator = GameObject.FindGameObjectWithTag(Settings.TagPlayer).GetComponentInChildren<Animator>();
+
+            GameObject playerGameObject = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
+            playerMovement = playerGameObject.GetComponent<PlayerMovement>();
+            playerAnimator = playerGameObject.GetComponentInChildren<Animator>();
             attackAnimationClip = playerAnimator.runtimeAnimatorController.animationClips.FirstOrDefault((x) => x.name == "Attack");
+            playerMovementController = playerGameObject.GetComponent<PlayerMovement>();
         }
 
         private void Update()
         {
             cooldown -= Time.deltaTime;
-            if (!Settings.isGamePaused && Input.GetKeyDown(KeyCode.Space) && cooldown <= 0)
+            if (!Settings.isGamePaused && playerMovementController.isGrounded() && Input.GetKeyDown(KeyCode.Space) && cooldown <= 0)
             {
+                cooldown = attackAnimationClip.length + 0.2f;
                 StartCoroutine("ToggleAttackAnimation");
-                StartCoroutine("SpawnArrow");
+                //StartCoroutine("SpawnArrow");
                 //isShootingRight = playerMovement.isFacingRight;
                 //GameObject arrow = Instantiate(arrowPrefab, arrowSpawningPosition.transform.position, Quaternion.identity);
 
@@ -40,13 +46,12 @@ namespace Assets.Scripts.Attacks
                 //    vector.x = -1;
                 //    arrow.transform.localScale = vector;
                 //}
-                cooldown = 0.5f;
+                
             }
         }
 
-        IEnumerator SpawnArrow()
+        public void SpawnArrow()
         {
-            yield return new WaitForSeconds(attackAnimationClip.length / 2);
             isShootingRight = playerMovement.isFacingRight;
             GameObject arrow = Instantiate(arrowPrefab, arrowSpawningPosition.transform.position, Quaternion.identity);
 
@@ -61,9 +66,11 @@ namespace Assets.Scripts.Attacks
 
         IEnumerator ToggleAttackAnimation()
         {
-            playerAnimator.SetBool("isAttacking", true);
+            isAttacking = true;
+            playerAnimator.SetBool("isAttacking", isAttacking);
             yield return new WaitForSeconds(attackAnimationClip.length);
-            playerAnimator.SetBool("isAttacking", false);
+            isAttacking = false;
+            playerAnimator.SetBool("isAttacking", isAttacking);
         }
     }
 }

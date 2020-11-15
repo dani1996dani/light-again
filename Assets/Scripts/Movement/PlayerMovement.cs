@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using UnityEngine;
+using Assets.Scripts.Attacks;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator playerAnimator;
 
     public bool isFacingRight = true;
+    private bool shouldJump = false;
+    private PlayerBasicAttack basicAttackController;
 
     private void Awake()
     {
@@ -18,13 +21,15 @@ public class PlayerMovement : MonoBehaviour
         jumpForce = Settings.JumpForce;
         distToGround = Settings.DistToGround;
 
-        playerRigidBody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
-        playerAnimator = GameObject.FindGameObjectWithTag(Settings.TagPlayer).GetComponentInChildren<Animator>();
+        GameObject playerGameObject = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
+        playerRigidBody = playerGameObject.GetComponent<Rigidbody2D>();
+        playerAnimator = playerGameObject.GetComponentInChildren<Animator>();
+        basicAttackController = playerGameObject.GetComponentInChildren<PlayerBasicAttack>();
     }
 
     private void Update()
     {
-        if (!Settings.isGamePaused)
+        if (!Settings.isGamePaused && !basicAttackController.isAttacking)
         {
             MirrorPlayer();
             Jump();
@@ -33,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!Settings.isGamePaused)
+        if (!Settings.isGamePaused && !basicAttackController.isAttacking)
         {
             MoveHorizontally();
         }
@@ -50,14 +55,29 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         bool isPlayerGrounded = isGrounded();
+        bool isJumping = playerAnimator.GetBool("isJumping");
 
         if (isPlayerGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
+            shouldJump = true;
             playerRigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
+        if(!isPlayerGrounded && shouldJump)
+        {
+            shouldJump = false;
+            playerAnimator.SetBool("isJumping", true);
+        }
+
+        if (isJumping && isPlayerGrounded)
+        {
+            playerAnimator.SetBool("isJumping", false);
         }
     }
 
-    private bool isGrounded()
+
+
+    public bool isGrounded()
     {
         return Physics2D.Raycast(gameObject.transform.position, Vector3.down, distToGround, LayerMask.GetMask("Ground"));
     }
