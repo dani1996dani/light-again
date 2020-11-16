@@ -11,6 +11,7 @@ TagManager:
   - OwlmanRightHand
   - MoonDust
   - Owlman
+  - SceneChanger
   layers:
   - Default
   - TransparentFX

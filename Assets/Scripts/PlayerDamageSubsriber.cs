@@ -13,9 +13,12 @@ public class PlayerDamageSubsriber : MonoBehaviour
     void Awake()
     {
         GameObject playerGameObject = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
-        playerHealth = playerGameObject.GetComponent<Health>();
-        playerAnimator = playerGameObject.GetComponentInChildren<Animator>();
-        deathAnimationClip = playerAnimator.runtimeAnimatorController.animationClips.FirstOrDefault((x) => x.name == "Death");
+        if (playerGameObject != null)
+        {
+            playerHealth = playerGameObject.GetComponent<Health>();
+            playerAnimator = playerGameObject.GetComponentInChildren<Animator>();
+            deathAnimationClip = playerAnimator.runtimeAnimatorController.animationClips.FirstOrDefault((x) => x.name == "Death");
+        }
     }
 
     private void OnEnable()
