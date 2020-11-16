@@ -35,21 +35,10 @@ namespace Assets.Scripts.Attacks
             {
                 cooldown = attackAnimationClip.length + 0.2f;
                 StartCoroutine("ToggleAttackAnimation");
-                //StartCoroutine("SpawnArrow");
-                //isShootingRight = playerMovement.isFacingRight;
-                //GameObject arrow = Instantiate(arrowPrefab, arrowSpawningPosition.transform.position, Quaternion.identity);
-
-                //StartCoroutine("ToggleAttackAnimation");
-                //if (!isShootingRight)
-                //{
-                //    Vector3 vector = arrow.transform.localScale;
-                //    vector.x = -1;
-                //    arrow.transform.localScale = vector;
-                //}
-                
             }
         }
 
+        // gets called from an animation trigger on the animation clip "Attack"
         public void SpawnArrow()
         {
             isShootingRight = playerMovement.isFacingRight;

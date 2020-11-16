@@ -26,7 +26,6 @@ public class PlayerDamageSubsriber : MonoBehaviour
 
     private void OnPlayerHit(int damage)
     {
-        Debug.Log("Player got hit damage " + damage);
         playerHealth.TakeDamage(damage);
     }
 

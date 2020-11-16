@@ -4,7 +4,8 @@ namespace Assets.Scripts
     public class Settings
     {
         public static readonly int PlayerMaxHealth = 20;
-        public static readonly int ArrowSpeed = 10;
+        public static readonly float ArrowSpeed = 30.0f;
+        public static readonly float ArrowTimeToLive = 0.75f;
         public static readonly float PlayerMovementSpeed = 10.0f;
         public static readonly float JumpForce = 40.0f;
         public static readonly float DistToGround = 2.1f;

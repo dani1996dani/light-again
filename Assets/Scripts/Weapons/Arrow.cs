@@ -5,7 +5,7 @@ namespace Assets.Scripts.Weapons
 {
     public class Arrow : MonoBehaviour
     {
-        private float timeToLive = 1.0f;
+        private float timeToLive = Settings.ArrowTimeToLive;
         private int damage = 10;
         private List<int> hitableLayers;
 
