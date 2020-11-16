@@ -38,6 +38,7 @@ namespace Assets.Scripts
         public static readonly string TagOwlmanLeftHand = "OwlmanLeftHand";
         public static readonly string TagOwlmanRightHand = "OwlmanRightHand";
         public static readonly string TagMoonDust = "MoonDust";
+        public static readonly string TagSceneChanger = "SceneChanger";
         #endregion
 
         #region Layers
@@ -49,6 +50,11 @@ namespace Assets.Scripts
         public static readonly float CameraVerticalDownMaxOffsetPercents = 0.33f;
         public static readonly float CameraVerticalUpMaxOffsetPercents = 0.45f;
         public static readonly float CameraTimeToAdjust = 0.2f;
+        #endregion
+
+        #region Scenes
+        public static readonly float SceneFadeTime = 0.5f;
+        public static readonly string SceneNameLevel1 = "Level1";        
         #endregion
 
         public static bool isGamePaused = false;
