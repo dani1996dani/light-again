@@ -10,5 +10,8 @@ public class DontDestroy : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         GameObject sceneChanger = GameObject.FindGameObjectWithTag(Settings.TagSceneChanger);
         DontDestroyOnLoad(sceneChanger);
+        DontDestroyOnLoad(GameObject.FindGameObjectWithTag(Settings.TagPauseMenu));
+        DontDestroyOnLoad(GameObject.FindGameObjectWithTag(Settings.TagUIEventSystem));
+        DontDestroyOnLoad(GameObject.FindGameObjectWithTag(Settings.TagEntryMenuCanvas));
     }
 }

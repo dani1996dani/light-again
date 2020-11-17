@@ -12,6 +12,9 @@ TagManager:
   - MoonDust
   - Owlman
   - SceneChanger
+  - PauseMenu
+  - UIEventSystem
+  - EntryMenuCanvas
   layers:
   - Default
   - TransparentFX
