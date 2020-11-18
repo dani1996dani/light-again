@@ -40,6 +40,13 @@ public class EnemyDamageSubsriber : MonoBehaviour
 
     IEnumerator DestoryEnemyGameObject(float secondsToWait, GameObject enemy)
     {
+        Collider2D[] allColliders = enemy.GetComponents<Collider2D>();
+        Rigidbody2D enemyRigidBody = enemy.GetComponent<Rigidbody2D>();
+        enemyRigidBody.isKinematic = true;
+        foreach (var collider in allColliders)
+        {
+            collider.enabled = false;
+        }
         yield return new WaitForSeconds(secondsToWait + Settings.EnemyDeathDestroyOffset);
         Destroy(enemy);
     }

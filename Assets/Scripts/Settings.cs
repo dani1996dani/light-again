@@ -16,7 +16,7 @@ namespace Assets.Scripts
         #region Owlman
         public static readonly int OwlmanMaxHealth = 20;
         public static readonly float OwlmanSpeed = 5.0f;
-        public static readonly float OwlmanChaseSpeed = 10.0f;
+        public static readonly float OwlmanChaseSpeed = 8.0f;
         public static readonly float OwlmanStartChasingVisionRange = 10.0f;
         public static readonly float OwlmanAttackRange = 1.0f;
         public static readonly float OwlmanAttackCooldownSeconds = 1.0f;
