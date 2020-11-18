@@ -10,7 +10,7 @@ public class PlayerDamageSubsriber : MonoBehaviour
     private Animator playerAnimator;
     private AnimationClip deathAnimationClip;
 
-    void Awake()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         GameObject playerGameObject = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
         if (playerGameObject != null)
@@ -21,10 +21,20 @@ public class PlayerDamageSubsriber : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         Publisher.publish.PlayerHit += OnPlayerHit;
         Publisher.publish.PlayerDeath += OnPlayerDeath;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        Publisher.publish.PlayerHit -= OnPlayerHit;
+        Publisher.publish.PlayerDeath -= OnPlayerDeath;
     }
 
     private void OnPlayerHit(int damage)
@@ -35,6 +45,7 @@ public class PlayerDamageSubsriber : MonoBehaviour
     private void OnPlayerDeath()
     {
         Settings.isGamePaused = true;
+        Settings.isGameActive = false;
         StartCoroutine("StartPlayerDeath");
     }
 
@@ -43,11 +54,5 @@ public class PlayerDamageSubsriber : MonoBehaviour
         playerAnimator.SetBool("isDead", true);
         yield return new WaitForSeconds(deathAnimationClip.length);
         Time.timeScale = 0;
-    }
-
-    private void OnDisable()
-    {
-        Publisher.publish.PlayerHit -= OnPlayerHit;
-        Publisher.publish.PlayerDeath -= OnPlayerDeath;
     }
 }

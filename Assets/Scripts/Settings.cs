@@ -39,6 +39,9 @@ namespace Assets.Scripts
         public static readonly string TagOwlmanRightHand = "OwlmanRightHand";
         public static readonly string TagMoonDust = "MoonDust";
         public static readonly string TagSceneChanger = "SceneChanger";
+        public static readonly string TagPauseMenu = "PauseMenu";
+        public static readonly string TagUIEventSystem = "UIEventSystem";
+        public static readonly string TagEntryMenuCanvas = "EntryMenuCanvas";
         #endregion
 
         #region Layers
@@ -58,5 +61,6 @@ namespace Assets.Scripts
         #endregion
 
         public static bool isGamePaused = false;
+        public static bool isGameActive = false;
     }
 }
