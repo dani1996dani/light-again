@@ -12,6 +12,7 @@ public class OwlmanActionManager : MonoBehaviour
     private OwlmanAttack attackController;
     private OwlmanMovingDirection directionController;
     private readonly MirrorCharacter mirrorController = new MirrorCharacter();
+    private Health owlmansHealth;
 
     private void Start()
     {
@@ -19,12 +20,18 @@ public class OwlmanActionManager : MonoBehaviour
         patrolController = gameObject.GetComponent<OwlmanPatrolMovement>();
         attackController = gameObject.GetComponent<OwlmanAttack>();
         directionController = gameObject.GetComponent<OwlmanMovingDirection>();
+        owlmansHealth = gameObject.GetComponent<Health>();
 
         patrolController.QueueUpToggleIsPatrolIdle();
     }
 
     private void FixedUpdate()
     {
+        if (!owlmansHealth.getIsAlive())
+        {
+            return;
+        }
+
         Vector3 lastStoredDirection = directionController.GetDirection();
         mirrorController.MirrorGameObjectBasedOnDirection(gameObject, lastStoredDirection);
 

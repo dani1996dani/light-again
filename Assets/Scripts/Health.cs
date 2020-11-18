@@ -23,13 +23,18 @@ namespace Assets.Scripts
             curHealth = maxHealth;
         }
 
+        public bool getIsAlive()
+        {
+            return this.isAlive;
+        }
+
         public void TakeDamage(int damage)
         {
-            if (curHealth > 0)
+              if (curHealth > 0)
             {
                 curHealth -= damage;
             }
-            if (curHealth <= 0 && isAlive)
+             if (curHealth <= 0 && isAlive)
             {
                 Die();
             }
@@ -47,7 +52,6 @@ namespace Assets.Scripts
             if (!isPlayer)
             {
                 Publisher.publish.CallEnemyDeath(gameObject);
-                Destroy(gameObject);
             }
         }
     }
