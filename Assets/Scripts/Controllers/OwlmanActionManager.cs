@@ -42,9 +42,11 @@ public class OwlmanActionManager : MonoBehaviour
             attackController.AttackPlayer(lastStoredDirection);
 
             owlmanAnimator.SetFloat("MovementSpeed", 0);
+            owlmanAnimator.SetBool("isAttacking", true);
             return;
         }
 
+        owlmanAnimator.SetBool("isAttacking", false);
         if (chaseController.ShouldChase())
         {
             Vector3 chaseDirection = directionController.UpdateDirectionBasedOnChase(chaseController);
