@@ -10,6 +10,7 @@ namespace Assets.Scripts
         public static readonly float JumpForce = 40.0f;
         public static readonly float DistToGround = 2.5f;
         public static readonly string PlayerHorizontalSpeed = "PlayerHorizontalSpeed";
+        public static readonly int MoonDustMaxAmount = 20;
 
         public static readonly float EnemyDeathDestroyOffset = 2.0f;
 

@@ -9,6 +9,8 @@ public class HPProgressBar : MonoBehaviour
 {
     Image HPprogressBarImage;
     bool isLevelScene;
+    Health playerHealth;
+    int maxWidth = 200;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -34,6 +36,11 @@ public class HPProgressBar : MonoBehaviour
         {
             HPprogressBarImage.enabled = false;
         }
+
+        if (isLevelScene)
+        {
+            playerHealth = GameObject.FindGameObjectWithTag(Settings.TagPlayer).GetComponent<Health>();
+        }
     }
 
 
@@ -45,5 +52,20 @@ public class HPProgressBar : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void Update()
+    {
+        if (!isLevelScene)
+        {
+            return;
+        }
+
+        int maxAmount = Settings.PlayerMaxHealth;
+        int currentProgress = playerHealth.GetCurrentHealth();
+        // number between 0 and 1
+        float progressFraction = (float)currentProgress / (float)maxAmount;
+        float widthToSet = maxWidth * progressFraction;
+        HPprogressBarImage.rectTransform.sizeDelta = new Vector2(widthToSet, HPprogressBarImage.rectTransform.sizeDelta.y);
     }
 }

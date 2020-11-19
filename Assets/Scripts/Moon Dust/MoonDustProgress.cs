@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoonDustProgress : MonoBehaviour
 {
-    public int moonDustCollectedAmount;
+    private int moonDustCollectedAmount;
 
     private void Start()
     {
@@ -19,5 +19,10 @@ public class MoonDustProgress : MonoBehaviour
     public void IncrementMoonDustAmount()
     {
         ++moonDustCollectedAmount;
+    }
+
+    public int GetCurrentAmount()
+    {
+        return moonDustCollectedAmount;
     }
 }
