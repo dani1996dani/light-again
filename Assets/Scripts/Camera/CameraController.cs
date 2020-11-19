@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using Assets.Scripts;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 class CameraController : MonoBehaviour
 {
     GameObject player;
     Camera cameraComponent;
+
+    bool isLevelScene;
 
     float leftBorder;
     float lowerBorder;
@@ -24,8 +27,31 @@ class CameraController : MonoBehaviour
 
     float neglegableDampOffset = 0.01f;
 
-    private void Awake()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        InitLoad();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void InitLoad()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        isLevelScene = currentScene.name.StartsWith("Level");
+
+        if (!isLevelScene)
+        {
+            return;
+        }
+
         cameraComponent = gameObject.GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
 
@@ -36,8 +62,18 @@ class CameraController : MonoBehaviour
         screenHeight = upperBorder - lowerBorder;
     }
 
+    private void Start()
+    {
+        InitLoad();
+    }
+
     private void FixedUpdate()
     {
+        if (!isLevelScene)
+        {
+            return;
+        }
+
         Vector3 playerPosition = player.transform.position;
         Vector3 cameraPosition = transform.position;
 

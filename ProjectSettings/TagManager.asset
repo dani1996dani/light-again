@@ -15,6 +15,10 @@ TagManager:
   - PauseMenu
   - UIEventSystem
   - EntryMenuCanvas
+  - GlobalLight
+  - PostProcessingVolume
+  - GameSettings
+  - GameOverMenu
   layers:
   - Default
   - TransparentFX

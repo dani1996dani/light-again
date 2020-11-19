@@ -3,7 +3,7 @@ namespace Assets.Scripts
 {
     public class Settings
     {
-        public static readonly int PlayerMaxHealth = 2000;
+        public static readonly int PlayerMaxHealth = 20;
         public static readonly float ArrowSpeed = 30.0f;
         public static readonly float ArrowTimeToLive = 0.75f;
         public static readonly float PlayerMovementSpeed = 10.0f;
@@ -44,6 +44,11 @@ namespace Assets.Scripts
         public static readonly string TagPauseMenu = "PauseMenu";
         public static readonly string TagUIEventSystem = "UIEventSystem";
         public static readonly string TagEntryMenuCanvas = "EntryMenuCanvas";
+        public static readonly string TagGlobalLight = "GlobalLight";
+        public static readonly string TagMainCamera = "MainCamera";
+        public static readonly string TagPostProcessingVolume = "PostProcessingVolume";
+        public static readonly string TagGameSettings = "GameSettings";
+        public static readonly string TagGameOverMenu = "GameOverMenu";
         #endregion
 
         #region Layers
@@ -54,7 +59,7 @@ namespace Assets.Scripts
         public static readonly float CameraHorizontalMaxOffsetPercents = 0.4f;
         public static readonly float CameraVerticalDownMaxOffsetPercents = 0.33f;
         public static readonly float CameraVerticalUpMaxOffsetPercents = 0.45f;
-        public static readonly float CameraTimeToAdjust = 0.2f;
+        public static readonly float CameraTimeToAdjust = 0.5f;
         #endregion
 
         #region Scenes

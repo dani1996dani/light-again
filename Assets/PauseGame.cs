@@ -5,19 +5,27 @@ using Assets.Scripts;
 
 public class PauseGame : MonoBehaviour
 {
-    Scene currentScene;
+    
     bool isLevelScene;
     Canvas pauseMenuCanvas;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        currentScene = scene;
+        SetMenuStateOnInit();
+    }
+
+    private void Start()
+    {
+        SetMenuStateOnInit();
+    }
+
+    void SetMenuStateOnInit()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
         isLevelScene = currentScene.name.StartsWith("Level");
 
         pauseMenuCanvas = GameObject.FindGameObjectWithTag(Settings.TagPauseMenu).GetComponent<Canvas>();
-        pauseMenuCanvas.enabled = false;   
-        
-        
+        pauseMenuCanvas.enabled = false;
     }
 
     void OnEnable()
