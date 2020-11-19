@@ -138,7 +138,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000074505806, y: 0.22265458}
+  m_Offset: {x: 0, y: 0.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -149,7 +149,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6607164, y: 3.5234194}
+  m_Size: {x: 0.6607164, y: 2.67}
   m_EdgeRadius: 0
 --- !u!58 &3606812426607017577
 CircleCollider2D:
@@ -164,7 +164,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.69}
+  m_Offset: {x: 0, y: -1.05}
   serializedVersion: 2
   m_Radius: 0.27
 --- !u!114 &8278283796298102484
@@ -251,6 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3606812426809806850}
   - component: {fileID: 3606812426809806851}
+  - component: {fileID: 1194590843}
   m_Layer: 10
   m_Name: Owlman Sprite
   m_TagString: Untagged
@@ -312,7 +313,7 @@ SpriteRenderer:
   m_SortingLayerID: 1424041535
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3310c54af43edac49b4c41c8ec3443da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 44b4d72d75acea84fb8ff6edc0842427, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -323,6 +324,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1194590843
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606812426809806849}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4090e3b786f602f43848afee2f90ec1f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5359504289782132912
 GameObject:
   m_ObjectHideFlags: 0

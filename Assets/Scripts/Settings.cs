@@ -3,18 +3,20 @@ namespace Assets.Scripts
 {
     public class Settings
     {
-        public static readonly int PlayerMaxHealth = 20;
+        public static readonly int PlayerMaxHealth = 2000;
         public static readonly float ArrowSpeed = 30.0f;
         public static readonly float ArrowTimeToLive = 0.75f;
         public static readonly float PlayerMovementSpeed = 10.0f;
         public static readonly float JumpForce = 40.0f;
-        public static readonly float DistToGround = 2.1f;
+        public static readonly float DistToGround = 2.5f;
         public static readonly string PlayerHorizontalSpeed = "PlayerHorizontalSpeed";
+
+        public static readonly float EnemyDeathDestroyOffset = 2.0f;
 
         #region Owlman
         public static readonly int OwlmanMaxHealth = 20;
         public static readonly float OwlmanSpeed = 5.0f;
-        public static readonly float OwlmanChaseSpeed = 10.0f;
+        public static readonly float OwlmanChaseSpeed = 8.0f;
         public static readonly float OwlmanStartChasingVisionRange = 10.0f;
         public static readonly float OwlmanAttackRange = 1.0f;
         public static readonly float OwlmanAttackCooldownSeconds = 1.0f;

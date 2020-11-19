@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class OwlmanPatrolMovement : MonoBehaviour
 {
@@ -12,12 +13,13 @@ public class OwlmanPatrolMovement : MonoBehaviour
     GameObject rightEdgeDetectionObject;
     GameObject rightHandGameObject;
     GameObject leftHandGameObject;
-    System.Random random = new System.Random();
-    private bool isPatrolIdle = false;
+    System.Random random = new System.Random(Guid.NewGuid().GetHashCode());
+    private bool isPatrolIdle;
     Vector3 edgeOffset = new Vector3(Settings.PatrolEdgeOffset, 0, 0);
 
     private void Awake()
     {
+        isPatrolIdle = random.NextDouble() > 0.5 ? true : false;
         allChildren = gameObject.GetAllChildren();
         leftEdgeDetectionObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanLeftEdgeDetection);
         rightEdgeDetectionObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanRightEdgeDetection);
@@ -25,12 +27,17 @@ public class OwlmanPatrolMovement : MonoBehaviour
         leftHandGameObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanLeftHand);
     }
 
-    public void Patrol(Vector3 direction)
+    /**
+     * returns if owlman is currently moving or not
+     */
+    public bool Patrol(Vector3 direction)
     {
         if (!isPatrolIdle)
         {
             Move(direction);
+            return true;
         }
+        return false;
     }
 
     public void QueueUpToggleIsPatrolIdle()
