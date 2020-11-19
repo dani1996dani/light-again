@@ -10,6 +10,7 @@ public class EntryMenu : MonoBehaviour
     
     bool isEntryMenu;
     Canvas entryMenuCanvas;
+    MoonDustProgress moonDustProgressController;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -54,5 +55,8 @@ public class EntryMenu : MonoBehaviour
         Time.timeScale = 1;
         sceneChanger.GoToLevel(Settings.SceneNameLevel1);
         Settings.isGameActive = true;
+
+        moonDustProgressController = GameObject.FindGameObjectWithTag(Settings.TagGameSettings).GetComponent<MoonDustProgress>();
+        moonDustProgressController.ResetMoonDustAmount();
     }
 }
