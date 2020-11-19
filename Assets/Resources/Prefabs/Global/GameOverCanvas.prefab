@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 406416230930853468}
   - component: {fileID: 406416230930853467}
   - component: {fileID: 406416230930853466}
+  - component: {fileID: 903170518}
   m_Layer: 5
   m_Name: GameOverCanvas
   m_TagString: GameOverMenu
@@ -175,6 +176,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &903170518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406416230930853465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e365c736c90646b4ca9ff8e8d66d7e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &406416231886079567
 GameObject:
   m_ObjectHideFlags: 0
