@@ -44,6 +44,10 @@ namespace Assets.Scripts
         public static readonly string TagPauseMenu = "PauseMenu";
         public static readonly string TagUIEventSystem = "UIEventSystem";
         public static readonly string TagEntryMenuCanvas = "EntryMenuCanvas";
+        public static readonly string TagGlobalLight = "GlobalLight";
+        public static readonly string TagMainCamera = "MainCamera";
+        public static readonly string TagPostProcessingVolume = "PostProcessingVolume";
+        public static readonly string TagGameSettings = "GameSettings";
         #endregion
 
         #region Layers
