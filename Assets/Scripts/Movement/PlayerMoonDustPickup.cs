@@ -7,11 +7,6 @@ public class PlayerMoonDustPickup : MonoBehaviour
     MoonDustProgress moonDustProgressController;
     HashSet<int> collectedMoonDustGuids = new HashSet<int>();
 
-    private void Start()
-    {
-        moonDustProgressController = GameObject.FindGameObjectWithTag(Settings.TagGameSettings).GetComponent<MoonDustProgress>();
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject colGameObject = collision.gameObject;
@@ -28,7 +23,13 @@ public class PlayerMoonDustPickup : MonoBehaviour
     private void CollectMoonDust(GameObject moonDust, int moonDustGuid)
     {
         collectedMoonDustGuids.Add(moonDustGuid);
+
+        if(moonDustProgressController == null)
+        {
+            moonDustProgressController = GameObject.FindGameObjectWithTag(Settings.TagGameSettings).GetComponent<MoonDustProgress>();
+        }
         moonDustProgressController.IncrementMoonDustAmount();
+
         Destroy(moonDust);
     }
 }
