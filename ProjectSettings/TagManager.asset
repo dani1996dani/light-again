@@ -18,6 +18,7 @@ TagManager:
   - GlobalLight
   - PostProcessingVolume
   - GameSettings
+  - GameOverMenu
   layers:
   - Default
   - TransparentFX

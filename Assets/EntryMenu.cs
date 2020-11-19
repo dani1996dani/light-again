@@ -6,15 +6,24 @@ using Assets.Scripts;
 
 public class EntryMenu : MonoBehaviour
 {
-    private SceneChanger sceneChanger;
 
-    Scene currentScene;
+    
     bool isEntryMenu;
     Canvas entryMenuCanvas;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        currentScene = scene;
+        SetMenuStateOnInit();
+    }
+
+    private void Start()
+    {
+        SetMenuStateOnInit();
+    }
+
+    void SetMenuStateOnInit()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
         isEntryMenu = currentScene.name.StartsWith("EntryScreen");
 
         entryMenuCanvas = GameObject.FindGameObjectWithTag(Settings.TagEntryMenuCanvas).GetComponent<Canvas>();
@@ -26,8 +35,8 @@ public class EntryMenu : MonoBehaviour
         {
             entryMenuCanvas.enabled = false;
         }
-
     }
+
 
     void OnEnable()
     {
@@ -39,13 +48,9 @@ public class EntryMenu : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void Start()
-    {
-        sceneChanger = GameObject.FindGameObjectWithTag(Settings.TagSceneChanger).GetComponent<SceneChanger>();
-    }
-
     public void StartGame()
     {
+        SceneChanger sceneChanger = GameObject.FindGameObjectWithTag(Settings.TagSceneChanger).GetComponent<SceneChanger>();
         Time.timeScale = 1;
         sceneChanger.GoToLevel(Settings.SceneNameLevel1);
         Settings.isGameActive = true;

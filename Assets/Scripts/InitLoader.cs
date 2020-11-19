@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using Assets.Scripts;
 
 public class InitLoader
 {
@@ -16,5 +18,13 @@ public class InitLoader
                 GameObject.Instantiate(resource, new Vector3(0, 0, -5), Quaternion.identity);
             }
         }
+        setIsGameActive();
+    }
+
+    static void setIsGameActive()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        bool isLevelScene = currentScene.name.StartsWith("Level");
+        Settings.isGameActive = isLevelScene;
     }
 }

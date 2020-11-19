@@ -35,6 +35,11 @@ public class SceneChanger : MonoBehaviour
 
     private void Update()
     {
+        if(blackSreenImage == null)
+        {
+            blackSreenImage = GetComponentInChildren<Image>();
+        }
+
         if (shouldFadeIn)
         {
 

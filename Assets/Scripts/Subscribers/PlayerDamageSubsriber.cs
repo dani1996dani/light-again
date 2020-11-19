@@ -12,6 +12,16 @@ public class PlayerDamageSubsriber : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        InitLoad();
+    }
+
+    private void Start()
+    {
+        InitLoad();
+    }
+
+    void InitLoad()
+    {
         GameObject playerGameObject = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
         if (playerGameObject != null)
         {

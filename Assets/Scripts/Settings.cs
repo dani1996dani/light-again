@@ -3,7 +3,7 @@ namespace Assets.Scripts
 {
     public class Settings
     {
-        public static readonly int PlayerMaxHealth = 2000;
+        public static readonly int PlayerMaxHealth = 20;
         public static readonly float ArrowSpeed = 30.0f;
         public static readonly float ArrowTimeToLive = 0.75f;
         public static readonly float PlayerMovementSpeed = 10.0f;
@@ -48,6 +48,7 @@ namespace Assets.Scripts
         public static readonly string TagMainCamera = "MainCamera";
         public static readonly string TagPostProcessingVolume = "PostProcessingVolume";
         public static readonly string TagGameSettings = "GameSettings";
+        public static readonly string TagGameOverMenu = "GameOverMenu";
         #endregion
 
         #region Layers
