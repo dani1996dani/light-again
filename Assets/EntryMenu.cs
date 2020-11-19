@@ -6,8 +6,6 @@ using Assets.Scripts;
 
 public class EntryMenu : MonoBehaviour
 {
-
-    
     bool isEntryMenu;
     Canvas entryMenuCanvas;
     MoonDustProgress moonDustProgressController;

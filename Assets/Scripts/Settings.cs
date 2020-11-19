@@ -49,6 +49,9 @@ namespace Assets.Scripts
         public static readonly string TagPostProcessingVolume = "PostProcessingVolume";
         public static readonly string TagGameSettings = "GameSettings";
         public static readonly string TagGameOverMenu = "GameOverMenu";
+        public static readonly string TagPlayerProgressUI = "PlayerProgressUI";
+        public static readonly string TagHPBar = "HPBar";
+        public static readonly string TagMoonDustBar = "MoonDustBar";
         #endregion
 
         #region Layers
