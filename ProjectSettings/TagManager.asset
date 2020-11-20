@@ -22,6 +22,7 @@ TagManager:
   - PlayerProgressUI
   - HPBar
   - MoonDustBar
+  - OwlmanStrong
   layers:
   - Default
   - TransparentFX

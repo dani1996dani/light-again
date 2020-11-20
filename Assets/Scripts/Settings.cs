@@ -16,8 +16,10 @@ namespace Assets.Scripts
 
         #region Owlman
         public static readonly int OwlmanMaxHealth = 20;
+        public static readonly int OwlmanStrongMaxHealth = 50;
         public static readonly float OwlmanSpeed = 5.0f;
-        public static readonly float OwlmanChaseSpeed = 8.0f;
+        public static readonly float OwlmanChaseSpeed = 7.0f;
+        public static readonly float OwlmanStrongChaseSpeed = 9.0f;
         public static readonly float OwlmanStartChasingVisionRange = 10.0f;
         public static readonly float OwlmanAttackRange = 1.0f;
         public static readonly float OwlmanAttackCooldownSeconds = 1.0f;
@@ -40,6 +42,7 @@ namespace Assets.Scripts
         #region Tags
         public static readonly string TagPlayer = "Player";
         public static readonly string TagOwlman = "Owlman";
+        public static readonly string TagOwlmanStrong = "OwlmanStrong";
         public static readonly string TagOwlmanRightEdgeDetection = "OwlmanRightEdgeDetection";
         public static readonly string TagOwlmanLeftEdgeDetection = "OwlmanLeftEdgeDetection";
         public static readonly string TagOwlmanLeftHand = "OwlmanLeftHand";

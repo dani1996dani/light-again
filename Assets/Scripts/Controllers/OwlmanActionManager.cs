@@ -7,6 +7,8 @@ using Assets.Scripts.Attacks;
 
 public class OwlmanActionManager : MonoBehaviour
 {
+    [SerializeField]
+    private OwlmanType owlmanType;
     private OwlmanChaseMovement chaseController;
     private OwlmanPatrolMovement patrolController;
     private OwlmanAttack attackController;
@@ -23,6 +25,15 @@ public class OwlmanActionManager : MonoBehaviour
         directionController = gameObject.GetComponent<OwlmanMovingDirection>();
         owlmansHealth = gameObject.GetComponent<Health>();
         owlmanAnimator = gameObject.GetComponentInChildren<Animator>();
+
+        if(gameObject.tag == Settings.TagOwlman)
+        {
+            owlmanType = OwlmanType.Regular;
+        }
+        if (gameObject.tag == Settings.TagOwlmanStrong)
+        {
+            owlmanType = OwlmanType.Strong;
+        }
 
         patrolController.QueueUpToggleIsPatrolIdle();
     }
@@ -64,5 +75,10 @@ public class OwlmanActionManager : MonoBehaviour
         {
             owlmanAnimator.SetFloat("MovementSpeed", 0);
         }
+    }
+
+    public OwlmanType GetOwlmanType()
+    {
+        return this.owlmanType;
     }
 }
