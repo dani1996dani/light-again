@@ -23,13 +23,13 @@ public class OwlmanMovingDirection : MonoBehaviour
         return this.direction;
     }
 
-    public Vector3 UpdateDirectionBasedOnChase(OwlmanChaseMovement chaseController)
+    public Vector3 UpdateDirectionBasedOnChase(OwlmanChaseMovement chaseController, float visionRange)
     {
-        if (chaseController.isPlayerVisibleOnLeftSide())
+        if (chaseController.isPlayerVisibleOnLeftSide(visionRange))
         {
             SetDirection(Vector3.left);
         }
-        if (chaseController.isPlayerVisibleOnRightSide())
+        if (chaseController.isPlayerVisibleOnRightSide(visionRange))
         {
             SetDirection(Vector3.right);
         }

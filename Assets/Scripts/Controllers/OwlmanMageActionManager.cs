@@ -5,18 +5,17 @@ using System.Linq;
 using Assets.Scripts;
 using Assets.Scripts.Attacks;
 
-public class OwlmanActionManager : MonoBehaviour
+public class OwlmanMageActionManager : MonoBehaviour
 {
     [SerializeField]
     private OwlmanType owlmanType;
-    private OwlmanChaseMovement chaseController;
     private OwlmanPatrolMovement patrolController;
+    private OwlmanChaseMovement chaseController;
     private OwlmanAttack attackController;
     private OwlmanMovingDirection directionController;
     private readonly MirrorCharacter mirrorController = new MirrorCharacter();
     private Health owlmansHealth;
     private Animator owlmanAnimator;
-    private float chaseSpeed;
 
     private void Start()
     {
@@ -28,7 +27,6 @@ public class OwlmanActionManager : MonoBehaviour
         owlmanAnimator = gameObject.GetComponentInChildren<Animator>();
 
         InitOwlmanType();
-        chaseSpeed = owlmanType == OwlmanType.Strong ? Settings.OwlmanStrongChaseSpeed : Settings.OwlmanChaseSpeed; 
 
         patrolController.QueueUpToggleIsPatrolIdle();
     }
@@ -50,10 +48,10 @@ public class OwlmanActionManager : MonoBehaviour
         Vector3 lastStoredDirection = directionController.GetDirection();
         mirrorController.MirrorGameObjectBasedOnDirection(gameObject, lastStoredDirection);
 
-        float attackRange = Settings.OwlmanMeleeAttackRange;
+        float attackRange = Settings.OwlmanSpellAttackRange;
         if (attackController.isPlayerInAttackRange(lastStoredDirection, attackRange))
         {
-            attackController.AttackPlayer(lastStoredDirection, attackRange);
+            attackController.CastSpellTowardsPlayer(lastStoredDirection, transform.position);
 
             owlmanAnimator.SetFloat("MovementSpeed", 0);
             owlmanAnimator.SetBool("isAttacking", true);
@@ -61,13 +59,10 @@ public class OwlmanActionManager : MonoBehaviour
         }
 
         owlmanAnimator.SetBool("isAttacking", false);
-        float visionRange = Settings.OwlmanStartChasingVisionRange;
-        if (chaseController.ShouldChase(visionRange))
+
+        if (chaseController.ShouldChase(attackRange))
         {
-            Vector3 chaseDirection = directionController.UpdateDirectionBasedOnChase(chaseController, visionRange);
-            
-            chaseController.Chase(chaseDirection, chaseSpeed);
-            owlmanAnimator.SetFloat("MovementSpeed", 1);
+            Vector3 chaseDirection = directionController.UpdateDirectionBasedOnChase(chaseController, attackRange);
             return;
         }
 
@@ -91,6 +86,10 @@ public class OwlmanActionManager : MonoBehaviour
         if (gameObject.tag == Settings.TagOwlmanStrong)
         {
             owlmanType = OwlmanType.Strong;
+        }
+        if (gameObject.tag == Settings.TagOwlmanMage)
+        {
+            owlmanType = OwlmanType.Mage;
         }
     }
 
