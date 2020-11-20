@@ -10,7 +10,6 @@ public class MoonDustProgressBar : MonoBehaviour
     Image MoonDustProgressBarImage;
     bool isLevelScene;
     MoonDustProgress moonDustProgressController;
-    private int maxWidth = 180;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -60,8 +59,8 @@ public class MoonDustProgressBar : MonoBehaviour
         int maxAmount = Settings.MoonDustMaxAmount;
         int currentProgress = moonDustProgressController.GetCurrentAmount();
         // number between 0 and 1
-        float progressFraction = (float)currentProgress / (float)maxAmount;
-        float widthToSet = maxWidth * progressFraction;
+        float progressFraction = Mathf.Clamp((float)currentProgress / (float)maxAmount, 0, 1);
+        float widthToSet = Settings.progressBarWidth * progressFraction;
         MoonDustProgressBarImage.rectTransform.sizeDelta = new Vector2(widthToSet, MoonDustProgressBarImage.rectTransform.sizeDelta.y);
     }
 }

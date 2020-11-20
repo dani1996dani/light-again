@@ -29,6 +29,10 @@ namespace Assets.Scripts
         public static readonly float TimeTillMoonDustCollectionTriggerIsActive = 0.3f;
         #endregion
 
+        #region UI
+        public static readonly int progressBarWidth = 200;
+        #endregion
+
         #region Fade
         public static readonly float FadeInTime = 0.3f;
         #endregion
