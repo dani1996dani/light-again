@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2946187880325452262}
   - component: {fileID: 2946187880325452261}
   - component: {fileID: 2946187880325452260}
+  - component: {fileID: 5848646004139603504}
   m_Layer: 5
   m_Name: PauseMenuCanvas
   m_TagString: PauseMenu
@@ -101,6 +102,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5848646004139603504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2946187880325452259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b27755a9303aabe45a4b328e176304b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2946187880549221937
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,8 +368,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PuaseGame, Assembly-CSharp
+      - m_Target: {fileID: 5848646004139603504}
+        m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
         m_MethodName: ToggleGamePaused
         m_Mode: 1
         m_Arguments:
@@ -696,7 +709,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 611318020269404865, guid: e3b207f1b3a4fee4fa992c712eda4476, type: 3}
         m_TargetAssemblyTypeName: EntryMenu, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1

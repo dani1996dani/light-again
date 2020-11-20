@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts;
 
 public class MoonDustProgress : MonoBehaviour
 {
-    public int moonDustCollectedAmount;
+    private int moonDustCollectedAmount;
 
     private void Start()
     {
@@ -18,6 +19,14 @@ public class MoonDustProgress : MonoBehaviour
 
     public void IncrementMoonDustAmount()
     {
-        ++moonDustCollectedAmount;
+        if(moonDustCollectedAmount < Settings.MoonDustMaxAmount)
+        {
+            ++moonDustCollectedAmount;
+        }
+    }
+
+    public int GetCurrentAmount()
+    {
+        return moonDustCollectedAmount;
     }
 }

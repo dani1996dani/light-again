@@ -10,6 +10,7 @@ namespace Assets.Scripts
         public static readonly float JumpForce = 40.0f;
         public static readonly float DistToGround = 2.5f;
         public static readonly string PlayerHorizontalSpeed = "PlayerHorizontalSpeed";
+        public static readonly int MoonDustMaxAmount = 20;
 
         public static readonly float EnemyDeathDestroyOffset = 2.0f;
 
@@ -26,6 +27,10 @@ namespace Assets.Scripts
 
         #region
         public static readonly float TimeTillMoonDustCollectionTriggerIsActive = 0.3f;
+        #endregion
+
+        #region UI
+        public static readonly int progressBarWidth = 200;
         #endregion
 
         #region Fade
@@ -49,6 +54,9 @@ namespace Assets.Scripts
         public static readonly string TagPostProcessingVolume = "PostProcessingVolume";
         public static readonly string TagGameSettings = "GameSettings";
         public static readonly string TagGameOverMenu = "GameOverMenu";
+        public static readonly string TagPlayerProgressUI = "PlayerProgressUI";
+        public static readonly string TagHPBar = "HPBar";
+        public static readonly string TagMoonDustBar = "MoonDustBar";
         #endregion
 
         #region Layers

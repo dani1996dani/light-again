@@ -19,6 +19,9 @@ TagManager:
   - PostProcessingVolume
   - GameSettings
   - GameOverMenu
+  - PlayerProgressUI
+  - HPBar
+  - MoonDustBar
   layers:
   - Default
   - TransparentFX
