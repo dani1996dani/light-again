@@ -23,6 +23,7 @@ TagManager:
   - HPBar
   - MoonDustBar
   - OwlmanStrong
+  - OwlmanMage
   layers:
   - Default
   - TransparentFX

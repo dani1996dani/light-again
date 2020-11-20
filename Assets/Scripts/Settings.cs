@@ -18,6 +18,7 @@ namespace Assets.Scripts
         #region Owlman
         public static readonly int OwlmanMaxHealth = 20;
         public static readonly int OwlmanStrongMaxHealth = 50;
+        public static readonly int OwlmanMageMaxHealth = OwlmanMaxHealth;
         public static readonly float OwlmanSpeed = 5.0f;
         public static readonly float OwlmanChaseSpeed = 7.0f;
         public static readonly float OwlmanStrongChaseSpeed = 9.0f;
@@ -47,6 +48,7 @@ namespace Assets.Scripts
         public static readonly string TagPlayer = "Player";
         public static readonly string TagOwlman = "Owlman";
         public static readonly string TagOwlmanStrong = "OwlmanStrong";
+        public static readonly string TagOwlmanMage = "OwlmanMage";
         public static readonly string TagOwlmanRightEdgeDetection = "OwlmanRightEdgeDetection";
         public static readonly string TagOwlmanLeftEdgeDetection = "OwlmanLeftEdgeDetection";
         public static readonly string TagOwlmanLeftHand = "OwlmanLeftHand";
@@ -86,3 +88,4 @@ namespace Assets.Scripts
         public static bool isGameActive = false;
     }
 }
+

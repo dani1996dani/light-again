@@ -110,13 +110,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: OwlmanMage
       objectReference: {fileID: 0}
+    - target: {fileID: 3606812426607017558, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
+      propertyPath: m_TagString
+      value: OwlmanMage
+      objectReference: {fileID: 0}
     - target: {fileID: 3606812426607017576, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -15.25
       objectReference: {fileID: 0}
     - target: {fileID: 3606812426607017576, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -7.64
       objectReference: {fileID: 0}
     - target: {fileID: 3606812426607017576, guid: fac9e0e2a8f41124a8d33a6ae23b5bb7, type: 3}
       propertyPath: m_LocalPosition.z

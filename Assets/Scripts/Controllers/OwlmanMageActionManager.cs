@@ -87,6 +87,10 @@ public class OwlmanMageActionManager : MonoBehaviour
         {
             owlmanType = OwlmanType.Strong;
         }
+        if (gameObject.tag == Settings.TagOwlmanMage)
+        {
+            owlmanType = OwlmanType.Mage;
+        }
     }
 
     public OwlmanType GetOwlmanType()

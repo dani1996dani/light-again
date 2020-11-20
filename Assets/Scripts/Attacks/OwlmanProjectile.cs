@@ -6,16 +6,10 @@ using Assets.Scripts;
 public class OwlmanProjectile : MonoBehaviour
 {
     bool didHitPlayer = false;
-    // Start is called before the first frame update
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        StartCoroutine("DestoryAfterTimeToLiveEnded");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
