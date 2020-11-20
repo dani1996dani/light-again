@@ -10,44 +10,32 @@ public class OwlmanChaseMovement : MonoBehaviour
     GameObject rightHandGameObject;
     GameObject leftHandGameObject;
     List<GameObject> allChildren;
-    float chaseSpeed;
-    OwlmanType owlmanType;
 
     private void Start()
     {
         allChildren = gameObject.GetAllChildren();
         rightHandGameObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanRightHand);
         leftHandGameObject = allChildren.FirstOrDefault(child => child.tag == Settings.TagOwlmanLeftHand);
-
-        owlmanType = gameObject.GetComponent<OwlmanActionManager>().GetOwlmanType();
-        if (owlmanType == OwlmanType.Regular)
-        {
-            chaseSpeed = Settings.OwlmanChaseSpeed;
-        }
-        if (owlmanType == OwlmanType.Strong)
-        {
-            chaseSpeed = Settings.OwlmanStrongChaseSpeed;
-        }
     }
 
-    public bool ShouldChase()
+    public bool ShouldChase(float visionRange)
     {
-        return isPlayerVisibleOnLeftSide() || isPlayerVisibleOnRightSide();
+        return isPlayerVisibleOnLeftSide(visionRange) || isPlayerVisibleOnRightSide(visionRange);
     }
 
 
-    public void Chase(Vector3 direction)
+    public void Chase(Vector3 direction, float chaseSpeed)
     {
         gameObject.transform.position += direction * Time.deltaTime * chaseSpeed;
     }
 
-    public bool isPlayerVisibleOnLeftSide()
+    public bool isPlayerVisibleOnLeftSide(float visionRange)
     {
-        return Physics2D.Raycast(leftHandGameObject.transform.position, Vector2.left, Settings.OwlmanStartChasingVisionRange, LayerMask.GetMask("Player"));
+        return Physics2D.Raycast(leftHandGameObject.transform.position, Vector2.left, visionRange, LayerMask.GetMask("Player"));
     }
 
-    public bool isPlayerVisibleOnRightSide()
+    public bool isPlayerVisibleOnRightSide(float visionRange)
     {
-        return Physics2D.Raycast(rightHandGameObject.transform.position, Vector2.right, Settings.OwlmanStartChasingVisionRange, LayerMask.GetMask("Player"));
+        return Physics2D.Raycast(rightHandGameObject.transform.position, Vector2.right, visionRange, LayerMask.GetMask("Player"));
     }
 }
