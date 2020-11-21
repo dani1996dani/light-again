@@ -30,7 +30,9 @@ namespace Assets.Scripts
         public static readonly int OwlmanAttackDamage = 10;
         public static readonly float PatrolEdgeOffset = 1.5f;
         public static readonly float OwlmanMageProjectileTimeToLive = 3.0f;
+        public static readonly float OwlmannBossGroundSmashReverbTimeToLive = 15.0f;
         public static readonly int OwlmanMageProjectileDamage = 15;
+        public static readonly int OwlmanBossGroundSmashReverbDamage = 15;
         #endregion
 
         #region
@@ -69,6 +71,7 @@ namespace Assets.Scripts
         public static readonly string TagHPBar = "HPBar";
         public static readonly string TagMoonDustBar = "MoonDustBar";
         public static readonly string TagOwlmanBoss = "OwlmanBoss";
+        public static readonly string TagGroundSmashOriginPoint = "GroundSmashOriginPoint";
         #endregion
 
         #region Layers

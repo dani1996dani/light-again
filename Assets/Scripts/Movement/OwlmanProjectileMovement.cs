@@ -21,7 +21,6 @@ namespace Assets.Scripts.Movement
 
         private void Update()
         {
-            float direction = transform.localScale.x > 0 ? 1 : -1;
             gameObject.transform.position += this.direction * currentSpeed * Time.deltaTime;
         }
     }

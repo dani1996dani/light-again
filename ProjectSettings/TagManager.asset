@@ -25,6 +25,7 @@ TagManager:
   - OwlmanStrong
   - OwlmanMage
   - OwlmanBoss
+  - GroundSmashOriginPoint
   layers:
   - Default
   - TransparentFX

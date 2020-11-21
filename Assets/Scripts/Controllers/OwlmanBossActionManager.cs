@@ -6,6 +6,13 @@ using Assets.Scripts;
 using Assets.Scripts.Attacks;
 using Assets.Scripts.Movement;
 
+enum BossAttack
+{
+    SpellHorizontal,
+    SpellVertical,
+    GroundSmash
+}
+
 public class OwlmanBossActionManager : MonoBehaviour
 {
     [SerializeField]
@@ -13,12 +20,14 @@ public class OwlmanBossActionManager : MonoBehaviour
     private Health owlmansHealth;
     private Animator owlmanAnimator;
     private GameObject owlmanProjectilePrefab;
+    private GameObject owlmanGroundSmashReverbPrefab;
     private GameObject playerGameObject;
     private System.Random random;
     private Camera mainCamera;
     private float topOfScreen;
     private Vector3 playersPositionOnStart;
     private bool canAttack = true;
+    private BossAttack[] availableAttackTypes = new BossAttack[3] { BossAttack.SpellHorizontal, BossAttack.SpellVertical, BossAttack.GroundSmash };
 
     private void Start()
     {
@@ -33,10 +42,11 @@ public class OwlmanBossActionManager : MonoBehaviour
         topOfScreen = mainCamera.ScreenToWorldPoint(new Vector3(0, Screen.height, depth)).y;
 
         owlmanProjectilePrefab = (GameObject)Resources.Load("Prefabs/OwlmanSpellProjectile");
+        owlmanGroundSmashReverbPrefab = (GameObject)Resources.Load("Prefabs/GroundSmashReverb");
 
         owlmanType = OwlmanType.Boss;
 
-        
+
     }
 
     private void FixedUpdate()
@@ -64,25 +74,37 @@ public class OwlmanBossActionManager : MonoBehaviour
     {
         canAttack = false;
 
-        bool isHorizontalAttack = random.NextDouble() > 0.5;
-        Debug.Log("isHorizontalAttack " + isHorizontalAttack);
+        int randomAttackIndex = random.Next(0, availableAttackTypes.Length);
+        BossAttack selectedType = availableAttackTypes[randomAttackIndex];
+
         Vector3 positionToSpawnAttackFrom;
-        if (isHorizontalAttack)
+        if (selectedType == BossAttack.SpellHorizontal || selectedType == BossAttack.SpellVertical)
         {
-            // spawn from X of boss, but from Y of player. So the player will always have to dodge it.
-            positionToSpawnAttackFrom = new Vector3(transform.position.x, playersPositionOnStart.y, transform.position.z);
-        }
-        else
-        {
-            positionToSpawnAttackFrom = new Vector3(playersPositionOnStart.x, topOfScreen, transform.position.z);
+            if (selectedType == BossAttack.SpellHorizontal)
+            {
+                // spawn from X of boss, but from Y of player. So the player will always have to dodge it.
+                positionToSpawnAttackFrom = new Vector3(transform.position.x, playersPositionOnStart.y, transform.position.z);
+            }
+            else
+            {
+                positionToSpawnAttackFrom = new Vector3(playersPositionOnStart.x, topOfScreen, transform.position.z);
+            }
+            Vector3 spellDirection = selectedType == BossAttack.SpellVertical ? Vector3.down : Vector3.left;
+
+            IEnumerator castSpellCoroutine = CastSpell(positionToSpawnAttackFrom, spellDirection);
+            StartCoroutine(castSpellCoroutine);
+            yield return new WaitForSeconds(3f);
+            canAttack = true;
         }
 
-        Vector3 spellDirection = isHorizontalAttack ? Vector3.left : Vector3.down;
-
-        IEnumerator castSpellCoroutine = CastSpell(positionToSpawnAttackFrom, spellDirection);
-        StartCoroutine(castSpellCoroutine);
-        yield return new WaitForSeconds(3f);
-        canAttack = true;
+        else if (selectedType == BossAttack.GroundSmash)
+        {
+            GameObject groundSmashOriginPoint = GameObject.FindGameObjectWithTag(Settings.TagGroundSmashOriginPoint);
+            IEnumerator castGroundSmashCoroutine = CastGroundSmash(groundSmashOriginPoint.transform.position, Vector3.left);
+            StartCoroutine(castGroundSmashCoroutine);
+            yield return new WaitForSeconds(3f);
+            canAttack = true;
+        }
     }
 
     private IEnumerator CastSpell(Vector3 initialPosition, Vector3 spellDirection)
@@ -112,6 +134,17 @@ public class OwlmanBossActionManager : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
         }
         owlmanAnimator.SetBool("isCastingSpell", false);
+    }
+
+    private IEnumerator CastGroundSmash(Vector3 initialPosition, Vector3 castDirection)
+    {
+        owlmanAnimator.SetBool("isCastingGroundSmash", true);
+        yield return new WaitForSeconds(1.0f);
+
+        GameObject projectile = Instantiate(owlmanGroundSmashReverbPrefab, initialPosition, Quaternion.identity);
+        OwlmanProjectileMovement projectileMovement = projectile.GetComponent<OwlmanProjectileMovement>();
+        projectileMovement.SetDirection(castDirection);
+        owlmanAnimator.SetBool("isCastingGroundSmash", false);
     }
 
     private Vector3[] GetHorizontalSpellInitialPositions(Vector3 realInitialPosition, int amountOfPositions)
