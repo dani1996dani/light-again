@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Helpers;
+using Assets.Scripts.Movement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,10 +54,11 @@ namespace Assets.Scripts.Attacks
 
         IEnumerator CastSpell(Vector3 spellDirection, Vector3 initialPosition)
         {
-            yield return new WaitForSeconds(1f);
             GameObject prefab = Instantiate(owlmanProjectilePrefab, initialPosition, Quaternion.identity);
-            int prefabScale = 10;
-            prefab.transform.localScale = new Vector3(spellDirection.x * prefabScale, prefabScale, 1);
+            OwlmanProjectileMovement projectileMovement = prefab.GetComponent<OwlmanProjectileMovement>();
+            prefab.transform.localScale = new Vector3(spellDirection.x, 1, 1);
+            projectileMovement.SetDirection(spellDirection);
+            yield return new WaitForSeconds(1f);
         }
 
         IEnumerator DealDamage(Vector3 attackDirection, float attackRange)
