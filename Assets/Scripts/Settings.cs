@@ -19,6 +19,7 @@ namespace Assets.Scripts
         public static readonly int OwlmanMaxHealth = 20;
         public static readonly int OwlmanStrongMaxHealth = 50;
         public static readonly int OwlmanMageMaxHealth = OwlmanMaxHealth;
+        public static readonly int OwlmanBossMaxHealth = 200;
         public static readonly float OwlmanSpeed = 5.0f;
         public static readonly float OwlmanChaseSpeed = 7.0f;
         public static readonly float OwlmanStrongChaseSpeed = 9.0f;
@@ -29,7 +30,10 @@ namespace Assets.Scripts
         public static readonly int OwlmanAttackDamage = 10;
         public static readonly float PatrolEdgeOffset = 1.5f;
         public static readonly float OwlmanMageProjectileTimeToLive = 3.0f;
+        public static readonly float OwlmannBossGroundSmashReverbTimeToLive = 15.0f;
         public static readonly int OwlmanMageProjectileDamage = 15;
+        public static readonly int OwlmanBossGroundSmashReverbDamage = 15;
+        public static readonly float OwlmanBossTimeToWaitBetweenAttacks = 3.0f;
         #endregion
 
         #region
@@ -45,6 +49,7 @@ namespace Assets.Scripts
         #endregion
 
         #region Tags
+        public static readonly string TagGround = "Ground";
         public static readonly string TagPlayer = "Player";
         public static readonly string TagOwlman = "Owlman";
         public static readonly string TagOwlmanStrong = "OwlmanStrong";
@@ -66,6 +71,8 @@ namespace Assets.Scripts
         public static readonly string TagPlayerProgressUI = "PlayerProgressUI";
         public static readonly string TagHPBar = "HPBar";
         public static readonly string TagMoonDustBar = "MoonDustBar";
+        public static readonly string TagOwlmanBoss = "OwlmanBoss";
+        public static readonly string TagGroundSmashOriginPoint = "GroundSmashOriginPoint";
         #endregion
 
         #region Layers
@@ -81,7 +88,7 @@ namespace Assets.Scripts
 
         #region Scenes
         public static readonly float SceneFadeTime = 0.5f;
-        public static readonly string SceneNameLevel1 = "Level1";        
+        public static readonly string SceneNameLevel1 = "Level1";
         #endregion
 
         public static bool isGamePaused = false;

@@ -6,6 +6,7 @@ namespace Assets.Scripts.Movement
     {      
         private float initialSpeed;
         private float currentSpeed;
+        private Vector3 direction = Vector3.right;
 
         public OwlmanProjectileMovement()
         {
@@ -13,10 +14,14 @@ namespace Assets.Scripts.Movement
             currentSpeed = initialSpeed;
         }
 
+        public void SetDirection(Vector3 newDirection)
+        {
+            direction = newDirection;
+        }
+
         private void Update()
         {
-            float direction = transform.localScale.x > 0 ? 1 : -1;
-            gameObject.transform.position += Vector3.right * direction * currentSpeed * Time.deltaTime;
+            gameObject.transform.position += this.direction * currentSpeed * Time.deltaTime;
         }
     }
 }

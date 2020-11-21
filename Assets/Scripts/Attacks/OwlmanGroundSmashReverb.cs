@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts;
 
-public class OwlmanProjectile : MonoBehaviour
+public class OwlmanGroundSmashReverb : MonoBehaviour
 {
     bool didHitPlayer = false;
 
-    void Start()
+    private void Start()
     {
         StartCoroutine("DestoryAfterTimeToLiveEnded");
     }
@@ -15,23 +15,19 @@ public class OwlmanProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject colGameObject = collision.gameObject;
-        if(colGameObject.tag == Settings.TagGround)
-        {
-            Destroy(gameObject);
-        }
 
         if (!didHitPlayer && colGameObject.tag == Settings.TagPlayer)
         {
             didHitPlayer = true;
             Health playerHealth = colGameObject.GetComponent<Health>();
-            playerHealth.TakeDamage(Settings.OwlmanMageProjectileDamage);
-            Destroy(gameObject);
+            playerHealth.TakeDamage(Settings.OwlmanBossGroundSmashReverbDamage);
         }
     }
 
+
     IEnumerator DestoryAfterTimeToLiveEnded()
     {
-        yield return new WaitForSeconds(Settings.OwlmanMageProjectileTimeToLive);
+        yield return new WaitForSeconds(Settings.OwlmannBossGroundSmashReverbTimeToLive);
         Destroy(gameObject);
     }
 }
