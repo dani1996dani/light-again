@@ -15,6 +15,11 @@ public class OwlmanProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject colGameObject = collision.gameObject;
+        if(colGameObject.tag == Settings.TagGround)
+        {
+            Destroy(gameObject);
+        }
+
         if (!didHitPlayer && colGameObject.tag == Settings.TagPlayer)
         {
             didHitPlayer = true;

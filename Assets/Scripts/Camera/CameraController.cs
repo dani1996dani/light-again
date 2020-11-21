@@ -26,6 +26,7 @@ class CameraController : MonoBehaviour
     float verticalDampVelocity = 0f;
 
     float neglegableDampOffset = 0.01f;
+    bool isDisabled = false;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -51,6 +52,12 @@ class CameraController : MonoBehaviour
         {
             return;
         }
+        bool isBossLevel = currentScene.name.Contains("Boss");
+        if (isBossLevel)
+        {
+            isDisabled = true;
+            return;
+        }
 
         cameraComponent = gameObject.GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
@@ -69,6 +76,11 @@ class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDisabled)
+        {
+            return;
+        }
+
         if (!isLevelScene)
         {
             return;

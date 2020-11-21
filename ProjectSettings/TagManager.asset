@@ -24,6 +24,7 @@ TagManager:
   - MoonDustBar
   - OwlmanStrong
   - OwlmanMage
+  - OwlmanBoss
   layers:
   - Default
   - TransparentFX

@@ -28,6 +28,10 @@ namespace Assets.Scripts
             {
                 maxHealth = Settings.OwlmanMageMaxHealth;
             }
+            if (gameObject.tag == Settings.TagOwlmanBoss)
+            {
+                maxHealth = Settings.OwlmanBossMaxHealth;
+            }
             curHealth = maxHealth;
         }
 
