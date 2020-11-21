@@ -54,11 +54,11 @@ namespace Assets.Scripts.Attacks
 
         IEnumerator CastSpell(Vector3 spellDirection, Vector3 initialPosition)
         {
-            yield return new WaitForSeconds(1f);
             GameObject prefab = Instantiate(owlmanProjectilePrefab, initialPosition, Quaternion.identity);
             OwlmanProjectileMovement projectileMovement = prefab.GetComponent<OwlmanProjectileMovement>();
             prefab.transform.localScale = new Vector3(spellDirection.x, 1, 1);
             projectileMovement.SetDirection(spellDirection);
+            yield return new WaitForSeconds(1f);
         }
 
         IEnumerator DealDamage(Vector3 attackDirection, float attackRange)

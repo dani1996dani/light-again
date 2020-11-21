@@ -125,8 +125,11 @@ public class OwlmanBossActionManager : MonoBehaviour
         {
             GameObject projectile = Instantiate(owlmanProjectilePrefab, currPosition, Quaternion.identity);
 
-            int prefabScale = 10;
-            projectile.transform.localScale = new Vector3(prefabScale, prefabScale, 1);
+            int prefabScale = 2;
+            float scaleDirection = spellDirection.x != 0 ? -1 : 1;
+            projectile.transform.localScale = new Vector3(prefabScale * scaleDirection, prefabScale, 1);
+            float angle = spellDirection.x != 0 ? 180 : 90;
+            projectile.transform.Rotate(0,0, angle);
 
             OwlmanProjectileMovement projectileMovement = projectile.GetComponent<OwlmanProjectileMovement>();
             projectileMovement.SetDirection(spellDirection);
