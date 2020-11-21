@@ -10,9 +10,6 @@ public class OwlmanBossActionManager : MonoBehaviour
 {
     [SerializeField]
     private OwlmanType owlmanType;
-    private OwlmanAttack attackController;
-    private OwlmanMovingDirection directionController;
-    private readonly MirrorCharacter mirrorController = new MirrorCharacter();
     private Health owlmansHealth;
     private Animator owlmanAnimator;
     private GameObject owlmanProjectilePrefab;
@@ -21,17 +18,14 @@ public class OwlmanBossActionManager : MonoBehaviour
     private Camera mainCamera;
     private float topOfScreen;
     private Vector3 playersPositionOnStart;
+    private bool canAttack = true;
 
     private void Start()
     {
         random = new System.Random();
-        attackController = gameObject.GetComponent<OwlmanAttack>();
-        directionController = gameObject.GetComponent<OwlmanMovingDirection>();
         owlmansHealth = gameObject.GetComponent<Health>();
         owlmanAnimator = gameObject.GetComponentInChildren<Animator>();
         mainCamera = GameObject.FindGameObjectWithTag(Settings.TagMainCamera).GetComponent<Camera>();
-
-
 
         playerGameObject = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
         playersPositionOnStart = playerGameObject.transform.position;
@@ -42,7 +36,7 @@ public class OwlmanBossActionManager : MonoBehaviour
 
         owlmanType = OwlmanType.Boss;
 
-        StartCoroutine("Attack");
+        
     }
 
     private void FixedUpdate()
@@ -55,54 +49,23 @@ public class OwlmanBossActionManager : MonoBehaviour
         if (!Settings.isGameActive)
         {
             owlmanAnimator.SetFloat("MovementSpeed", 0);
-            owlmanAnimator.SetBool("isAttacking", false);
+            owlmanAnimator.SetBool("isCastingSpell", false);
+            owlmanAnimator.SetBool("isCastingGroundSmash", false);
             return;
         }
 
-
-
-        //Vector3 lastStoredDirection = directionController.GetDirection();
-        //mirrorController.MirrorGameObjectBasedOnDirection(gameObject, lastStoredDirection);
-
-        //float attackRange = Settings.OwlmanMeleeAttackRange;
-        //if (attackController.isPlayerInAttackRange(lastStoredDirection, attackRange))
-        //{
-        //    attackController.AttackPlayer(lastStoredDirection, attackRange);
-
-        //    owlmanAnimator.SetFloat("MovementSpeed", 0);
-        //    owlmanAnimator.SetBool("isAttacking", true);
-        //    return;
-        //}
-
-        //owlmanAnimator.SetBool("isAttacking", false);
-        //float visionRange = Settings.OwlmanStartChasingVisionRange;
-        //if (chaseController.ShouldChase(visionRange))
-        //{
-        //    Vector3 chaseDirection = directionController.UpdateDirectionBasedOnChase(chaseController, visionRange);
-
-        //    chaseController.Chase(chaseDirection, chaseSpeed);
-        //    owlmanAnimator.SetFloat("MovementSpeed", 1);
-        //    return;
-        //}
-
-        //Vector3 edgeBasedDirection = directionController.UpdateDirectionBasedOnEdges(patrolController);
-        //bool isCurrentlyMoving = patrolController.Patrol(edgeBasedDirection);
-        //if (isCurrentlyMoving)
-        //{
-        //    owlmanAnimator.SetFloat("MovementSpeed", 1);
-        //} else
-        //{
-        //    owlmanAnimator.SetFloat("MovementSpeed", 0);
-        //}
+        if (canAttack)
+        {
+            StartCoroutine("Attack");
+        }
     }
 
     IEnumerator Attack()
     {
-        yield return new WaitForSeconds(3f);
+        canAttack = false;
 
         bool isHorizontalAttack = random.NextDouble() > 0.5;
-        //bool isHorizontalAttack = true;
-        //Vector3 playersPosition = playerGameObject.transform.position;
+        Debug.Log("isHorizontalAttack " + isHorizontalAttack);
         Vector3 positionToSpawnAttackFrom;
         if (isHorizontalAttack)
         {
@@ -118,16 +81,19 @@ public class OwlmanBossActionManager : MonoBehaviour
 
         IEnumerator castSpellCoroutine = CastSpell(positionToSpawnAttackFrom, spellDirection);
         StartCoroutine(castSpellCoroutine);
-        StartCoroutine("Attack");
+        yield return new WaitForSeconds(3f);
+        canAttack = true;
     }
 
     private IEnumerator CastSpell(Vector3 initialPosition, Vector3 spellDirection)
     {
+        owlmanAnimator.SetBool("isCastingSpell", true);
         Vector3[] positionsToSpawnIn;
         if (isHorizontalDirection(spellDirection))
         {
             positionsToSpawnIn = GetHorizontalSpellInitialPositions(initialPosition, 3);
-        } else
+        }
+        else
         {
             positionsToSpawnIn = GetVerticalSpellInitialPositions(initialPosition, 10);
         }
@@ -145,6 +111,7 @@ public class OwlmanBossActionManager : MonoBehaviour
             projectileMovement.SetDirection(spellDirection);
             yield return new WaitForSeconds(0.25f);
         }
+        owlmanAnimator.SetBool("isCastingSpell", false);
     }
 
     private Vector3[] GetHorizontalSpellInitialPositions(Vector3 realInitialPosition, int amountOfPositions)
