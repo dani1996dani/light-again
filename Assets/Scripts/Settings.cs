@@ -33,6 +33,7 @@ namespace Assets.Scripts
         public static readonly float OwlmannBossGroundSmashReverbTimeToLive = 15.0f;
         public static readonly int OwlmanMageProjectileDamage = 15;
         public static readonly int OwlmanBossGroundSmashReverbDamage = 15;
+        public static readonly float OwlmanBossTimeToWaitBetweenAttacks = 3.0f;
         #endregion
 
         #region

@@ -28,6 +28,7 @@ public class OwlmanBossActionManager : MonoBehaviour
     private Vector3 playersPositionOnStart;
     private bool canAttack = true;
     private BossAttack[] availableAttackTypes = new BossAttack[3] { BossAttack.SpellHorizontal, BossAttack.SpellVertical, BossAttack.GroundSmash };
+    AnimationClip groundSmashClip;
 
     private void Start()
     {
@@ -46,7 +47,7 @@ public class OwlmanBossActionManager : MonoBehaviour
 
         owlmanType = OwlmanType.Boss;
 
-
+        groundSmashClip = owlmanAnimator.runtimeAnimatorController.animationClips.FirstOrDefault((x) => x.name == "GroundSmash");
     }
 
     private void FixedUpdate()
@@ -92,8 +93,6 @@ public class OwlmanBossActionManager : MonoBehaviour
 
             IEnumerator castSpellCoroutine = CastSpell(positionToSpawnAttackFrom, spellDirection);
             StartCoroutine(castSpellCoroutine);
-            yield return new WaitForSeconds(3f);
-            canAttack = true;
         }
 
         else if (selectedType == BossAttack.GroundSmash)
@@ -101,9 +100,10 @@ public class OwlmanBossActionManager : MonoBehaviour
             GameObject groundSmashOriginPoint = GameObject.FindGameObjectWithTag(Settings.TagGroundSmashOriginPoint);
             IEnumerator castGroundSmashCoroutine = CastGroundSmash(groundSmashOriginPoint.transform.position, Vector3.left);
             StartCoroutine(castGroundSmashCoroutine);
-            yield return new WaitForSeconds(3f);
-            canAttack = true;
         }
+
+        yield return new WaitForSeconds(Settings.OwlmanBossTimeToWaitBetweenAttacks);
+        canAttack = true;
     }
 
     private IEnumerator CastSpell(Vector3 initialPosition, Vector3 spellDirection)
@@ -138,7 +138,7 @@ public class OwlmanBossActionManager : MonoBehaviour
     private IEnumerator CastGroundSmash(Vector3 initialPosition, Vector3 castDirection)
     {
         owlmanAnimator.SetBool("isCastingGroundSmash", true);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(groundSmashClip.length);
 
         GameObject projectile = Instantiate(owlmanGroundSmashReverbPrefab, initialPosition, Quaternion.identity);
         OwlmanProjectileMovement projectileMovement = projectile.GetComponent<OwlmanProjectileMovement>();
