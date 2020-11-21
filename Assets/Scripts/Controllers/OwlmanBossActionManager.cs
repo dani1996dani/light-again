@@ -58,7 +58,6 @@ public class OwlmanBossActionManager : MonoBehaviour
 
         if (!Settings.isGameActive)
         {
-            owlmanAnimator.SetFloat("MovementSpeed", 0);
             owlmanAnimator.SetBool("isCastingSpell", false);
             owlmanAnimator.SetBool("isCastingGroundSmash", false);
             return;
