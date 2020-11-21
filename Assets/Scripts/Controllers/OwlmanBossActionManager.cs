@@ -20,6 +20,7 @@ public class OwlmanBossActionManager : MonoBehaviour
     private System.Random random;
     private Camera mainCamera;
     private float topOfScreen;
+    private Vector3 playersPositionOnStart;
 
     private void Start()
     {
@@ -33,6 +34,7 @@ public class OwlmanBossActionManager : MonoBehaviour
 
 
         playerGameObject = GameObject.FindGameObjectWithTag(Settings.TagPlayer);
+        playersPositionOnStart = playerGameObject.transform.position;
         float depth = playerGameObject.transform.position.z - mainCamera.gameObject.transform.position.z;
         topOfScreen = mainCamera.ScreenToWorldPoint(new Vector3(0, Screen.height, depth)).y;
 
@@ -96,36 +98,82 @@ public class OwlmanBossActionManager : MonoBehaviour
 
     IEnumerator Attack()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         bool isHorizontalAttack = random.NextDouble() > 0.5;
-        Vector3 playersPosition = playerGameObject.transform.position;
+        //bool isHorizontalAttack = true;
+        //Vector3 playersPosition = playerGameObject.transform.position;
         Vector3 positionToSpawnAttackFrom;
         if (isHorizontalAttack)
         {
             // spawn from X of boss, but from Y of player. So the player will always have to dodge it.
-            positionToSpawnAttackFrom = new Vector3(transform.position.x, playersPosition.y, transform.position.z);
+            positionToSpawnAttackFrom = new Vector3(transform.position.x, playersPositionOnStart.y, transform.position.z);
         }
         else
         {
-            positionToSpawnAttackFrom = new Vector3(playersPosition.x, topOfScreen, transform.position.z);
+            positionToSpawnAttackFrom = new Vector3(playersPositionOnStart.x, topOfScreen, transform.position.z);
         }
 
         Vector3 spellDirection = isHorizontalAttack ? Vector3.left : Vector3.down;
 
-        CastSpell(positionToSpawnAttackFrom, spellDirection);
+        IEnumerator castSpellCoroutine = CastSpell(positionToSpawnAttackFrom, spellDirection);
+        StartCoroutine(castSpellCoroutine);
         StartCoroutine("Attack");
     }
 
-    private void CastSpell(Vector3 initialPosition, Vector3 spellDirection)
+    private IEnumerator CastSpell(Vector3 initialPosition, Vector3 spellDirection)
     {
-        GameObject projectile = Instantiate(owlmanProjectilePrefab, initialPosition, Quaternion.identity);
+        Vector3[] positionsToSpawnIn;
+        if (isHorizontalDirection(spellDirection))
+        {
+            positionsToSpawnIn = GetHorizontalSpellInitialPositions(initialPosition, 3);
+        } else
+        {
+            positionsToSpawnIn = GetVerticalSpellInitialPositions(initialPosition, 10);
+        }
 
-        int prefabScale = 10;
-        projectile.transform.localScale = new Vector3(prefabScale, prefabScale, 1);
+        positionsToSpawnIn = positionsToSpawnIn.OrderBy(x => random.Next()).ToArray();
 
-        OwlmanProjectileMovement projectileMovement = projectile.GetComponent<OwlmanProjectileMovement>();
-        projectileMovement.SetDirection(spellDirection);
+        foreach (Vector3 currPosition in positionsToSpawnIn)
+        {
+            GameObject projectile = Instantiate(owlmanProjectilePrefab, currPosition, Quaternion.identity);
+
+            int prefabScale = 10;
+            projectile.transform.localScale = new Vector3(prefabScale, prefabScale, 1);
+
+            OwlmanProjectileMovement projectileMovement = projectile.GetComponent<OwlmanProjectileMovement>();
+            projectileMovement.SetDirection(spellDirection);
+            yield return new WaitForSeconds(0.25f);
+        }
+    }
+
+    private Vector3[] GetHorizontalSpellInitialPositions(Vector3 realInitialPosition, int amountOfPositions)
+    {
+        Vector3[] positions = new Vector3[amountOfPositions];
+        float verticalOffset = 7f;
+        for (int i = 0; i < positions.Length; i++)
+        {
+
+            positions[i] = new Vector3(realInitialPosition.x, realInitialPosition.y + (i * verticalOffset), realInitialPosition.z);
+        }
+        return positions;
+    }
+
+    private Vector3[] GetVerticalSpellInitialPositions(Vector3 realInitialPosition, int amountOfPositions)
+    {
+        Vector3[] positions = new Vector3[amountOfPositions];
+        float horizontalOffset = 7f;
+        for (int i = 0; i < positions.Length; i++)
+        {
+
+            positions[i] = new Vector3(realInitialPosition.x + (i * horizontalOffset), realInitialPosition.y, realInitialPosition.z);
+        }
+        return positions;
+    }
+
+    bool isHorizontalDirection(Vector3 direction)
+    {
+        return direction.x != 0;
     }
 
     public OwlmanType GetOwlmanType()
