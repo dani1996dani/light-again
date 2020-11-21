@@ -622,7 +622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1071171304}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: GroundSmashOriginPoint
   m_TagString: GroundSmashOriginPoint
   m_Icon: {fileID: 0}
@@ -7817,10 +7817,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2995526549831361906, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433407287572154747, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5038279470185589192, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: b4bc419958a24dd43befa3a2f3b47d93, type: 3}
+    - target: {fileID: 5038279470185589194, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038279470387595164, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 5038279470387595165, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Name
       value: Boss Owlman
@@ -7828,6 +7844,10 @@ PrefabInstance:
     - target: {fileID: 5038279470387595165, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_TagString
       value: OwlmanBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038279470387595165, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5038279470387595169, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Offset.y
@@ -7840,6 +7860,10 @@ PrefabInstance:
     - target: {fileID: 5038279470387595169, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Size.x
       value: 3.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038279470387595169, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5038279470387595170, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Offset.y
@@ -7900,6 +7924,14 @@ PrefabInstance:
     - target: {fileID: 5038279470387595171, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639708044704523057, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639708045139922437, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8639708046383954864, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Controller
