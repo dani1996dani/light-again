@@ -72,6 +72,9 @@ TagManager:
   - name: Moon Dust
     uniqueID: 4033915333
     locked: 0
+  - name: StarStrike
+    uniqueID: 3648612199
+    locked: 0
   - name: Player
     uniqueID: 4111009905
     locked: 0
