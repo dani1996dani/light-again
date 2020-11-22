@@ -38,13 +38,23 @@ namespace Assets.Scripts.Attacks
             }
         }
 
+        public void SetIsAttacking(bool newValue)
+        {
+            this.isAttacking = newValue;
+        }
+
+        public bool GetIsAttacking()
+        {
+            return this.isAttacking;
+        }
+
         // gets called from an animation trigger on the animation clip "Attack"
         public void SpawnArrow()
         {
             isShootingRight = playerMovement.isFacingRight;
             GameObject arrow = Instantiate(arrowPrefab, arrowSpawningPosition.transform.position, Quaternion.identity);
 
-            
+
             if (!isShootingRight)
             {
                 Vector3 vector = arrow.transform.localScale;
