@@ -8,6 +8,7 @@ namespace Assets.Scripts.Movement
         private float currentSpeed;
         private float targetSpeed;
         private float velocity;
+        private Vector3 direction = Vector3.right;
 
         public ArrowMovement()
         {
@@ -16,10 +17,15 @@ namespace Assets.Scripts.Movement
             targetSpeed = initialSpeed / 3;
         }
 
+        public void SetDirection(Vector3 newDirection)
+        {
+            this.direction = newDirection;
+        }
+
         private void Update()
         {
             currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref velocity, Settings.ArrowTimeToLive);
-            gameObject.transform.position += Vector3.right * transform.localScale.x * currentSpeed * Time.deltaTime;
+            gameObject.transform.position += direction * transform.localScale.x * currentSpeed * Time.deltaTime;
         }
     }
 }
