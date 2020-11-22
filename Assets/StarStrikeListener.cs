@@ -5,6 +5,12 @@ using Assets.Scripts;
 
 public class StarStrikeListener : MonoBehaviour
 {
+    GameObject starStrikeWavePrefab;
+
+    private void Start()
+    {
+        starStrikeWavePrefab = (GameObject)Resources.Load("Prefabs/StarStrikeWave");
+    }
 
     void OnEnable()
     {
@@ -23,6 +29,6 @@ public class StarStrikeListener : MonoBehaviour
 
     void OnStarStrike()
     {
-        Debug.Log("STAR STRIKE!!");
+        Instantiate(starStrikeWavePrefab, transform.position, Quaternion.identity);
     }
 }

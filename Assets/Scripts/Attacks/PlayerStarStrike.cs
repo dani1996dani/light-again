@@ -32,7 +32,6 @@ public class PlayerStarStrike : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                Debug.Log("MOON SHOT");
                 StartCoroutine("CastStarStrike");
             }
         }
