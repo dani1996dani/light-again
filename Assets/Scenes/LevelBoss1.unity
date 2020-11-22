@@ -622,7 +622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1071171304}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: GroundSmashOriginPoint
   m_TagString: GroundSmashOriginPoint
   m_Icon: {fileID: 0}
@@ -7819,19 +7819,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2995526549831361906, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4433407287572154747, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5038279470185589192, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b4bc419958a24dd43befa3a2f3b47d93, type: 3}
+      objectReference: {fileID: 21300000, guid: 00414830f74949d42b16fdd015a2e31b, type: 3}
+    - target: {fileID: 5038279470185589192, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038279470185589192, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_Size.x
+      value: 6.653333
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038279470185589192, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
+      propertyPath: m_Size.y
+      value: 10.413333
+      objectReference: {fileID: 0}
     - target: {fileID: 5038279470185589194, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5038279470387595164, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Mass
@@ -7847,15 +7859,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5038279470387595165, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5038279470387595169, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Offset.y
-      value: 1.02
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 5038279470387595169, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Size.y
-      value: 8.59
+      value: 10.14
       objectReference: {fileID: 0}
     - target: {fileID: 5038279470387595169, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Size.x
@@ -7927,11 +7939,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8639708044704523057, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8639708045139922437, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8639708046383954864, guid: d4cbc0fc5ffdd4846a7cbab75f448ab2, type: 3}
       propertyPath: m_Controller
