@@ -11,7 +11,11 @@ namespace Assets.Scripts
         public static readonly float JumpForce = 40.0f;
         public static readonly float DistToGround = 2.5f;
         public static readonly string PlayerHorizontalSpeed = "PlayerHorizontalSpeed";
-        public static readonly int MoonDustMaxAmount = 20;
+        public static readonly int MoonDustMaxAmount = 10;
+        public static readonly float StarStrikeArrowTimeToLive = 1.3f;
+        public static readonly float StarStrikeWaveExpansionTime = 0.25f;
+        public static readonly float StarStrikeWaveFadeOutTime = 0.8f;
+        public static readonly int StarStrikeDamage = 100;
 
         public static readonly float EnemyDeathDestroyOffset = 2.0f;
 
@@ -73,6 +77,7 @@ namespace Assets.Scripts
         public static readonly string TagMoonDustBar = "MoonDustBar";
         public static readonly string TagOwlmanBoss = "OwlmanBoss";
         public static readonly string TagGroundSmashOriginPoint = "GroundSmashOriginPoint";
+        public static readonly string TagEnemiesLayer = "Enemies";
         #endregion
 
         #region Layers

@@ -14,15 +14,18 @@ namespace Assets.Scripts
         public delegate void DeathEventHandler();
         public delegate void DamageEventHandler(int damage);
         public delegate void EnemyDeathEventHandler(GameObject enemy);
+        public delegate void StarStrikeEventHandler();
 
         //Event Definition
         public event DeathEventHandler PlayerDeath;
         public event DamageEventHandler PlayerHit;
         public event EnemyDeathEventHandler EnemyDeath;
+        public event StarStrikeEventHandler StarStrike;
 
         public void CallPlayerDeath() => PlayerDeath?.Invoke();
         public void CallPlayerHit(int damage) => PlayerHit?.Invoke(damage);
         public void CallEnemyDeath(GameObject enemy) => EnemyDeath?.Invoke(enemy);
+        public void CallStarStrike() => StarStrike?.Invoke();
 
         //Singleton
         private static Publisher instance;
