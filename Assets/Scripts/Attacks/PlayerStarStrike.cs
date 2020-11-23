@@ -12,6 +12,7 @@ public class PlayerStarStrike : MonoBehaviour
     private Animator playerAnimator;
     private PlayerBasicAttack playerBasicAttackController;
     PlayerMovement playerMovementController;
+    MoonDustProgress moonDustProgressController;
 
     private GameObject starStrikeArrowPrefab;
 
@@ -22,17 +23,19 @@ public class PlayerStarStrike : MonoBehaviour
         playerBasicAttackController = playerGameObject.GetComponentInChildren<PlayerBasicAttack>();
         starStrikeAnimationClip = playerAnimator.runtimeAnimatorController.animationClips.FirstOrDefault((x) => x.name == "StarStrike");
         playerMovementController = playerGameObject.GetComponent<PlayerMovement>();
+        moonDustProgressController = GameObject.FindGameObjectWithTag(Settings.TagGameSettings).GetComponent<MoonDustProgress>();
 
         starStrikeArrowPrefab = (GameObject)Resources.Load("Prefabs/StarStrikeArrow", typeof(GameObject));
     }
 
     void Update()
     {
-        if (!playerBasicAttackController.GetIsAttacking() && playerMovementController.isGrounded() && Input.GetKey(KeyCode.LeftControl))
+        if (!playerBasicAttackController.GetIsAttacking() && playerMovementController.isGrounded() && moonDustProgressController.IsFull() &&  Input.GetKey(KeyCode.LeftControl))
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
                 StartCoroutine("CastStarStrike");
+                moonDustProgressController.ResetMoonDustAmount();
             }
         }
     }

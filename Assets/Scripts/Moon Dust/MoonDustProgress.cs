@@ -5,6 +5,7 @@ using Assets.Scripts;
 
 public class MoonDustProgress : MonoBehaviour
 {
+    [SerializeField]
     private int moonDustCollectedAmount;
 
     private void Start()
@@ -28,5 +29,10 @@ public class MoonDustProgress : MonoBehaviour
     public int GetCurrentAmount()
     {
         return moonDustCollectedAmount;
+    }
+
+    public bool IsFull()
+    {
+        return this.moonDustCollectedAmount >= Settings.MoonDustMaxAmount;
     }
 }
