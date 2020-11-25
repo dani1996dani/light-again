@@ -50,9 +50,7 @@ public class EntryMenu : MonoBehaviour
     public void StartGame()
     {
         SceneChanger sceneChanger = GameObject.FindGameObjectWithTag(Settings.TagSceneChanger).GetComponent<SceneChanger>();
-        Time.timeScale = 1;
         sceneChanger.GoToLevel(Settings.SceneNameLevel1);
-        Settings.isGameActive = true;
 
         moonDustProgressController = GameObject.FindGameObjectWithTag(Settings.TagGameSettings).GetComponent<MoonDustProgress>();
         moonDustProgressController.ResetMoonDustAmount();
