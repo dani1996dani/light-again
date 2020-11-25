@@ -18,6 +18,7 @@ namespace Assets.Scripts
         public static readonly int StarStrikeDamage = 100;
 
         public static readonly float EnemyDeathDestroyOffset = 2.0f;
+        public static readonly float CameraFollowOnlyAfterSeconds = 3.0f;
 
         #region Owlman
         public static readonly int OwlmanMaxHealth = 20;
