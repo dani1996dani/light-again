@@ -82,9 +82,12 @@ public class SceneChanger : MonoBehaviour
     {
         shouldFadeOut = true;
         Settings.isGamePaused = true;
+        Settings.isLevelBeingTransitioned = true;
+
         yield return new WaitForSeconds(Settings.SceneFadeTime * 2);
         SceneManager.LoadScene(levelName);
         Settings.isGamePaused = false;
+        Settings.isLevelBeingTransitioned = false;
     }
 
     private string SceneNameFromIndex(int BuildIndex)

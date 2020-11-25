@@ -18,7 +18,6 @@ namespace Assets.Scripts
         public static readonly int StarStrikeDamage = 100;
 
         public static readonly float EnemyDeathDestroyOffset = 2.0f;
-        public static readonly float CameraFollowOnlyAfterSeconds = 3.0f;
 
         #region Owlman
         public static readonly int OwlmanMaxHealth = 20;
@@ -99,6 +98,7 @@ namespace Assets.Scripts
 
         public static bool isGamePaused = false;
         public static bool isGameActive = false;
+        public static bool isLevelBeingTransitioned = false;
     }
 }
 

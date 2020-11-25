@@ -29,6 +29,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (Settings.isLevelBeingTransitioned)
+        {
+            playerAnimator.SetFloat(Settings.PlayerHorizontalSpeed, 0);
+            playerAnimator.SetBool("isJumping", false);
+        }
+
         if (!Settings.isGamePaused && !basicAttackController.isAttacking)
         {
             MirrorPlayer();
@@ -63,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             playerRigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
-        if(!isPlayerGrounded && shouldJump)
+        if (!isPlayerGrounded && shouldJump)
         {
             shouldJump = false;
             playerAnimator.SetBool("isJumping", true);

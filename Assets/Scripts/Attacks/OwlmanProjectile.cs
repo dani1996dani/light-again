@@ -41,10 +41,8 @@ public class OwlmanProjectile : MonoBehaviour
     IEnumerator OnHit(GameObject colGameObject)
     {
         didHitPlayer = true;
-        if(projectileAnimator != null)
-        {
-            projectileAnimator.SetBool("didHit", didHitPlayer);
-        }
+        projectileAnimator.SetBool("didHit", didHitPlayer);
+
         Health playerHealth = colGameObject.GetComponent<Health>();
         playerHealth.TakeDamage(Settings.OwlmanMageProjectileDamage);
 
