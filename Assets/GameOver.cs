@@ -7,6 +7,7 @@ public class GameOver : MonoBehaviour
 {
     bool isLevelScene;
     Canvas gameOverCanvas;
+    SceneChanger sceneChanger;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -25,6 +26,8 @@ public class GameOver : MonoBehaviour
 
         gameOverCanvas = GameObject.FindGameObjectWithTag(Settings.TagGameOverMenu).GetComponent<Canvas>();
         gameOverCanvas.enabled = false;
+
+        sceneChanger = GameObject.FindGameObjectWithTag(Settings.TagSceneChanger).GetComponent<SceneChanger>();
     }
 
     void OnEnable()
@@ -44,5 +47,10 @@ public class GameOver : MonoBehaviour
         {
             gameOverCanvas.enabled = true;
         }
+    }
+
+    public void RestartLevel()
+    {
+        sceneChanger.GoToLevel(SceneManager.GetActiveScene().buildIndex);
     }
 }

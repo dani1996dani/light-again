@@ -83,11 +83,14 @@ public class SceneChanger : MonoBehaviour
         shouldFadeOut = true;
         Settings.isGamePaused = true;
         Settings.isLevelBeingTransitioned = true;
-
+        Time.timeScale = 1;
         yield return new WaitForSeconds(Settings.SceneFadeTime * 2);
+
         SceneManager.LoadScene(levelName);
+        
         Settings.isGamePaused = false;
         Settings.isLevelBeingTransitioned = false;
+        Settings.isGameActive = true;
     }
 
     private string SceneNameFromIndex(int BuildIndex)
@@ -97,5 +100,10 @@ public class SceneChanger : MonoBehaviour
         string name = path.Substring(slash + 1);
         int dot = name.LastIndexOf('.');
         return name.Substring(0, dot);
+    }
+
+    private string GetCurrentSceneName()
+    {
+        return SceneNameFromIndex(SceneManager.GetActiveScene().buildIndex);
     }
 }
