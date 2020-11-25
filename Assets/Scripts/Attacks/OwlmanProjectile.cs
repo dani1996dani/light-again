@@ -20,15 +20,40 @@ public class OwlmanProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject colGameObject = collision.gameObject;
-        if (colGameObject.tag == Settings.TagGround)
-        {
-            Destroy(gameObject);
-        }
 
         if (!didHitPlayer && colGameObject.tag == Settings.TagPlayer)
         {
             IEnumerator onHitCoroutine = OnHit(colGameObject);
             StartCoroutine(onHitCoroutine);
+        }
+    }
+
+    private void Update()
+    {
+        GroundHitCheck();
+    }
+
+    private void GroundHitCheck()
+    {
+        bool didHitGroundLeft = Physics2D.Raycast(gameObject.transform.position, Vector2.left, 0.5f, LayerMask.GetMask(Settings.TagGround));
+        if (didHitGroundLeft)
+        {
+            Destroy(gameObject);
+        }
+        bool didHitGroundRight = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 0.5f, LayerMask.GetMask(Settings.TagGround));
+        if (didHitGroundRight)
+        {
+            Destroy(gameObject);
+        }
+        bool didHitGroundUp = Physics2D.Raycast(gameObject.transform.position, Vector2.up, 0.5f, LayerMask.GetMask(Settings.TagGround));
+        if (didHitGroundUp)
+        {
+            Destroy(gameObject);
+        }
+        bool didHitGroundDown = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 0.5f, LayerMask.GetMask(Settings.TagGround));
+        if (didHitGroundDown)
+        {
+            Destroy(gameObject);
         }
     }
 

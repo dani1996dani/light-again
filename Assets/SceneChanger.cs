@@ -34,7 +34,7 @@ public class SceneChanger : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if(blackSreenImage == null)
         {
@@ -44,7 +44,7 @@ public class SceneChanger : MonoBehaviour
         if (shouldFadeIn)
         {
             float newAlphaValue = Mathf.Lerp(blackSreenImage.color.a, fadeInTarget, fadeInVelocity);
-            fadeInVelocity += fadeSpeed * Time.deltaTime;
+            fadeInVelocity += fadeSpeed * Time.unscaledDeltaTime;
             blackSreenImage.color = new Color(0, 0, 0, newAlphaValue);
             
             if (Mathf.Abs(newAlphaValue - fadeInTarget) <= neglegableOffset)
@@ -58,7 +58,7 @@ public class SceneChanger : MonoBehaviour
         if (shouldFadeOut)
         {
             float newAlphaValue = Mathf.Lerp(blackSreenImage.color.a, fadeOutTarget, fadeOutVelocity);
-            fadeOutVelocity += fadeSpeed * Time.deltaTime;
+            fadeOutVelocity += fadeSpeed * Time.unscaledDeltaTime;
             blackSreenImage.color = new Color(0, 0, 0, newAlphaValue);
             if (newAlphaValue >= fadeOutTarget - neglegableOffset)
             {
