@@ -67,6 +67,8 @@ class CameraController : MonoBehaviour
         SetBorders();
         screenWidth = rightBorder - leftBorder;
         screenHeight = upperBorder - lowerBorder;
+
+        gameObject.transform.position = new Vector3(0, 0, -5);
     }
 
     private void Start()

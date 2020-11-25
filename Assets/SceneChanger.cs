@@ -71,6 +71,13 @@ public class SceneChanger : MonoBehaviour
         StartCoroutine(coroutine);
     }
 
+    public void GoToLevel(int sceneIndex)
+    {
+        string levelName = SceneNameFromIndex(sceneIndex);
+        IEnumerator coroutine = LevelTransfer(levelName);
+        StartCoroutine(coroutine);
+    }
+
     private IEnumerator LevelTransfer(string levelName)
     {
         shouldFadeOut = true;
@@ -78,5 +85,14 @@ public class SceneChanger : MonoBehaviour
         yield return new WaitForSeconds(Settings.SceneFadeTime * 2);
         SceneManager.LoadScene(levelName);
         Settings.isGamePaused = false;
+    }
+
+    private string SceneNameFromIndex(int BuildIndex)
+    {
+        string path = SceneUtility.GetScenePathByBuildIndex(BuildIndex);
+        int slash = path.LastIndexOf('/');
+        string name = path.Substring(slash + 1);
+        int dot = name.LastIndexOf('.');
+        return name.Substring(0, dot);
     }
 }
