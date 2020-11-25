@@ -87,14 +87,14 @@ public class SceneChanger : MonoBehaviour
         shouldFadeOut = true;
         Settings.isGamePaused = true;
         Settings.isLevelBeingTransitioned = true;
-        Time.timeScale = 1;
-        yield return new WaitForSeconds(Settings.SceneFadeTime * 2);
+        yield return new WaitForSecondsRealtime(Settings.SceneFadeTime * 2);
 
         SceneManager.LoadScene(levelName);
         
         Settings.isGamePaused = false;
         Settings.isLevelBeingTransitioned = false;
         Settings.isGameActive = true;
+        Time.timeScale = 1;
     }
 
     private string SceneNameFromIndex(int BuildIndex)
