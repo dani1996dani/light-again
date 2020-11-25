@@ -14,6 +14,7 @@ public class SceneChanger : MonoBehaviour
     private float neglegableOffset = 0.1f;
     private float fadeInTarget = 0.0f;
     private float fadeOutTarget = 1.0f;
+    private float fadeSpeed = 0.5f;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -33,7 +34,7 @@ public class SceneChanger : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(blackSreenImage == null)
         {
@@ -42,25 +43,28 @@ public class SceneChanger : MonoBehaviour
 
         if (shouldFadeIn)
         {
-
-            float newAlphaValue = Mathf.SmoothDamp(blackSreenImage.color.a, fadeInTarget, ref fadeInVelocity, Settings.SceneFadeTime);
+            float newAlphaValue = Mathf.Lerp(blackSreenImage.color.a, fadeInTarget, fadeInVelocity);
+            fadeInVelocity += fadeSpeed * Time.deltaTime;
             blackSreenImage.color = new Color(0, 0, 0, newAlphaValue);
+            
             if (Mathf.Abs(newAlphaValue - fadeInTarget) <= neglegableOffset)
             {
                 blackSreenImage.color = new Color(0, 0, 0, fadeInTarget);
                 shouldFadeIn = false;
+                fadeInVelocity = 0;
             }
         }
 
         if (shouldFadeOut)
         {
-
-            float newAlphaValue = Mathf.SmoothDamp(blackSreenImage.color.a, fadeOutTarget, ref fadeOutVelocity, Settings.SceneFadeTime);
+            float newAlphaValue = Mathf.Lerp(blackSreenImage.color.a, fadeOutTarget, fadeOutVelocity);
+            fadeOutVelocity += fadeSpeed * Time.deltaTime;
             blackSreenImage.color = new Color(0, 0, 0, newAlphaValue);
-            if (Mathf.Abs(newAlphaValue - neglegableOffset) >= fadeOutTarget)
+            if (newAlphaValue >= fadeOutTarget - neglegableOffset)
             {
                 blackSreenImage.color = new Color(0, 0, 0, fadeOutTarget);
                 shouldFadeOut = false;
+                fadeOutVelocity = 0;
             }
         }
     }
