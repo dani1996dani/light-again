@@ -26,6 +26,7 @@ TagManager:
   - OwlmanMage
   - OwlmanBoss
   - GroundSmashOriginPoint
+  - Moon
   layers:
   - Default
   - TransparentFX

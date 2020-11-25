@@ -71,12 +71,31 @@ public class SceneChanger : MonoBehaviour
         StartCoroutine(coroutine);
     }
 
+    public void GoToLevel(int sceneIndex)
+    {
+        string levelName = SceneNameFromIndex(sceneIndex);
+        IEnumerator coroutine = LevelTransfer(levelName);
+        StartCoroutine(coroutine);
+    }
+
     private IEnumerator LevelTransfer(string levelName)
     {
         shouldFadeOut = true;
         Settings.isGamePaused = true;
+        Settings.isLevelBeingTransitioned = true;
+
         yield return new WaitForSeconds(Settings.SceneFadeTime * 2);
         SceneManager.LoadScene(levelName);
         Settings.isGamePaused = false;
+        Settings.isLevelBeingTransitioned = false;
+    }
+
+    private string SceneNameFromIndex(int BuildIndex)
+    {
+        string path = SceneUtility.GetScenePathByBuildIndex(BuildIndex);
+        int slash = path.LastIndexOf('/');
+        string name = path.Substring(slash + 1);
+        int dot = name.LastIndexOf('.');
+        return name.Substring(0, dot);
     }
 }

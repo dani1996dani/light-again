@@ -42,6 +42,7 @@ public class OwlmanProjectile : MonoBehaviour
     {
         didHitPlayer = true;
         projectileAnimator.SetBool("didHit", didHitPlayer);
+
         Health playerHealth = colGameObject.GetComponent<Health>();
         playerHealth.TakeDamage(Settings.OwlmanMageProjectileDamage);
 

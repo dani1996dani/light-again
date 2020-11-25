@@ -27,6 +27,7 @@ class CameraController : MonoBehaviour
 
     float neglegableDampOffset = 0.01f;
     bool isDisabled = false;
+    private Vector3 initialPositionEachlevel = new Vector3(0, 0, -5);
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -67,6 +68,8 @@ class CameraController : MonoBehaviour
         SetBorders();
         screenWidth = rightBorder - leftBorder;
         screenHeight = upperBorder - lowerBorder;
+
+        gameObject.transform.position = initialPositionEachlevel;
     }
 
     private void Start()
