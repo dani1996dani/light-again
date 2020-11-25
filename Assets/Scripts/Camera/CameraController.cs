@@ -27,14 +27,7 @@ class CameraController : MonoBehaviour
 
     float neglegableDampOffset = 0.01f;
     bool isDisabled = false;
-    bool shouldFollow = false;
     private Vector3 initialPositionEachlevel = new Vector3(0, 0, -5);
-
-    IEnumerator ShouldFollow()
-    {
-        yield return new WaitForSeconds(Settings.CameraFollowOnlyAfterSeconds);
-        shouldFollow = true;
-    }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -77,7 +70,6 @@ class CameraController : MonoBehaviour
         screenHeight = upperBorder - lowerBorder;
 
         gameObject.transform.position = initialPositionEachlevel;
-        StartCoroutine("ShouldFollow");
     }
 
     private void Start()
@@ -96,11 +88,6 @@ class CameraController : MonoBehaviour
         {
             return;
         }
-
-        //if (!shouldFollow)
-        //{
-        //    return;
-        //}
 
         Vector3 playerPosition = player.transform.position;
         Vector3 cameraPosition = transform.position;
