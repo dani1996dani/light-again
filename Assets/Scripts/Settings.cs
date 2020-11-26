@@ -99,6 +99,7 @@ namespace Assets.Scripts
         public static bool isGamePaused = false;
         public static bool isGameActive = false;
         public static bool isLevelBeingTransitioned = false;
+        public static bool isInStoryMode = false;
     }
 }
 

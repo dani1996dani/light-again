@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Settings.isLevelBeingTransitioned)
+        if (Settings.isLevelBeingTransitioned || Settings.isInStoryMode)
         {
             playerAnimator.SetFloat(Settings.PlayerHorizontalSpeed, 0);
             playerAnimator.SetBool("isJumping", false);
