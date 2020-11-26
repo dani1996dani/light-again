@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -21,7 +22,9 @@ public class DialogueManager : MonoBehaviour
 
 	public void StartDialogue(Dialogue dialogue)
 	{
-		animator.SetBool("IsOpen", true);
+		Settings.isGamePaused = true;
+		Settings.isInStoryMode = true;
+		animator.SetBool("isOpen", true);
 
 		nameText.text = dialogue.name;
 
@@ -54,13 +57,15 @@ public class DialogueManager : MonoBehaviour
 		foreach (char letter in sentence.ToCharArray())
 		{
 			dialogueText.text += letter;
-			yield return null;
+			yield return new WaitForSeconds(0.03f);
 		}
 	}
 
 	void EndDialogue()
 	{
-		animator.SetBool("IsOpen", false);
+		animator.SetBool("isOpen", false);
+		Settings.isInStoryMode = false;
+		Settings.isGamePaused = false;
 	}
 
 }
