@@ -100,6 +100,7 @@ namespace Assets.Scripts
         public static bool isGameActive = false;
         public static bool isLevelBeingTransitioned = false;
         public static bool isInStoryMode = false;
+        public static bool isFirstTimeFullBar = true;
     }
 }
 
