@@ -30,9 +30,9 @@ public class PlayerStarStrike : MonoBehaviour
 
     void Update()
     {
-        if (!playerBasicAttackController.GetIsAttacking() && playerMovementController.isGrounded() && moonDustProgressController.IsFull() &&  Input.GetKey(KeyCode.LeftControl))
+        if (!playerBasicAttackController.GetIsAttacking() && playerMovementController.isGrounded() && moonDustProgressController.IsFull())
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 StartCoroutine("CastStarStrike");
                 moonDustProgressController.ResetMoonDustAmount();

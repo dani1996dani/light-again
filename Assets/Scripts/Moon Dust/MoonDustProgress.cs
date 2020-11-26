@@ -33,6 +33,15 @@ public class MoonDustProgress : MonoBehaviour
 
     public bool IsFull()
     {
-        return this.moonDustCollectedAmount >= Settings.MoonDustMaxAmount;
+        if (moonDustCollectedAmount >= Settings.MoonDustMaxAmount)
+        {
+            if (Settings.isFirstTimeFullBar)
+            {
+                Publisher.publish.CallDisplayStarStrikeInstructions();
+            }
+            Settings.isFirstTimeFullBar = false;            
+            return true;
+        }
+        return false;
     }
 }
