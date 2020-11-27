@@ -46,6 +46,11 @@ namespace Assets.Scripts
             return this.curHealth;
         }
 
+        public int GetMaxHealth()
+        {
+            return this.maxHealth;
+        }
+
         public bool getIsAlive()
         {
             return this.isAlive;
