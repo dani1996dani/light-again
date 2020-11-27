@@ -82,7 +82,8 @@ namespace Assets.Scripts
         public static readonly string TagGroundSmashOriginPoint = "GroundSmashOriginPoint";
         public static readonly string TagEnemiesLayer = "Enemies";
         public static readonly string TagDeadBossLightParticles = "DeadBossLightParticles";
-        
+        public static readonly string TagRegularOwlmanHPBar = "RegularOwlmanHPBar";
+
         #endregion
 
         #region Layers
