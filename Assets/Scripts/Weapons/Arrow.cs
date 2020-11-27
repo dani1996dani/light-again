@@ -7,14 +7,23 @@ namespace Assets.Scripts.Weapons
     {
         private float timeToLive = Settings.ArrowTimeToLive;
         private int damage = 10;
-        private List<int> hitableLayers;
+        private HashSet<int> hitableLayers;
+        private HashSet<int> damageableLayers;
+
 
         private void Awake()
         {
-            hitableLayers = new List<int>
+            hitableLayers = new HashSet<int>
             {
                 LayerHelper.LayermaskToLayer(LayerMask.GetMask("Ground")),
-                LayerHelper.LayermaskToLayer(LayerMask.GetMask("Enemies"))
+                LayerHelper.LayermaskToLayer(LayerMask.GetMask("Enemies")),
+                LayerHelper.LayermaskToLayer(LayerMask.GetMask("EnemyBoss"))
+            };
+
+            damageableLayers = new HashSet<int>
+            {
+                LayerHelper.LayermaskToLayer(LayerMask.GetMask("Enemies")),
+                LayerHelper.LayermaskToLayer(LayerMask.GetMask("EnemyBoss"))
             };
         }
 
@@ -31,7 +40,7 @@ namespace Assets.Scripts.Weapons
         {
             if (hitableLayers.Contains(col.gameObject.layer))
             {
-                if (col.gameObject.layer == LayerHelper.LayermaskToLayer(LayerMask.GetMask("Enemies")))
+                if(damageableLayers.Contains(col.gameObject.layer))
                 {
                     col.gameObject.GetComponent<Health>().TakeDamage(damage);
                 }
@@ -41,3 +50,4 @@ namespace Assets.Scripts.Weapons
         }
     }
 }
+

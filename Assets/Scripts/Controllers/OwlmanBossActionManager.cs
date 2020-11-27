@@ -26,7 +26,7 @@ public class OwlmanBossActionManager : MonoBehaviour
     private Camera mainCamera;
     private float topOfScreen;
     private Vector3 playersPositionOnStart;
-    private bool canAttack = true;
+    private bool canAttack = false;
     private BossAttack[] availableAttackTypes = new BossAttack[3] { BossAttack.SpellHorizontal, BossAttack.SpellVertical, BossAttack.GroundSmash };
     AnimationClip groundSmashClip;
 
@@ -48,6 +48,14 @@ public class OwlmanBossActionManager : MonoBehaviour
         owlmanType = OwlmanType.Boss;
 
         groundSmashClip = owlmanAnimator.runtimeAnimatorController.animationClips.FirstOrDefault((x) => x.name == "GroundSmash");
+
+        StartCoroutine("EnableFirstAttack");
+    }
+
+    IEnumerator EnableFirstAttack()
+    {
+        yield return new WaitForSeconds(1.0f);
+        canAttack = true;
     }
 
     private void FixedUpdate()
@@ -65,7 +73,7 @@ public class OwlmanBossActionManager : MonoBehaviour
             return;
         }
 
-        if (canAttack)
+        if (canAttack && !Settings.isInStoryMode)
         {
             StartCoroutine("Attack");
         }
