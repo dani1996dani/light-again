@@ -15,13 +15,36 @@ public class SceneChanger : MonoBehaviour
     private float fadeInTarget = 0.0f;
     private float fadeOutTarget = 1.0f;
     private float fadeSpeed = 0.5f;
+    private bool isBossLevel;
+    private int fadeColor;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Init();
+    }
+
+    void Init()
     {
         blackSreenImage = GetComponentInChildren<Image>();
         shouldFadeIn = true;
         shouldFadeOut = false;
         blackSreenImage.color = new Color(0, 0, 0, 1);
+        isBossLevel = SceneManager.GetActiveScene().name.ToLower().Contains("boss");
+        if (isBossLevel)
+        {
+            fadeSpeed = 0.01f;
+            fadeColor = 255;
+        }
+        else
+        {
+            fadeSpeed = 0.5f;
+            fadeColor = 0;
+        }
+    }
+
+    private void Start()
+    {
+        Init();   
     }
 
     void OnEnable()
@@ -45,6 +68,7 @@ public class SceneChanger : MonoBehaviour
         {
             float newAlphaValue = Mathf.Lerp(blackSreenImage.color.a, fadeInTarget, fadeInVelocity);
             fadeInVelocity += fadeSpeed * Time.unscaledDeltaTime;
+            
             blackSreenImage.color = new Color(0, 0, 0, newAlphaValue);
             
             if (Mathf.Abs(newAlphaValue - fadeInTarget) <= neglegableOffset)
@@ -59,10 +83,10 @@ public class SceneChanger : MonoBehaviour
         {
             float newAlphaValue = Mathf.Lerp(blackSreenImage.color.a, fadeOutTarget, fadeOutVelocity);
             fadeOutVelocity += fadeSpeed * Time.unscaledDeltaTime;
-            blackSreenImage.color = new Color(0, 0, 0, newAlphaValue);
+            blackSreenImage.color = new Color(fadeColor, fadeColor, fadeColor, newAlphaValue);
             if (newAlphaValue >= fadeOutTarget - neglegableOffset)
             {
-                blackSreenImage.color = new Color(0, 0, 0, fadeOutTarget);
+                blackSreenImage.color = new Color(fadeColor, fadeColor, fadeColor, fadeOutTarget);
                 shouldFadeOut = false;
                 fadeOutVelocity = 0;
             }
@@ -87,7 +111,8 @@ public class SceneChanger : MonoBehaviour
         shouldFadeOut = true;
         Settings.isGamePaused = true;
         Settings.isLevelBeingTransitioned = true;
-        yield return new WaitForSecondsRealtime(Settings.SceneFadeTime * 2);
+        float timeToWait = isBossLevel ? Settings.SceneFadeTime * 4 : Settings.SceneFadeTime * 2;
+        yield return new WaitForSecondsRealtime(timeToWait);
 
         SceneManager.LoadScene(levelName);
         
