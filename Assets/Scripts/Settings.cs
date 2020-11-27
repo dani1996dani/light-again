@@ -45,7 +45,8 @@ namespace Assets.Scripts
         #endregion
 
         #region UI
-        public static readonly int progressBarWidth = 200;
+        public static readonly int progressHPBarWidth = 220;
+        public static readonly int progressMoondustBarWidth = 187;
         #endregion
 
         #region Fade

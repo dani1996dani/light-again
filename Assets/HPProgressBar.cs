@@ -64,7 +64,7 @@ public class HPProgressBar : MonoBehaviour
         int currentProgress = playerHealth.GetCurrentHealth();
         // number between 0 and 1
         float progressFraction = Mathf.Clamp((float)currentProgress / (float)maxAmount, 0, 1);
-        float widthToSet = Settings.progressBarWidth * progressFraction;
+        float widthToSet = Settings.progressHPBarWidth * progressFraction;
         HPprogressBarImage.rectTransform.sizeDelta = new Vector2(widthToSet, HPprogressBarImage.rectTransform.sizeDelta.y);
     }
 }

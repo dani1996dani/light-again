@@ -60,7 +60,7 @@ public class MoonDustProgressBar : MonoBehaviour
         int currentProgress = moonDustProgressController.GetCurrentAmount();
         // number between 0 and 1
         float progressFraction = Mathf.Clamp((float)currentProgress / (float)maxAmount, 0, 1);
-        float widthToSet = Settings.progressBarWidth * progressFraction;
+        float widthToSet = Settings.progressMoondustBarWidth * progressFraction;
         MoonDustProgressBarImage.rectTransform.sizeDelta = new Vector2(widthToSet, MoonDustProgressBarImage.rectTransform.sizeDelta.y);
     }
 }
