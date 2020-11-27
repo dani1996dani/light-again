@@ -20,11 +20,14 @@ public class EnemyDamageSubsriber : MonoBehaviour
 
     private void OnEnemyDeath(GameObject enemy)
     {
-        Vector3 enemyPosition = enemy.transform.position;
-        RaycastHit2D raycastHitData = Physics2D.Raycast(enemyPosition, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
-        Vector3 offset = new Vector3(0, -raycastHitData.distance + 1 /* +1 is to accomodate the moon dust collider height */, 0);
+        if (enemy.tag != Settings.TagOwlmanBoss)
+        {
+            Vector3 enemyPosition = enemy.transform.position;
+            RaycastHit2D raycastHitData = Physics2D.Raycast(enemyPosition, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
+            Vector3 offset = new Vector3(0, -raycastHitData.distance + 1 /* +1 is to accomodate the moon dust collider height */, 0);
 
-        Instantiate(moonDustPrefab, enemy.transform.position + offset, Quaternion.identity);
+            Instantiate(moonDustPrefab, enemy.transform.position + offset, Quaternion.identity);
+        }
 
         Animator enemyAnimator = enemy.GetComponentInChildren<Animator>();
         enemyAnimator.SetBool("isAlive", false);
