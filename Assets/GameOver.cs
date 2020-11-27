@@ -51,6 +51,10 @@ public class GameOver : MonoBehaviour
 
     public void RestartLevel()
     {
+        if (!sceneChanger)
+        {
+            sceneChanger = GameObject.FindGameObjectWithTag(Settings.TagSceneChanger).GetComponent<SceneChanger>();
+        }
         sceneChanger.GoToLevel(SceneManager.GetActiveScene().buildIndex);
     }
 }
