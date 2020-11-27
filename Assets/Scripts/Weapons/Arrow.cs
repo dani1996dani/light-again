@@ -7,7 +7,6 @@ namespace Assets.Scripts.Weapons
     {
         private float timeToLive = Settings.ArrowTimeToLive;
         private int damage = 10;
-        //private List<int> hitableLayers;
         private HashSet<int> hitableLayers;
         private HashSet<int> damageableLayers;
 
