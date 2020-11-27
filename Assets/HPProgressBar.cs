@@ -12,6 +12,7 @@ public class HPProgressBar : MonoBehaviour
     Health entitysHealth;
     [SerializeField]
     private bool isPlayer = false;
+    Canvas mainCanvas;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -35,13 +36,18 @@ public class HPProgressBar : MonoBehaviour
         {
             HPprogressBarImage = GameObject.FindGameObjectWithTag(Settings.TagBossHPBar).GetComponent<Image>();
         }
-        
+
+        mainCanvas = gameObject.GetComponentInChildren<Canvas>();
+
+
         if (isLevelScene)
         {
+            mainCanvas.enabled = true;
             HPprogressBarImage.enabled = true;
         }
         else
         {
+            mainCanvas.enabled = false;
             HPprogressBarImage.enabled = false;
         }
 
