@@ -7,6 +7,7 @@ using System.Linq;
 public class EnemyDamageSubsriber : MonoBehaviour
 {
     GameObject moonDustPrefab;
+    int moonDustSortingLayerPriority = 0;
 
     private void Awake()
     {
@@ -26,7 +27,10 @@ public class EnemyDamageSubsriber : MonoBehaviour
             RaycastHit2D raycastHitData = Physics2D.Raycast(enemyPosition, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
             Vector3 offset = new Vector3(0, -raycastHitData.distance + 1 /* +1 is to accomodate the moon dust collider height */, 0);
 
-            Instantiate(moonDustPrefab, enemy.transform.position + offset, Quaternion.identity);
+            GameObject moonDustObject = Instantiate(moonDustPrefab, enemy.transform.position + offset, Quaternion.identity);
+            SpriteRenderer spriteRenderer = moonDustObject.GetComponentInChildren<SpriteRenderer>();
+            spriteRenderer.sortingOrder = moonDustSortingLayerPriority;
+            moonDustSortingLayerPriority++;
         }
 
         Animator enemyAnimator = enemy.GetComponentInChildren<Animator>();
