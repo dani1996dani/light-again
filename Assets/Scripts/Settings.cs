@@ -11,7 +11,8 @@ namespace Assets.Scripts
         public static readonly float JumpForce = 40.0f;
         public static readonly float DistToGround = 2.5f;
         public static readonly string PlayerHorizontalSpeed = "PlayerHorizontalSpeed";
-        public static readonly int MoonDustMaxAmount = 10;
+        //public static readonly int MoonDustMaxAmount = 10;
+        public static readonly int MoonDustMaxAmount = 0;
         public static readonly float StarStrikeArrowTimeToLive = 1.3f;
         public static readonly float StarStrikeWaveExpansionTime = 0.25f;
         public static readonly float StarStrikeWaveFadeOutTime = 0.8f;
