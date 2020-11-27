@@ -28,6 +28,8 @@ TagManager:
   - GroundSmashOriginPoint
   - Moon
   - DeadBossLightParticles
+  - BossHpProgressUI
+  - BossHPBar
   layers:
   - Default
   - TransparentFX
