@@ -23,8 +23,7 @@ namespace Assets.Scripts
         public static readonly int OwlmanMaxHealth = 20;
         public static readonly int OwlmanStrongMaxHealth = 50;
         public static readonly int OwlmanMageMaxHealth = OwlmanMaxHealth;
-        //public static readonly int OwlmanBossMaxHealth = 200;
-        public static readonly int OwlmanBossMaxHealth = 20;
+        public static readonly int OwlmanBossMaxHealth = 200;
         public static readonly float OwlmanSpeed = 5.0f;
         public static readonly float OwlmanChaseSpeed = 7.0f;
         public static readonly float OwlmanStrongChaseSpeed = 9.0f;
