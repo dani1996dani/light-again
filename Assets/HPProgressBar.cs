@@ -9,7 +9,9 @@ public class HPProgressBar : MonoBehaviour
 {
     Image HPprogressBarImage;
     bool isLevelScene;
-    Health playerHealth;
+    Health entitysHealth;
+    [SerializeField]
+    private bool isPlayer = false;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -26,7 +28,14 @@ public class HPProgressBar : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         isLevelScene = currentScene.name.StartsWith("Level");
 
-        HPprogressBarImage = GameObject.FindGameObjectWithTag(Settings.TagHPBar).GetComponent<Image>();
+        if (isPlayer)
+        {
+            HPprogressBarImage = GameObject.FindGameObjectWithTag(Settings.TagHPBar).GetComponent<Image>();
+        } else
+        {
+            HPprogressBarImage = GameObject.FindGameObjectWithTag(Settings.TagBossHPBar).GetComponent<Image>();
+        }
+        
         if (isLevelScene)
         {
             HPprogressBarImage.enabled = true;
@@ -38,7 +47,14 @@ public class HPProgressBar : MonoBehaviour
 
         if (isLevelScene)
         {
-            playerHealth = GameObject.FindGameObjectWithTag(Settings.TagPlayer).GetComponent<Health>();
+            if (isPlayer)
+            {
+                entitysHealth = GameObject.FindGameObjectWithTag(Settings.TagPlayer).GetComponent<Health>();
+            } else
+            {
+                entitysHealth = GameObject.FindGameObjectWithTag(Settings.TagOwlmanBoss).GetComponent<Health>();
+            }
+            
         }
     }
 
@@ -59,9 +75,15 @@ public class HPProgressBar : MonoBehaviour
         {
             return;
         }
-
-        int maxAmount = Settings.PlayerMaxHealth;
-        int currentProgress = playerHealth.GetCurrentHealth();
+        int maxAmount;
+        if (isPlayer)
+        {
+            maxAmount = Settings.PlayerMaxHealth;
+        } else
+        {
+            maxAmount = Settings.OwlmanBossMaxHealth;
+        }
+        int currentProgress = entitysHealth.GetCurrentHealth();
         // number between 0 and 1
         float progressFraction = Mathf.Clamp((float)currentProgress / (float)maxAmount, 0, 1);
         float widthToSet = Settings.progressHPBarWidth * progressFraction;

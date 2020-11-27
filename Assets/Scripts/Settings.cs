@@ -75,6 +75,7 @@ namespace Assets.Scripts
         public static readonly string TagGameOverMenu = "GameOverMenu";
         public static readonly string TagPlayerProgressUI = "PlayerProgressUI";
         public static readonly string TagHPBar = "HPBar";
+        public static readonly string TagBossHPBar = "BossHPBar";
         public static readonly string TagMoonDustBar = "MoonDustBar";
         public static readonly string TagOwlmanBoss = "OwlmanBoss";
         public static readonly string TagGroundSmashOriginPoint = "GroundSmashOriginPoint";
