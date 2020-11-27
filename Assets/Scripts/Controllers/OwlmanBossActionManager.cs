@@ -54,6 +54,7 @@ public class OwlmanBossActionManager : MonoBehaviour
     {
         if (!owlmansHealth.getIsAlive())
         {
+            StopAllCoroutines();
             return;
         }
 

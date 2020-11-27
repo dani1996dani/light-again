@@ -8,6 +8,7 @@ namespace Assets.Scripts
         private int curHealth;
         private bool isAlive = true;
         private bool isPlayer = false;
+        private bool isBoss = false;
 
         void Start()
         {
@@ -20,7 +21,7 @@ namespace Assets.Scripts
             {
                 maxHealth = Settings.OwlmanMaxHealth;
             }
-            if(gameObject.tag == Settings.TagOwlmanStrong)
+            if (gameObject.tag == Settings.TagOwlmanStrong)
             {
                 maxHealth = Settings.OwlmanStrongMaxHealth;
             }
@@ -33,6 +34,11 @@ namespace Assets.Scripts
                 maxHealth = Settings.OwlmanBossMaxHealth;
             }
             curHealth = maxHealth;
+
+            if (gameObject.tag == Settings.TagOwlmanBoss)
+            {
+                isBoss = true;
+            }
         }
 
         public int GetCurrentHealth()
@@ -47,11 +53,11 @@ namespace Assets.Scripts
 
         public void TakeDamage(int damage)
         {
-              if (curHealth > 0)
+            if (curHealth > 0)
             {
                 curHealth -= damage;
             }
-             if (curHealth <= 0 && isAlive)
+            if (curHealth <= 0 && isAlive)
             {
                 Die();
             }
@@ -68,6 +74,10 @@ namespace Assets.Scripts
             }
             if (!isPlayer)
             {
+                if (isBoss)
+                {
+                    Publisher.publish.CallBossDeath();
+                }
                 Publisher.publish.CallEnemyDeath(gameObject);
             }
         }

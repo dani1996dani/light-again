@@ -16,9 +16,11 @@ namespace Assets.Scripts
         public delegate void EnemyDeathEventHandler(GameObject enemy);
         public delegate void StarStrikeEventHandler();
         public delegate void MoonDustBarFullEventHandler();
+        public delegate void BossDeathEventHandler();
 
         //Event Definition
         public event DeathEventHandler PlayerDeath;
+        public event BossDeathEventHandler BossDeath;
         public event DamageEventHandler PlayerHit;
         public event EnemyDeathEventHandler EnemyDeath;
         public event StarStrikeEventHandler StarStrike;
@@ -27,6 +29,7 @@ namespace Assets.Scripts
         public void CallPlayerDeath() => PlayerDeath?.Invoke();
         public void CallPlayerHit(int damage) => PlayerHit?.Invoke(damage);
         public void CallEnemyDeath(GameObject enemy) => EnemyDeath?.Invoke(enemy);
+        public void CallBossDeath() => BossDeath?.Invoke();
         public void CallStarStrike() => StarStrike?.Invoke();
         public void CallDisplayStarStrikeInstructions() => MoonDustBarFull?.Invoke();
 

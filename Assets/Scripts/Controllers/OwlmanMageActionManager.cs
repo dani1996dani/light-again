@@ -35,6 +35,7 @@ public class OwlmanMageActionManager : MonoBehaviour
     {
         if (!owlmansHealth.getIsAlive())
         {
+            StopAllCoroutines();
             return;
         }
 
