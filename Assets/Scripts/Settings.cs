@@ -3,7 +3,8 @@ namespace Assets.Scripts
 {
     public class Settings
     {
-        public static readonly int PlayerMaxHealth = 70;
+        //public static readonly int PlayerMaxHealth = 70;
+        public static readonly int PlayerMaxHealth = 7000;
         public static readonly float ArrowSpeed = 30.0f;
         public static readonly float OwlmanProjectileSpeed = 20.0f;
         public static readonly float ArrowTimeToLive = 0.75f;
