@@ -32,14 +32,15 @@ public class PlayerStarStrike : MonoBehaviour
     {
         if (!playerBasicAttackController.GetIsAttacking() && playerMovementController.isGrounded() && moonDustProgressController.IsFull())
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
-                StartCoroutine("CastStarStrike");
+                StartCastingStarStrike();
                 moonDustProgressController.ResetMoonDustAmount();
             }
         }
     }
 
+    // this function is called by an animation trigger
     public void SpawnVerticalArrow()
     {
         GameObject arrow = Instantiate(starStrikeArrowPrefab, transform.position, Quaternion.identity);
@@ -47,15 +48,16 @@ public class PlayerStarStrike : MonoBehaviour
         arrowMovement.SetDirection(Vector3.up);
     }
 
-    IEnumerator CastStarStrike()
+    // this function is called by an animation trigger
+    public void DoneCastingStarStrike()
+    {
+        playerBasicAttackController.SetIsAttacking(false);
+        playerAnimator.SetBool("isCastingStarStrike", false);
+    }
+
+    public void StartCastingStarStrike()
     {
         playerBasicAttackController.SetIsAttacking(true);
         playerAnimator.SetBool("isCastingStarStrike", true);
-
-        SpawnVerticalArrow();
-
-        yield return new WaitForSeconds(starStrikeAnimationClip.length);
-        playerBasicAttackController.SetIsAttacking(false);
-        playerAnimator.SetBool("isCastingStarStrike", false);
     }
 }

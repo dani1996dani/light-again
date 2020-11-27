@@ -146,6 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4178690396460823447}
   - component: {fileID: 4178690396460823446}
+  - component: {fileID: 3553325168339040641}
   m_Layer: 12
   m_Name: Moon Dust Sprite
   m_TagString: Untagged
@@ -207,7 +208,7 @@ SpriteRenderer:
   m_SortingLayerID: -261051963
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3b2e042ed1b079d439ac4a3abce7c212, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a86072114cc5b0648b08dd5a3828a4c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -218,3 +219,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3553325168339040641
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178690396460823444}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1a9e2f20cd81cfb4bb957f7d1ff87427, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
