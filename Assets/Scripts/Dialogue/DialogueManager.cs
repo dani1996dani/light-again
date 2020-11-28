@@ -20,7 +20,18 @@ public class DialogueManager : MonoBehaviour
 		sentences = new Queue<string>();
 	}
 
-	public void StartDialogue(Dialogue dialogue)
+    private void Update()
+    {
+        if (Settings.isInStoryMode)
+        {
+			if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.RightArrow))
+			{
+				DisplayNextSentence();
+			}
+		}
+    }
+
+    public void StartDialogue(Dialogue dialogue)
 	{
 		Settings.isGamePaused = true;
 		Settings.isInStoryMode = true;
