@@ -25,7 +25,7 @@ public class EnemyDamageSubsriber : MonoBehaviour
         {
             Vector3 enemyPosition = enemy.transform.position;
             RaycastHit2D raycastHitData = Physics2D.Raycast(enemyPosition, Vector2.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
-            Vector3 offset = new Vector3(0, -raycastHitData.distance /*+ 1 /* +1 is to accomodate the moon dust collider height */, 0);
+            Vector3 offset = new Vector3(0, -raycastHitData.distance + 1 /* +1 is to accomodate the moon dust collider height */, 0);
 
             GameObject moonDustObject = Instantiate(moonDustPrefab, enemy.transform.position + offset, Quaternion.identity);
             SpriteRenderer spriteRenderer = moonDustObject.GetComponentInChildren<SpriteRenderer>();
