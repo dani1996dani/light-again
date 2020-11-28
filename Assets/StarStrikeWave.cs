@@ -12,9 +12,17 @@ public class StarStrikeWave : MonoBehaviour
     SpriteRenderer expansionSpriteRenderer;
     float timeBetweenExpansionAndFadeOut = 0.3f;
     float negleableAlphaOffset = 0.01f;
+    private HashSet<int> damageableLayers;
+    HashSet<int> alreadyDamagedEnemiesGuid = new HashSet<int>();
 
     private void Start()
     {
+        damageableLayers = new HashSet<int>
+            {
+                LayerHelper.LayermaskToLayer(LayerMask.GetMask("Enemies")),
+                LayerHelper.LayermaskToLayer(LayerMask.GetMask("EnemyBoss"))
+            };
+
         expansionSpriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         StartCoroutine("StopExpanding");
     }
@@ -46,10 +54,17 @@ public class StarStrikeWave : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerHelper.LayermaskToLayer(LayerMask.GetMask(Settings.TagEnemiesLayer)))
+        GameObject colGameObject = collision.gameObject;
+        if (damageableLayers.Contains(colGameObject.layer))
         {
-            Health enemyHealth = collision.gameObject.GetComponent<Health>();
-            enemyHealth.TakeDamage(Settings.StarStrikeDamage);
+            int enemyGuid = colGameObject.GetComponent<ObjectGuid>().GetGuid();
+            if (!alreadyDamagedEnemiesGuid.Contains(enemyGuid))
+            {
+                alreadyDamagedEnemiesGuid.Add(enemyGuid);
+
+                Health enemyHealth = colGameObject.GetComponent<Health>();
+                enemyHealth.TakeDamage(Settings.StarStrikeDamage);
+            }
         }
     }
 }

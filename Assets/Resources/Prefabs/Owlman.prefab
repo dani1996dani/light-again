@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 2070374066}
   - component: {fileID: 2070374071}
   - component: {fileID: 3989982301628894211}
+  - component: {fileID: 216415840083159679}
   m_Layer: 10
   m_Name: Owlman
   m_TagString: Owlman
@@ -252,6 +253,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a670c626b85c2846b3d0fd59e8ad546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &216415840083159679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606812426607017558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7499f2238470e5488ce0e6910f1fdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3606812426809806849
