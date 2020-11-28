@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 8639708046045470586}
   - component: {fileID: 8639708046045470585}
   - component: {fileID: 8639708046045470588}
+  - component: {fileID: -3694690410243086192}
   m_Layer: 10
   m_Name: Boss Owlman
   m_TagString: Owlman
@@ -342,6 +343,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owlmanType: 0
+--- !u!114 &-3694690410243086192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038279470387595165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7499f2238470e5488ce0e6910f1fdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8639708044704523057
 GameObject:
   m_ObjectHideFlags: 0
