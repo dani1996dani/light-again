@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (Settings.isInStoryMode)
         {
-			if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.RightArrow))
+			if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space))
 			{
 				DisplayNextSentence();
 			}
