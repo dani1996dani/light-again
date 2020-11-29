@@ -7,6 +7,7 @@ public class BossDeathListener : MonoBehaviour
 {
     GameObject deadBossLightParticles;
     GameObject bossHPCanvas;
+    MusicController musicController;
 
     private void Start()
     {
@@ -14,6 +15,7 @@ public class BossDeathListener : MonoBehaviour
         deadBossLightParticles.SetActive(false);
 
         bossHPCanvas = GameObject.FindGameObjectWithTag(Settings.TagBossHpProgressUI);
+        musicController = GameObject.FindGameObjectWithTag(Settings.TagAudioSource).GetComponent<MusicController>();
     }
 
     private void OnEnable()
@@ -30,12 +32,20 @@ public class BossDeathListener : MonoBehaviour
     {
         deadBossLightParticles.SetActive(true);
         StartCoroutine("HideBossHpCanvas");
-
+        StartCoroutine(PlayVictorySound());
     }
 
     IEnumerator HideBossHpCanvas()
     {
         yield return new WaitForSeconds(5.0f);
         bossHPCanvas.SetActive(false);
+    }
+
+    
+
+    IEnumerator PlayVictorySound()
+    {
+        yield return StartCoroutine(musicController.FadeOutCurrentMusic(0, 0.01f));
+        StartCoroutine(musicController.FadeInNewMusic(Song.Harp, 0.05f));
     }
 }
