@@ -30,6 +30,11 @@ public class PlayerStarStrike : MonoBehaviour
 
     void Update()
     {
+        if (Settings.isInStoryMode)
+        {
+            return;
+        }
+
         if (!playerBasicAttackController.GetIsAttacking() && playerMovementController.isGrounded() && moonDustProgressController.IsFull())
         {
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))

@@ -41,7 +41,7 @@ public class PauseGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Settings.isGameActive && Input.GetKeyDown(KeyCode.Escape) && isLevelScene)
+        if(Settings.isGameActive && Input.GetKeyDown(KeyCode.P) && isLevelScene)
         {
             ToggleGamePaused();
         }

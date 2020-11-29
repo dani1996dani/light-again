@@ -75,6 +75,12 @@ public class DialogueManager : MonoBehaviour
 	void EndDialogue()
 	{
 		animator.SetBool("isOpen", false);
+		StartCoroutine("ContinueGame");
+	}
+
+	IEnumerator ContinueGame()
+    {
+		yield return new WaitForSeconds(0.2f);
 		Settings.isInStoryMode = false;
 		Settings.isGamePaused = false;
 	}

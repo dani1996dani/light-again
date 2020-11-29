@@ -23,6 +23,7 @@ public class CameraScaler : MonoBehaviour
         current_h = Screen.height;
         float width_size = (float)(w_amount * Screen.height / Screen.width * 0.5);
         float height_size = (float)(h_amount * Screen.width / Screen.height * 0.5) * ((float)Screen.height / Screen.width);
+        Debug.Log("size" + Mathf.Max(height_size, width_size));
         cam.orthographicSize = Mathf.Max(height_size, width_size);
     }
 
