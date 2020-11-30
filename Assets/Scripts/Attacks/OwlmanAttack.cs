@@ -12,12 +12,13 @@ namespace Assets.Scripts.Attacks
         List<GameObject> allChildren;
         bool canAttack = true;
         GameObject owlmanProjectilePrefab;
-
+        SFXManager sfxManager;
 
         private void Awake()
         {
             allChildren = gameObject.GetAllChildren();
             owlmanProjectilePrefab = (GameObject)Resources.Load("Prefabs/OwlmanSpellProjectile");
+            sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
         }
 
         public bool isPlayerInAttackRange(Vector3 attackDirection, float attackRange)
@@ -69,6 +70,7 @@ namespace Assets.Scripts.Attacks
             {
                 Publisher.publish.CallPlayerHit(Settings.OwlmanAttackDamage);
             }
+            sfxManager.PlaySFX(SFXType.Punch);
         }
     }
 }
