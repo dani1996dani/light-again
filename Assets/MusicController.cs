@@ -74,13 +74,10 @@ public class MusicController : MonoBehaviour
 
         audioSource.Play();
 
-        //yield return null;
         while (audioSource.volume < 1)
         {
             yield return new WaitForSeconds(0.01f);
             audioSource.volume += fadingSpeed;
         }
-        //StartCoroutine(FadeInCurrentMusic());
-
     }
 }
