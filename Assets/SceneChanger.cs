@@ -16,7 +16,10 @@ public class SceneChanger : MonoBehaviour
     private float fadeOutTarget = 1.0f;
     private float fadeSpeed = 0.5f;
     private bool isBossLevel;
+    private bool isCreditsSceneLevel;
     private int fadeColor;
+
+    MusicController musicController;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -30,21 +33,33 @@ public class SceneChanger : MonoBehaviour
         shouldFadeOut = false;
         blackSreenImage.color = new Color(0, 0, 0, 1);
         isBossLevel = SceneManager.GetActiveScene().name.ToLower().Contains("boss");
+        isCreditsSceneLevel = SceneManager.GetActiveScene().name.ToLower().Contains("credits");
+
+        musicController = GameObject.FindGameObjectWithTag(Settings.TagAudioSource).GetComponent<MusicController>();
         if (isBossLevel)
         {
             fadeSpeed = 0.01f;
             fadeColor = 255;
+            StartCoroutine(musicController.FadeInNewMusic(Song.BossFight));
         }
         else
         {
             fadeSpeed = 0.5f;
             fadeColor = 0;
+            if (isCreditsSceneLevel)
+            {
+                StartCoroutine(musicController.FadeInNewMusic(Song.MainSong));
+            }
+            else
+            {
+                StartCoroutine(musicController.FadeInCurrentMusic());
+            }
         }
     }
 
     private void Start()
     {
-        Init();   
+        Init();
     }
 
     void OnEnable()
@@ -59,7 +74,7 @@ public class SceneChanger : MonoBehaviour
 
     private void Update()
     {
-        if(blackSreenImage == null)
+        if (blackSreenImage == null)
         {
             blackSreenImage = GetComponentInChildren<Image>();
         }
@@ -68,9 +83,9 @@ public class SceneChanger : MonoBehaviour
         {
             float newAlphaValue = Mathf.Lerp(blackSreenImage.color.a, fadeInTarget, fadeInVelocity);
             fadeInVelocity += fadeSpeed * Time.unscaledDeltaTime;
-            
+
             blackSreenImage.color = new Color(0, 0, 0, newAlphaValue);
-            
+
             if (Mathf.Abs(newAlphaValue - fadeInTarget) <= neglegableOffset)
             {
                 blackSreenImage.color = new Color(0, 0, 0, fadeInTarget);
@@ -112,10 +127,11 @@ public class SceneChanger : MonoBehaviour
         Settings.isGamePaused = true;
         Settings.isLevelBeingTransitioned = true;
         float timeToWait = isBossLevel ? Settings.SceneFadeTime * 4 : Settings.SceneFadeTime * 2;
+        StartCoroutine(musicController.FadeOutCurrentMusic());
         yield return new WaitForSecondsRealtime(timeToWait);
 
         SceneManager.LoadScene(levelName);
-        
+
         Settings.isGamePaused = false;
         Settings.isLevelBeingTransitioned = false;
         Settings.isGameActive = true;
