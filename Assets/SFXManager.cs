@@ -6,7 +6,8 @@ using System.Linq;
 public enum SFXType
 {
     jump,
-    playerDeath
+    playerDeath,
+    MoonDustPickup
 }
 
 public class SFX
@@ -38,11 +39,16 @@ public class SFXManager : MonoBehaviour
 
         AudioClip jumpSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/female-jump");
         SFX jump = new SFX(SFXType.jump, jumpSFXClip, 1.0f, 1.2f);
+        availableSFX.Add(jump);
 
         AudioClip playerDeathSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/female-death");
         SFX playerDeath = new SFX(SFXType.playerDeath, playerDeathSFXClip, 1.0f, 1.2f);
-        availableSFX.Add(jump);
         availableSFX.Add(playerDeath);
+
+        AudioClip moonDustSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/moondust-pickup");
+        SFX moonDustPickup = new SFX(SFXType.MoonDustPickup, moonDustSFXClip, 1.0f, 1.2f);
+        availableSFX.Add(moonDustPickup);
+
     }
 
     // Update is called once per frame
