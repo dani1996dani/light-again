@@ -7,7 +7,8 @@ public enum SFXType
 {
     jump,
     playerDeath,
-    MoonDustPickup
+    MoonDustPickup,
+    ArrowShot
 }
 
 public class SFX
@@ -49,6 +50,9 @@ public class SFXManager : MonoBehaviour
         SFX moonDustPickup = new SFX(SFXType.MoonDustPickup, moonDustSFXClip, 1.0f, 1.2f);
         availableSFX.Add(moonDustPickup);
 
+        AudioClip arrowSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/arrow");
+        SFX arrow = new SFX(SFXType.ArrowShot, arrowSFXClip, 1.0f, 1.2f);
+        availableSFX.Add(arrow);
     }
 
     // Update is called once per frame

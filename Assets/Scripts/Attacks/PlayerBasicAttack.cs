@@ -15,6 +15,7 @@ namespace Assets.Scripts.Attacks
         AnimationClip attackAnimationClip;
         PlayerMovement playerMovementController;
         public bool isAttacking = false;
+        SFXManager SFXManager;
 
         private void Awake()
         {
@@ -26,6 +27,7 @@ namespace Assets.Scripts.Attacks
             playerAnimator = playerGameObject.GetComponentInChildren<Animator>();
             attackAnimationClip = playerAnimator.runtimeAnimatorController.animationClips.FirstOrDefault((x) => x.name == "Attack");
             playerMovementController = playerGameObject.GetComponent<PlayerMovement>();
+            SFXManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
         }
 
         private void Update()
@@ -53,7 +55,7 @@ namespace Assets.Scripts.Attacks
         {
             isShootingRight = playerMovement.isFacingRight;
             GameObject arrow = Instantiate(arrowPrefab, arrowSpawningPosition.transform.position, Quaternion.identity);
-
+            SFXManager.PlaySFX(SFXType.ArrowShot);
 
             if (!isShootingRight)
             {
