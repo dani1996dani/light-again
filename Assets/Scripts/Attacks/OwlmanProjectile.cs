@@ -10,6 +10,7 @@ public class OwlmanProjectile : MonoBehaviour
     Animator projectileAnimator;
     AnimationClip impactAnimationClip;
 
+
     void Start()
     {
         StartCoroutine("DestoryAfterTimeToLiveEnded");
@@ -65,6 +66,9 @@ public class OwlmanProjectile : MonoBehaviour
 
     IEnumerator OnHit(GameObject colGameObject)
     {
+        SFXManager sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
+        sfxManager.PlaySFX(SFXType.FireballImpact);
+
         didHitPlayer = true;
         projectileAnimator.SetBool("didHit", didHitPlayer);
 

@@ -9,7 +9,8 @@ public enum SFXType
     playerDeath,
     MoonDustPickup,
     ArrowShot,
-    OwlmanDeath
+    OwlmanDeath,
+    FireballImpact
 }
 
 public class SFX
@@ -58,6 +59,10 @@ public class SFXManager : MonoBehaviour
         AudioClip owlmanDeathSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/owlman-death");
         SFX owlmanDeath = new SFX(SFXType.OwlmanDeath, owlmanDeathSFXClip, 0.9f, 1.2f);
         availableSFX.Add(owlmanDeath);
+
+        AudioClip fireballImpactSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/fireball-impact");
+        SFX fireballImpact = new SFX(SFXType.FireballImpact, fireballImpactSFXClip, 0.9f, 1.2f);
+        availableSFX.Add(fireballImpact);
     }
 
     // Update is called once per frame
