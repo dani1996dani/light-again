@@ -54,6 +54,8 @@ public class PlayerDamageSubsriber : MonoBehaviour
 
     private void OnPlayerDeath()
     {
+        SFXManager sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
+        sfxManager.PlaySFX(SFXType.playerDeath);
         Settings.isGamePaused = true;
         Settings.isGameActive = false;
         StartCoroutine("StartPlayerDeath");

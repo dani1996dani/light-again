@@ -84,6 +84,7 @@ namespace Assets.Scripts
         public static readonly string TagDeadBossLightParticles = "DeadBossLightParticles";
         public static readonly string TagRegularOwlmanHPBar = "RegularOwlmanHPBar";
         public static readonly string TagAudioSource = "AudioSource";
+        public static readonly string TagSFX = "SFX";
 
         #endregion
 
