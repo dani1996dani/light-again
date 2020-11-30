@@ -11,7 +11,8 @@ public enum SFXType
     ArrowShot,
     OwlmanDeath,
     FireballImpact,
-    FireballRelease
+    FireballRelease,
+    MoonshotBlast
 }
 
 public class SFX
@@ -68,6 +69,10 @@ public class SFXManager : MonoBehaviour
         AudioClip fireballReleaseSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/fireball-release");
         SFX fireballRelease = new SFX(SFXType.FireballRelease, fireballReleaseSFXClip, 0.9f, 1.2f);
         availableSFX.Add(fireballRelease);
+
+        AudioClip moonshotBlastSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/moonshot-blast");
+        SFX moonshotBlast = new SFX(SFXType.MoonshotBlast, moonshotBlastSFXClip, 0.9f, 1.2f);
+        availableSFX.Add(moonshotBlast);
     }
 
     // Update is called once per frame
