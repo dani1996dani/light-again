@@ -8,10 +8,12 @@ public class EnemyDamageSubsriber : MonoBehaviour
 {
     GameObject moonDustPrefab;
     int moonDustSortingLayerPriority = 0;
+    SFXManager sfxManager;
 
     private void Awake()
     {
         moonDustPrefab = (GameObject)Resources.Load("Prefabs/MoonDust", typeof(GameObject));
+        sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
     }
 
     private void OnEnable()
@@ -47,6 +49,7 @@ public class EnemyDamageSubsriber : MonoBehaviour
 
     IEnumerator DestoryEnemyGameObject(float secondsToWait, GameObject enemy)
     {
+        sfxManager.PlaySFX(SFXType.OwlmanDeath);
         Collider2D[] allColliders = enemy.GetComponents<Collider2D>();
         Rigidbody2D enemyRigidBody = enemy.GetComponent<Rigidbody2D>();
         enemyRigidBody.isKinematic = true;
