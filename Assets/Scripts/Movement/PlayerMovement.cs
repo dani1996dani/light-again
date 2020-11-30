@@ -27,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
         playerRigidBody = playerGameObject.GetComponent<Rigidbody2D>();
         playerAnimator = playerGameObject.GetComponentInChildren<Animator>();
         basicAttackController = playerGameObject.GetComponentInChildren<PlayerBasicAttack>();
+    }
+
+    private void Start()
+    {
         sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
     }
 

@@ -18,6 +18,10 @@ namespace Assets.Scripts.Attacks
         {
             allChildren = gameObject.GetAllChildren();
             owlmanProjectilePrefab = (GameObject)Resources.Load("Prefabs/OwlmanSpellProjectile");
+        }
+
+        private void Start()
+        {
             sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
         }
 

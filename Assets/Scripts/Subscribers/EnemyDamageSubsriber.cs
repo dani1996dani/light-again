@@ -13,6 +13,10 @@ public class EnemyDamageSubsriber : MonoBehaviour
     private void Awake()
     {
         moonDustPrefab = (GameObject)Resources.Load("Prefabs/MoonDust", typeof(GameObject));
+    }
+
+    private void Start()
+    {
         sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
     }
 

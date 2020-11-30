@@ -29,6 +29,7 @@ public class OwlmanBossActionManager : MonoBehaviour
     private bool canAttack = false;
     private BossAttack[] availableAttackTypes = new BossAttack[3] { BossAttack.SpellHorizontal, BossAttack.SpellVertical, BossAttack.GroundSmash };
     AnimationClip groundSmashClip;
+    SFXManager sfxManager;
 
     private void Start()
     {
@@ -44,6 +45,8 @@ public class OwlmanBossActionManager : MonoBehaviour
 
         owlmanProjectilePrefab = (GameObject)Resources.Load("Prefabs/OwlmanSpellProjectile");
         owlmanGroundSmashReverbPrefab = (GameObject)Resources.Load("Prefabs/GroundSmashReverb");
+
+        sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
 
         owlmanType = OwlmanType.Boss;
 
@@ -111,6 +114,7 @@ public class OwlmanBossActionManager : MonoBehaviour
             StartCoroutine(castGroundSmashCoroutine);
         }
 
+        sfxManager.PlaySFX(SFXType.BossSpell);
         yield return new WaitForSeconds(Settings.OwlmanBossTimeToWaitBetweenAttacks);
         canAttack = true;
     }

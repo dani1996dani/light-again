@@ -27,6 +27,10 @@ namespace Assets.Scripts.Attacks
             playerAnimator = playerGameObject.GetComponentInChildren<Animator>();
             attackAnimationClip = playerAnimator.runtimeAnimatorController.animationClips.FirstOrDefault((x) => x.name == "Attack");
             playerMovementController = playerGameObject.GetComponent<PlayerMovement>();
+        }
+
+        private void Start()
+        {
             SFXManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
         }
 

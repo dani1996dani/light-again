@@ -13,7 +13,8 @@ public enum SFXType
     FireballImpact,
     FireballRelease,
     MoonshotBlast,
-    Punch
+    Punch,
+    BossSpell
 }
 
 public class SFX
@@ -64,11 +65,11 @@ public class SFXManager : MonoBehaviour
         availableSFX.Add(owlmanDeath);
 
         AudioClip fireballImpactSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/fireball-impact");
-        SFX fireballImpact = new SFX(SFXType.FireballImpact, fireballImpactSFXClip, 0.9f, 1.2f);
+        SFX fireballImpact = new SFX(SFXType.FireballImpact, fireballImpactSFXClip, 1f, 1.1f);
         availableSFX.Add(fireballImpact);
 
         AudioClip fireballReleaseSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/fireball-release");
-        SFX fireballRelease = new SFX(SFXType.FireballRelease, fireballReleaseSFXClip, 0.9f, 1.2f);
+        SFX fireballRelease = new SFX(SFXType.FireballRelease, fireballReleaseSFXClip, 1f, 1.1f);
         availableSFX.Add(fireballRelease);
 
         AudioClip moonshotBlastSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/moonshot-blast");
@@ -78,6 +79,10 @@ public class SFXManager : MonoBehaviour
         AudioClip punchSFXClip = (AudioClip)Resources.Load("Audio/sound-effects/punch");
         SFX punch = new SFX(SFXType.Punch, punchSFXClip, 0.9f, 1.2f);
         availableSFX.Add(punch);
+
+        AudioClip bossSpellClip = (AudioClip)Resources.Load("Audio/sound-effects/boss-spell");
+        SFX bossSpell = new SFX(SFXType.BossSpell, bossSpellClip, 1f, 1.01f);
+        availableSFX.Add(bossSpell);
     }
 
     // Update is called once per frame
