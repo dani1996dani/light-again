@@ -29,6 +29,8 @@ public class PlayerMoonDustPickup : MonoBehaviour
             moonDustProgressController = GameObject.FindGameObjectWithTag(Settings.TagGameSettings).GetComponent<MoonDustProgress>();
         }
         moonDustProgressController.IncrementMoonDustAmount();
+        SFXManager sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
+        sfxManager.PlaySFX(SFXType.MoonDustPickup);
 
         Destroy(moonDust);
     }

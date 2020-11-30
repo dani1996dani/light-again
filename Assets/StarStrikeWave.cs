@@ -25,6 +25,8 @@ public class StarStrikeWave : MonoBehaviour
 
         expansionSpriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         StartCoroutine("StopExpanding");
+        SFXManager sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
+        sfxManager.PlaySFX(SFXType.MoonshotBlast);
     }
 
     // Update is called once per frame

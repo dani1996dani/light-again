@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isFacingRight = true;
     private bool shouldJump = false;
     private PlayerBasicAttack basicAttackController;
+    SFXManager sfxManager;
+    
 
     private void Awake()
     {
@@ -25,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
         playerRigidBody = playerGameObject.GetComponent<Rigidbody2D>();
         playerAnimator = playerGameObject.GetComponentInChildren<Animator>();
         basicAttackController = playerGameObject.GetComponentInChildren<PlayerBasicAttack>();
+    }
+
+    private void Start()
+    {
+        sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
     }
 
     private void Update()
@@ -67,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         {
             shouldJump = true;
             playerRigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            sfxManager.PlaySFX(SFXType.jump);
         }
 
         if (!isPlayerGrounded && shouldJump)

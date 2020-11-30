@@ -33,6 +33,7 @@ TagManager:
   - DialogCanvas
   - RegularOwlmanHPBar
   - AudioSource
+  - SFX
   layers:
   - Default
   - TransparentFX

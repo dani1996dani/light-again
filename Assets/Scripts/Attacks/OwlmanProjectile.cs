@@ -9,12 +9,15 @@ public class OwlmanProjectile : MonoBehaviour
     bool didHitPlayer = false;
     Animator projectileAnimator;
     AnimationClip impactAnimationClip;
+    SFXManager sfxManager;
 
     void Start()
     {
         StartCoroutine("DestoryAfterTimeToLiveEnded");
         projectileAnimator = GetComponentInChildren<Animator>();
         impactAnimationClip = projectileAnimator.runtimeAnimatorController.animationClips.FirstOrDefault((x) => x.name == "Impact");
+        sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
+        sfxManager.PlaySFX(SFXType.FireballRelease);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -65,6 +68,9 @@ public class OwlmanProjectile : MonoBehaviour
 
     IEnumerator OnHit(GameObject colGameObject)
     {
+       
+        sfxManager.PlaySFX(SFXType.FireballImpact);
+
         didHitPlayer = true;
         projectileAnimator.SetBool("didHit", didHitPlayer);
 
