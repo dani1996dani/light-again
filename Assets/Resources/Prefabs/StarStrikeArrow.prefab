@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: -2791386543357745510}
   m_Layer: 0
   m_Name: StarStrikeArrow
-  m_TagString: Untagged
+  m_TagString: StarStrikeArrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

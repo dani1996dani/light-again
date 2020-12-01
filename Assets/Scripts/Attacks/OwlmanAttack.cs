@@ -76,8 +76,8 @@ namespace Assets.Scripts.Attacks
             if (isPlayerStillInAttackRange)
             {
                 Publisher.publish.CallPlayerHit(Settings.OwlmanAttackDamage);
-            }
-            sfxManager.PlaySFX(SFXType.Punch);
+                sfxManager.PlaySFX(SFXType.Punch);
+            }            
         }
     }
 }

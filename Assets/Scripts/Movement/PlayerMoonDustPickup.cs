@@ -18,9 +18,17 @@ public class PlayerMoonDustPickup : MonoBehaviour
                 CollectMoonDust(colGameObject, moonDustGuid);
             }
         }
+        if(colGameObject.tag == Settings.TagBigMoonDust)
+        {
+            int moonDustGuid = colGameObject.GetComponent<ObjectGuid>().GetGuid();
+            if (!collectedMoonDustGuids.Contains(moonDustGuid))
+            {
+                CollectMoonDust(colGameObject, moonDustGuid, Settings.MoonDustMaxAmount);
+            }
+        }
     }
 
-    private void CollectMoonDust(GameObject moonDust, int moonDustGuid)
+    private void CollectMoonDust(GameObject moonDust, int moonDustGuid, int amountToAdd = 1)
     {
         collectedMoonDustGuids.Add(moonDustGuid);
 
@@ -28,7 +36,7 @@ public class PlayerMoonDustPickup : MonoBehaviour
         {
             moonDustProgressController = GameObject.FindGameObjectWithTag(Settings.TagGameSettings).GetComponent<MoonDustProgress>();
         }
-        moonDustProgressController.IncrementMoonDustAmount();
+        moonDustProgressController.IncreaseMoonDustAmount(amountToAdd);
         SFXManager sfxManager = GameObject.FindGameObjectWithTag(Settings.TagSFX).GetComponent<SFXManager>();
         sfxManager.PlaySFX(SFXType.MoonDustPickup);
 
