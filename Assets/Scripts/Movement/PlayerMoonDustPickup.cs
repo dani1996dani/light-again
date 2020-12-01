@@ -23,7 +23,7 @@ public class PlayerMoonDustPickup : MonoBehaviour
             int moonDustGuid = colGameObject.GetComponent<ObjectGuid>().GetGuid();
             if (!collectedMoonDustGuids.Contains(moonDustGuid))
             {
-                CollectMoonDust(colGameObject, moonDustGuid, 10);
+                CollectMoonDust(colGameObject, moonDustGuid, Settings.MoonDustMaxAmount);
             }
         }
     }
