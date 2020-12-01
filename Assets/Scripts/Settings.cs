@@ -7,7 +7,7 @@ namespace Assets.Scripts
         public static readonly float ArrowSpeed = 30.0f;
         public static readonly float OwlmanProjectileSpeed = 20.0f;
         public static readonly float ArrowTimeToLive = 0.75f;
-        public static readonly float PlayerMovementSpeed = 10.0f;
+        public static readonly float PlayerMovementSpeed = 13.0f;
         public static readonly float JumpForce = 40.0f;
         public static readonly float DistToGround = 2.5f;
         public static readonly string PlayerHorizontalSpeed = "PlayerHorizontalSpeed";
