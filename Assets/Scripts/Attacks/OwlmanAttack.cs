@@ -59,11 +59,14 @@ namespace Assets.Scripts.Attacks
 
         IEnumerator CastSpell(Vector3 spellDirection, Vector3 initialPosition)
         {
-            GameObject prefab = Instantiate(owlmanProjectilePrefab, initialPosition, Quaternion.identity);
-            OwlmanProjectileMovement projectileMovement = prefab.GetComponent<OwlmanProjectileMovement>();
-            prefab.transform.localScale = new Vector3(spellDirection.x, 1, 1);
-            projectileMovement.SetDirection(spellDirection);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
+            if (isPlayerInAttackRange(spellDirection, Settings.OwlmanSpellAttackRange))
+            {
+                GameObject prefab = Instantiate(owlmanProjectilePrefab, initialPosition, Quaternion.identity);
+                OwlmanProjectileMovement projectileMovement = prefab.GetComponent<OwlmanProjectileMovement>();
+                prefab.transform.localScale = new Vector3(spellDirection.x, 1, 1);
+                projectileMovement.SetDirection(spellDirection);
+            }
         }
 
         IEnumerator DealDamage(Vector3 attackDirection, float attackRange)
