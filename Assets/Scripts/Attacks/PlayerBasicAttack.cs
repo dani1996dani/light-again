@@ -37,7 +37,7 @@ namespace Assets.Scripts.Attacks
         private void Update()
         {
             cooldown -= Time.deltaTime;
-            if (!Settings.isGamePaused && playerMovementController.isGrounded() && Input.GetKeyDown(KeyCode.Space) && cooldown <= 0)
+            if (!Settings.isGamePaused && playerMovementController.isGrounded() && Input.GetKey(KeyCode.Space) && cooldown <= 0)
             {
                 cooldown = attackAnimationClip.length + 0.2f;
                 StartCoroutine("ToggleAttackAnimation");
