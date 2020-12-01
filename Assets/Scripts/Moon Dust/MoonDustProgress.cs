@@ -26,6 +26,14 @@ public class MoonDustProgress : MonoBehaviour
         }
     }
 
+    public void IncreaseMoonDustAmount(int amountToAdd)
+    {
+        int newAmount = this.moonDustCollectedAmount + amountToAdd;
+        this.moonDustCollectedAmount = Mathf.Clamp(newAmount, 0, Settings.MoonDustMaxAmount);
+    }
+
+
+
     public int GetCurrentAmount()
     {
         return moonDustCollectedAmount;

@@ -36,6 +36,7 @@ TagManager:
   - SFX
   - StarStrikeArrow
   - RegularArrow
+  - BigMoonDust
   layers:
   - Default
   - TransparentFX

@@ -87,6 +87,8 @@ namespace Assets.Scripts
         public static readonly string TagSFX = "SFX";
         public static readonly string TagStarStrikeArrow = "StarStrikeArrow";
         public static readonly string TagRegularArrow = "RegularArrow";
+        public static readonly string TagBigMoonDust = "BigMoonDust";
+        
 
         #endregion
 
